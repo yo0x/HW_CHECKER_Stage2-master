@@ -36,6 +36,29 @@ namespace DropFilesTest1
         public List<string> pythonFiles = new List<string>();
         public List<string> javaFiles = new List<string>();
     }
+    class FileResult
+    {
+        public string FileName { get; set; }
+        public string StudenId { get; set; }
+        public string Department { get; set; }
+        public bool Compiled { get; set; }
+        public string Errors { get; set; }
+        public string FileOutput { get; set; }
+        public FileResult(string MyFileName, string myStudenId,string myDept, bool Comp, string MyErr, string FileOut)
+        {
+            FileName = MyFileName;
+            StudenId = myStudenId;
+            Department = myDept;
+            Compiled = Comp;
+            Errors = MyErr;
+            FileOutput = FileOut;
+        }
+        public FileResult(string MyErr, string FileOut)
+        {
+            Errors = MyErr;
+            FileOutput = FileOut;
+        }
+    }
     static class LanguageRecognizion
     {
 

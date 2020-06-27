@@ -54,7 +54,7 @@
             this.labelCfilesMakeSummary = new System.Windows.Forms.Label();
             this.labelJavaFilesSummary = new System.Windows.Forms.Label();
             this.labelPythonFilesSummary = new System.Windows.Forms.Label();
-            this.labelRCFCfilesSummary = new System.Windows.Forms.Label();
+            this.labelCfilesSummary = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelSelectMode = new System.Windows.Forms.Label();
             this.panelResultsWindow = new System.Windows.Forms.Panel();
@@ -118,6 +118,7 @@
             // 
             // listBox1DragFiles
             // 
+            this.listBox1DragFiles.AllowDrop = true;
             this.listBox1DragFiles.FormattingEnabled = true;
             this.listBox1DragFiles.Location = new System.Drawing.Point(87, 158);
             this.listBox1DragFiles.Name = "listBox1DragFiles";
@@ -174,9 +175,9 @@
             this.labelCmakeFiles.AutoSize = true;
             this.labelCmakeFiles.Location = new System.Drawing.Point(87, 44);
             this.labelCmakeFiles.Name = "labelCmakeFiles";
-            this.labelCmakeFiles.Size = new System.Drawing.Size(393, 52);
+            this.labelCmakeFiles.Size = new System.Drawing.Size(398, 52);
             this.labelCmakeFiles.TabIndex = 8;
-            this.labelCmakeFiles.Text = "# C Make files have been recognized.\r\nPlease check box in order to build them";
+            this.labelCmakeFiles.Text = "0  \"C-Make\" files have been recognized.\r\nPlease check box in order to build them";
             // 
             // groupBoxFilesToBeChecked
             // 
@@ -270,9 +271,10 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.buttonSelectedHest1);
             this.groupBox1.Controls.Add(this.buttonSelectedHEST2);
-            this.groupBox1.Location = new System.Drawing.Point(42, 348);
+            this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.groupBox1.Location = new System.Drawing.Point(42, 311);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(891, 268);
+            this.groupBox1.Size = new System.Drawing.Size(891, 295);
             this.groupBox1.TabIndex = 9;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Please select a checking method:";
@@ -280,21 +282,24 @@
             // label4
             // 
             this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.label4.Location = new System.Drawing.Point(566, 207);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(306, 26);
+            this.label4.Size = new System.Drawing.Size(245, 51);
             this.label4.TabIndex = 9;
-            this.label4.Text = "Hest 2, will let you choose the kind of output that is expected....\r\n\r\n";
+            this.label4.Text = "Hest 2, will let you choose the kind of \r\noutput that is expected....\r\n\r\n";
             // 
             // label3
             // 
             this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.label3.Location = new System.Drawing.Point(84, 207);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(258, 39);
+            this.label3.Size = new System.Drawing.Size(260, 68);
             this.label3.TabIndex = 9;
-            this.label3.Text = "Hest 1 checks the files for execution and output only.\r\nIf any C-Files were selec" +
-    "ted, the system will try to \r\nbuild them and execute them.\r\n";
+            this.label3.Text = "Hest 1 checks the files for execution \r\nand output only.\r\nIf any C-Files were sel" +
+    "ected, the system \r\nwill try to build them and execute them.\r\n";
+            this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // buttonSelectedHest1
             // 
@@ -323,7 +328,7 @@
             this.groupBoxFilesSummary.Controls.Add(this.labelCfilesMakeSummary);
             this.groupBoxFilesSummary.Controls.Add(this.labelJavaFilesSummary);
             this.groupBoxFilesSummary.Controls.Add(this.labelPythonFilesSummary);
-            this.groupBoxFilesSummary.Controls.Add(this.labelRCFCfilesSummary);
+            this.groupBoxFilesSummary.Controls.Add(this.labelCfilesSummary);
             this.groupBoxFilesSummary.Controls.Add(this.label1);
             this.groupBoxFilesSummary.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
             this.groupBoxFilesSummary.Location = new System.Drawing.Point(42, 107);
@@ -331,7 +336,7 @@
             this.groupBoxFilesSummary.Size = new System.Drawing.Size(891, 175);
             this.groupBoxFilesSummary.TabIndex = 7;
             this.groupBoxFilesSummary.TabStop = false;
-            this.groupBoxFilesSummary.Text = "Summary files:";
+            this.groupBoxFilesSummary.Text = "File\'s summary:";
             // 
             // labelCfilesMakeSummary
             // 
@@ -360,23 +365,23 @@
             this.labelPythonFilesSummary.TabIndex = 1;
             this.labelPythonFilesSummary.Text = "# Python";
             // 
-            // labelRCFCfilesSummary
+            // labelCfilesSummary
             // 
-            this.labelRCFCfilesSummary.AutoSize = true;
-            this.labelRCFCfilesSummary.Location = new System.Drawing.Point(56, 118);
-            this.labelRCFCfilesSummary.Name = "labelRCFCfilesSummary";
-            this.labelRCFCfilesSummary.Size = new System.Drawing.Size(99, 26);
-            this.labelRCFCfilesSummary.TabIndex = 1;
-            this.labelRCFCfilesSummary.Text = "# C-Files";
+            this.labelCfilesSummary.AutoSize = true;
+            this.labelCfilesSummary.Location = new System.Drawing.Point(56, 118);
+            this.labelCfilesSummary.Name = "labelCfilesSummary";
+            this.labelCfilesSummary.Size = new System.Drawing.Size(99, 26);
+            this.labelCfilesSummary.TabIndex = 1;
+            this.labelCfilesSummary.Text = "# C-Files";
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(56, 33);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(432, 26);
+            this.label1.Size = new System.Drawing.Size(488, 26);
             this.label1.TabIndex = 0;
-            this.label1.Text = "The system has detected the following files:\r\n";
+            this.label1.Text = "The following number of files have been selected:\r\n";
             // 
             // labelSelectMode
             // 
@@ -679,10 +684,10 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.panelResultsWindow);
-            this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
@@ -743,7 +748,7 @@
         private System.Windows.Forms.Label labelCfilesMakeSummary;
         private System.Windows.Forms.Label labelJavaFilesSummary;
         private System.Windows.Forms.Label labelPythonFilesSummary;
-        private System.Windows.Forms.Label labelRCFCfilesSummary;
+        private System.Windows.Forms.Label labelCfilesSummary;
         private System.Windows.Forms.Panel panelResultsWindow;
         private System.Windows.Forms.GroupBox groupBox2SummaryReport;
         private System.Windows.Forms.Label labelFilesChecked;

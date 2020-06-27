@@ -20,7 +20,7 @@ namespace DropFilesTest1
         private void FilesOverview_Load(object sender, EventArgs e)
         {
             OrderedFiles myOrderedFiles = new OrderedFiles();
-            myOrderedFiles =classiferProgLang(FilesTool.filesToCheck);
+            myOrderedFiles = LanguageRecognizion.classifierProgLang(FilesTool.filesToCheck);
             label4NumCfiles.Text = Convert.ToString(myOrderedFiles.cFiles.Count);
             label4NumJavaFiles.Text = Convert.ToString(myOrderedFiles.javaFiles.Count);
             label4NumPythonFiles.Text = Convert.ToString(myOrderedFiles.pythonFiles.Count);
@@ -29,10 +29,10 @@ namespace DropFilesTest1
         private void Button1Cfiles_Click(object sender, EventArgs e)
         {
             OrderedFiles myOrderedFiles = new OrderedFiles();
-            myOrderedFiles = FilesClassifer.classiferProgLang(FilesTool.filesToCheck);
+            myOrderedFiles = LanguageRecognizion.classifierProgLang(FilesTool.filesToCheck);
             foreach (string item in myOrderedFiles.cFiles)
             {
-                MessageBox.Show($"{FilesExecuter.cfilesExe(item)}");
+               // MessageBox.Show($"{FilesExecuter.cfilesExe(item)}");
             }
         }
     }

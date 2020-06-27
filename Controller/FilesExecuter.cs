@@ -8,78 +8,71 @@ using System.Threading.Tasks;
 
 namespace DropFilesTest1
 {
-    static class FilesExecuter
+    static class FilesExecuterHest1
     {
-        //private static string AppPath => Path.GetDirectoryName(Environment.GetCommandLineArgs()[0]);
-        //private static DirectoryInfo myDir = new DirectoryInfo(AppPath);
-        //private static string dataDir = myDir.Parent.Parent.FullName.ToString();
-        //public static string xmlDishPath = $"{dataDir}\\Data\\Dishes.xml";
 
-        public  static string cfilesExe(string myFileToExec)
+        public static (string compilerOutPut, string execFileOutput) executeFile(string myFileToExec)
         {
+            string fileCompOutPut = $"{ Path.GetTempPath() }\\comp.output";
+            string fileExecOutPut = $"{ Path.GetTempPath() }\\file.output";
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            string dirOutPutToCompiledFiles = $"{desktopPath}\\HwOutput";
+            string commadToCompiler = "";
+            string commadToExecuteFile = "";
 
-            string fileOutPut;
-            string command = $"gcc -o {Path.GetDirectoryName(myFileToExec)}\\{Path.GetFileNameWithoutExtension(myFileToExec)} {myFileToExec}";
+
+            if (!Directory.Exists(dirOutPutToCompiledFiles))
+            {
+                Directory.CreateDirectory(dirOutPutToCompiledFiles);
+            }
+
+            if (Path.GetExtension(myFileToExec).Equals(".c"))
+            {
+                string commandCfiles = $"/c gcc -o {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)} {myFileToExec} 2> {fileCompOutPut}";
+                string commandExeCompCFile = $"/c {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.exe > {fileExecOutPut}";
+                commadToCompiler = commandCfiles;
+                commadToExecuteFile = commandExeCompCFile;
+            }
+            else if (Path.GetExtension(myFileToExec).Equals(".py"))
+            {
+                string commandCfiles = $"/c python {myFileToExec} 2> {fileCompOutPut}";
+                string commandExeCompCFile = $"/c python {myFileToExec} > {fileExecOutPut}";
+                commadToCompiler = commandCfiles;
+                commadToExecuteFile = commandExeCompCFile;
+            }
+            else if (Path.GetExtension(myFileToExec).Equals(".java"))
+            {
+                string commandCfiles = $"/c javac -d {dirOutPutToCompiledFiles} {myFileToExec} 2> {fileCompOutPut}";
+                string commandExeCompCFile = $"/c java {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.class 2> {fileExecOutPut}";
+                commadToCompiler = commandCfiles;
+                commadToExecuteFile = commandExeCompCFile;
+            }
+
+
+
 
             try
             {
-                // create the ProcessStartInfo using "cmd" as the program to be run,
-                // and "/c " as the parameters.
-                // Incidentally, /c tells cmd that we want it to execute the command that follows,
-                // and then exit.
-                ProcessStartInfo procStartInfo = new ProcessStartInfo("cmd", "/c " + command);
-
-                // The following commands are needed to redirect the standard output.
-                // This means that it will be redirected to the Process.StandardOutput StreamReader.
-                procStartInfo.RedirectStandardOutput = true;
-                procStartInfo.UseShellExecute = false;
-                // Do not create the black window.
-                procStartInfo.CreateNoWindow = true;
-                // Now we create a process, assign its ProcessStartInfo and start it
                 Process proc = new Process();
-                proc.StartInfo = procStartInfo;
+                Process procExecFile = new Process();
+                proc.StartInfo.FileName = "cmd";
+                proc.StartInfo.Arguments = commadToCompiler;
+                proc.StartInfo.UseShellExecute = false;
                 proc.Start();
                 proc.WaitForExit();
-                // Get the output into a string
-                string result = proc.StandardOutput.ReadToEnd();
-                // Display the command output.
-                Console.WriteLine(result);
-                return (result);
+                procExecFile.StartInfo.FileName = "cmd";
+                procExecFile.StartInfo.Arguments = commadToExecuteFile;
+                procExecFile.StartInfo.UseShellExecute = false;
+                procExecFile.Start();
+                procExecFile.WaitForExit();
+                return (compilerOutPut: FilesTool.processFileOutPut(fileCompOutPut), execFileOutput: FilesTool.processFileOutPut(fileExecOutPut));
             }
             catch (Exception objException)
             {
                 // Log the exception
-                return "l";
+                return (compilerOutPut: $"error {objException.ToString()}", execFileOutput: "error");
             }
-
-
-            
-
-
-
-
-
-            //// Start the child process.
-            //Process p = new Process();
-            //// Redirect the output stream of the child process.
-            //p.StartInfo.UseShellExecute = false;
-            //p.StartInfo.RedirectStandardOutput = true;
-            //p.StartInfo.FileName = "YOURBATCHFILE.bat";
-            //p.Start();
-            //// Do not wait for the child process to exit before
-            //// reading to the end of its redirected stream.
-            //// p.WaitForExit();
-            //// Read the output stream first and then wait.
-            //string output = p.StandardOutput.ReadToEnd();
-            //p.WaitForExit();
-
-
         }
 
-        //public void execCopFile(string fileToExe)
-        //{
-
-            
-        //}
     }
 }

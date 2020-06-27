@@ -31,8 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panelDragFiles = new System.Windows.Forms.Panel();
             this.label1DragFiles = new System.Windows.Forms.Label();
-            this.button1CheckFiles = new System.Windows.Forms.Button();
             this.listBox1DragFiles = new System.Windows.Forms.ListBox();
+            this.buttonNextPanel = new System.Windows.Forms.Button();
             this.panelFilesOverView = new System.Windows.Forms.Panel();
             this.groupBoxFilesToBuild = new System.Windows.Forms.GroupBox();
             this.checkBoxCMakeFiles = new System.Windows.Forms.CheckBox();
@@ -44,105 +44,107 @@
             this.checkBoxPythonFiles = new System.Windows.Forms.CheckBox();
             this.label1SummaryFiles = new System.Windows.Forms.Label();
             this.buttonBackSFW = new System.Windows.Forms.Button();
-            this.buttonNextSFW = new System.Windows.Forms.Button();
             this.panelSelectMode = new System.Windows.Forms.Panel();
-            this.labelSelectMode = new System.Windows.Forms.Label();
-            this.buttonBackSummaryWindow = new System.Windows.Forms.Button();
-            this.groupBoxFilesSummary = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.labelRCFCfilesSummary = new System.Windows.Forms.Label();
-            this.labelPythonFilesSummary = new System.Windows.Forms.Label();
-            this.labelJavaFilesSummary = new System.Windows.Forms.Label();
-            this.labelCfilesMakeSummary = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            this.ResoultWindow = new System.Windows.Forms.Panel();
-            this.buttonNewRevision = new System.Windows.Forms.Button();
-            this.label5SummaryFilesHEST1HEST2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.buttonSelectedHest1 = new System.Windows.Forms.Button();
+            this.buttonSelectedHEST2 = new System.Windows.Forms.Button();
+            this.groupBoxFilesSummary = new System.Windows.Forms.GroupBox();
+            this.labelCfilesMakeSummary = new System.Windows.Forms.Label();
+            this.labelJavaFilesSummary = new System.Windows.Forms.Label();
+            this.labelPythonFilesSummary = new System.Windows.Forms.Label();
+            this.labelRCFCfilesSummary = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.labelSelectMode = new System.Windows.Forms.Label();
+            this.panelResultsWindow = new System.Windows.Forms.Panel();
             this.groupBox2SummaryReport = new System.Windows.Forms.GroupBox();
-            this.buttonExitProgram = new System.Windows.Forms.Button();
-            this.button4GenerateReport = new System.Windows.Forms.Button();
-            this.labelFilesChecked = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9NumJavaFilesChecked = new System.Windows.Forms.Label();
-            this.label10NumPythonFilesChecked = new System.Windows.Forms.Label();
-            this.label9NumCFilesChecked = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10NumCmakeFilesBuilt = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label15 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label10NumCmakeFilesBuilt = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label9NumCFilesChecked = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label10NumPythonFilesChecked = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label9NumJavaFilesChecked = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.labelFilesChecked = new System.Windows.Forms.Label();
+            this.label5SummaryFilesHEST1HEST2 = new System.Windows.Forms.Label();
+            this.button4GenerateReport = new System.Windows.Forms.Button();
+            this.buttonNewRevision = new System.Windows.Forms.Button();
+            this.buttonExitProgramEND = new System.Windows.Forms.Button();
+            this.buttonExitPro = new System.Windows.Forms.Button();
+            this.PanelSignIn = new System.Windows.Forms.Panel();
+            this.button1EnterProg = new System.Windows.Forms.Button();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
             this.groupBoxFilesToBuild.SuspendLayout();
             this.groupBoxFilesToBeChecked.SuspendLayout();
             this.panelSelectMode.SuspendLayout();
-            this.groupBoxFilesSummary.SuspendLayout();
             this.groupBox1.SuspendLayout();
-            this.ResoultWindow.SuspendLayout();
+            this.groupBoxFilesSummary.SuspendLayout();
+            this.panelResultsWindow.SuspendLayout();
             this.groupBox2SummaryReport.SuspendLayout();
+            this.PanelSignIn.SuspendLayout();
             this.SuspendLayout();
             // 
             // panelDragFiles
             // 
             this.panelDragFiles.Controls.Add(this.label1DragFiles);
-            this.panelDragFiles.Controls.Add(this.button1CheckFiles);
             this.panelDragFiles.Controls.Add(this.listBox1DragFiles);
             this.panelDragFiles.Location = new System.Drawing.Point(12, 12);
             this.panelDragFiles.Name = "panelDragFiles";
-            this.panelDragFiles.Size = new System.Drawing.Size(984, 705);
+            this.panelDragFiles.Size = new System.Drawing.Size(984, 636);
             this.panelDragFiles.TabIndex = 4;
             // 
             // label1DragFiles
             // 
             this.label1DragFiles.AutoSize = true;
-            this.label1DragFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label1DragFiles.Location = new System.Drawing.Point(372, 47);
+            this.label1DragFiles.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label1DragFiles.Location = new System.Drawing.Point(291, 76);
             this.label1DragFiles.Name = "label1DragFiles";
-            this.label1DragFiles.Size = new System.Drawing.Size(269, 26);
+            this.label1DragFiles.Size = new System.Drawing.Size(377, 29);
             this.label1DragFiles.TabIndex = 6;
-            this.label1DragFiles.Text = "Drag files to be checked";
-            // 
-            // button1CheckFiles
-            // 
-            this.button1CheckFiles.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button1CheckFiles.Location = new System.Drawing.Point(378, 605);
-            this.button1CheckFiles.Name = "button1CheckFiles";
-            this.button1CheckFiles.Size = new System.Drawing.Size(226, 41);
-            this.button1CheckFiles.TabIndex = 5;
-            this.button1CheckFiles.Text = "Next";
-            this.button1CheckFiles.UseVisualStyleBackColor = true;
+            this.label1DragFiles.Text = "DRAG FILES TO BE CHECKED";
             // 
             // listBox1DragFiles
             // 
             this.listBox1DragFiles.FormattingEnabled = true;
-            this.listBox1DragFiles.Location = new System.Drawing.Point(77, 115);
+            this.listBox1DragFiles.Location = new System.Drawing.Point(87, 158);
             this.listBox1DragFiles.Name = "listBox1DragFiles";
             this.listBox1DragFiles.Size = new System.Drawing.Size(821, 394);
             this.listBox1DragFiles.TabIndex = 4;
+            this.listBox1DragFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox1DragFiles_DragEnter_1);
+            // 
+            // buttonNextPanel
+            // 
+            this.buttonNextPanel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonNextPanel.Location = new System.Drawing.Point(770, 676);
+            this.buttonNextPanel.Name = "buttonNextPanel";
+            this.buttonNextPanel.Size = new System.Drawing.Size(226, 41);
+            this.buttonNextPanel.TabIndex = 5;
+            this.buttonNextPanel.Text = "Next";
+            this.buttonNextPanel.UseVisualStyleBackColor = true;
+            this.buttonNextPanel.Visible = false;
+            this.buttonNextPanel.Click += new System.EventHandler(this.ButtonNextPanel_Click);
             // 
             // panelFilesOverView
             // 
             this.panelFilesOverView.Controls.Add(this.groupBoxFilesToBuild);
             this.panelFilesOverView.Controls.Add(this.groupBoxFilesToBeChecked);
             this.panelFilesOverView.Controls.Add(this.label1SummaryFiles);
-            this.panelFilesOverView.Controls.Add(this.buttonBackSFW);
-            this.panelFilesOverView.Controls.Add(this.buttonNextSFW);
             this.panelFilesOverView.Location = new System.Drawing.Point(12, 12);
             this.panelFilesOverView.Name = "panelFilesOverView";
-            this.panelFilesOverView.Size = new System.Drawing.Size(984, 705);
+            this.panelFilesOverView.Size = new System.Drawing.Size(984, 636);
             this.panelFilesOverView.TabIndex = 5;
             // 
             // groupBoxFilesToBuild
@@ -243,53 +245,78 @@
             // buttonBackSFW
             // 
             this.buttonBackSFW.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonBackSFW.Location = new System.Drawing.Point(74, 614);
+            this.buttonBackSFW.Location = new System.Drawing.Point(12, 676);
             this.buttonBackSFW.Name = "buttonBackSFW";
             this.buttonBackSFW.Size = new System.Drawing.Size(226, 41);
             this.buttonBackSFW.TabIndex = 5;
             this.buttonBackSFW.Text = "Back";
             this.buttonBackSFW.UseVisualStyleBackColor = true;
-            // 
-            // buttonNextSFW
-            // 
-            this.buttonNextSFW.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonNextSFW.Location = new System.Drawing.Point(682, 614);
-            this.buttonNextSFW.Name = "buttonNextSFW";
-            this.buttonNextSFW.Size = new System.Drawing.Size(226, 41);
-            this.buttonNextSFW.TabIndex = 5;
-            this.buttonNextSFW.Text = "Next";
-            this.buttonNextSFW.UseVisualStyleBackColor = true;
+            this.buttonBackSFW.Visible = false;
+            this.buttonBackSFW.Click += new System.EventHandler(this.ButtonBackSFW_Click);
             // 
             // panelSelectMode
             // 
             this.panelSelectMode.Controls.Add(this.groupBox1);
             this.panelSelectMode.Controls.Add(this.groupBoxFilesSummary);
             this.panelSelectMode.Controls.Add(this.labelSelectMode);
-            this.panelSelectMode.Controls.Add(this.buttonBackSummaryWindow);
             this.panelSelectMode.Location = new System.Drawing.Point(12, 12);
             this.panelSelectMode.Name = "panelSelectMode";
-            this.panelSelectMode.Size = new System.Drawing.Size(984, 705);
+            this.panelSelectMode.Size = new System.Drawing.Size(984, 636);
             this.panelSelectMode.TabIndex = 6;
             // 
-            // labelSelectMode
+            // groupBox1
             // 
-            this.labelSelectMode.AutoSize = true;
-            this.labelSelectMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.labelSelectMode.Location = new System.Drawing.Point(372, 47);
-            this.labelSelectMode.Name = "labelSelectMode";
-            this.labelSelectMode.Size = new System.Drawing.Size(263, 29);
-            this.labelSelectMode.TabIndex = 6;
-            this.labelSelectMode.Text = "CHEKING METHODS\r\n";
+            this.groupBox1.Controls.Add(this.label4);
+            this.groupBox1.Controls.Add(this.label3);
+            this.groupBox1.Controls.Add(this.buttonSelectedHest1);
+            this.groupBox1.Controls.Add(this.buttonSelectedHEST2);
+            this.groupBox1.Location = new System.Drawing.Point(42, 348);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(891, 268);
+            this.groupBox1.TabIndex = 9;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Please select a checking method:";
             // 
-            // buttonBackSummaryWindow
+            // label4
             // 
-            this.buttonBackSummaryWindow.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonBackSummaryWindow.Location = new System.Drawing.Point(32, 642);
-            this.buttonBackSummaryWindow.Name = "buttonBackSummaryWindow";
-            this.buttonBackSummaryWindow.Size = new System.Drawing.Size(226, 41);
-            this.buttonBackSummaryWindow.TabIndex = 5;
-            this.buttonBackSummaryWindow.Text = "Back";
-            this.buttonBackSummaryWindow.UseVisualStyleBackColor = true;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(566, 207);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(306, 26);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Hest 2, will let you choose the kind of output that is expected....\r\n\r\n";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(84, 207);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(258, 39);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Hest 1 checks the files for execution and output only.\r\nIf any C-Files were selec" +
+    "ted, the system will try to \r\nbuild them and execute them.\r\n";
+            // 
+            // buttonSelectedHest1
+            // 
+            this.buttonSelectedHest1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonSelectedHest1.Location = new System.Drawing.Point(87, 31);
+            this.buttonSelectedHest1.Name = "buttonSelectedHest1";
+            this.buttonSelectedHest1.Size = new System.Drawing.Size(243, 166);
+            this.buttonSelectedHest1.TabIndex = 8;
+            this.buttonSelectedHest1.Text = "HEST1 AND BUILD C-FILES";
+            this.buttonSelectedHest1.UseVisualStyleBackColor = true;
+            this.buttonSelectedHest1.Click += new System.EventHandler(this.ButtonSelectedHest1_Click);
+            // 
+            // buttonSelectedHEST2
+            // 
+            this.buttonSelectedHEST2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.buttonSelectedHEST2.Location = new System.Drawing.Point(563, 31);
+            this.buttonSelectedHEST2.Name = "buttonSelectedHEST2";
+            this.buttonSelectedHEST2.Size = new System.Drawing.Size(243, 166);
+            this.buttonSelectedHEST2.TabIndex = 8;
+            this.buttonSelectedHEST2.Text = "HEST2\r\n";
+            this.buttonSelectedHEST2.UseVisualStyleBackColor = true;
+            this.buttonSelectedHEST2.Click += new System.EventHandler(this.ButtonSelectedHEST2_Click);
             // 
             // groupBoxFilesSummary
             // 
@@ -306,32 +333,14 @@
             this.groupBoxFilesSummary.TabStop = false;
             this.groupBoxFilesSummary.Text = "Summary files:";
             // 
-            // label1
+            // labelCfilesMakeSummary
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(56, 33);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(432, 26);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "The system has detected the following files:\r\n";
-            // 
-            // labelRCFCfilesSummary
-            // 
-            this.labelRCFCfilesSummary.AutoSize = true;
-            this.labelRCFCfilesSummary.Location = new System.Drawing.Point(56, 118);
-            this.labelRCFCfilesSummary.Name = "labelRCFCfilesSummary";
-            this.labelRCFCfilesSummary.Size = new System.Drawing.Size(99, 26);
-            this.labelRCFCfilesSummary.TabIndex = 1;
-            this.labelRCFCfilesSummary.Text = "# C-Files";
-            // 
-            // labelPythonFilesSummary
-            // 
-            this.labelPythonFilesSummary.AutoSize = true;
-            this.labelPythonFilesSummary.Location = new System.Drawing.Point(285, 118);
-            this.labelPythonFilesSummary.Name = "labelPythonFilesSummary";
-            this.labelPythonFilesSummary.Size = new System.Drawing.Size(98, 26);
-            this.labelPythonFilesSummary.TabIndex = 1;
-            this.labelPythonFilesSummary.Text = "# Python";
+            this.labelCfilesMakeSummary.AutoSize = true;
+            this.labelCfilesMakeSummary.Location = new System.Drawing.Point(680, 116);
+            this.labelCfilesMakeSummary.Name = "labelCfilesMakeSummary";
+            this.labelCfilesMakeSummary.Size = new System.Drawing.Size(158, 26);
+            this.labelCfilesMakeSummary.TabIndex = 1;
+            this.labelCfilesMakeSummary.Text = "# C-Make Files";
             // 
             // labelJavaFilesSummary
             // 
@@ -342,98 +351,53 @@
             this.labelJavaFilesSummary.TabIndex = 1;
             this.labelJavaFilesSummary.Text = "# Java";
             // 
-            // labelCfilesMakeSummary
+            // labelPythonFilesSummary
             // 
-            this.labelCfilesMakeSummary.AutoSize = true;
-            this.labelCfilesMakeSummary.Location = new System.Drawing.Point(680, 116);
-            this.labelCfilesMakeSummary.Name = "labelCfilesMakeSummary";
-            this.labelCfilesMakeSummary.Size = new System.Drawing.Size(158, 26);
-            this.labelCfilesMakeSummary.TabIndex = 1;
-            this.labelCfilesMakeSummary.Text = "# C-Make Files";
+            this.labelPythonFilesSummary.AutoSize = true;
+            this.labelPythonFilesSummary.Location = new System.Drawing.Point(285, 118);
+            this.labelPythonFilesSummary.Name = "labelPythonFilesSummary";
+            this.labelPythonFilesSummary.Size = new System.Drawing.Size(98, 26);
+            this.labelPythonFilesSummary.TabIndex = 1;
+            this.labelPythonFilesSummary.Text = "# Python";
             // 
-            // button2
+            // labelRCFCfilesSummary
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button2.Location = new System.Drawing.Point(563, 31);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(243, 166);
-            this.button2.TabIndex = 8;
-            this.button2.Text = "HEST2\r\n";
-            this.button2.UseVisualStyleBackColor = true;
+            this.labelRCFCfilesSummary.AutoSize = true;
+            this.labelRCFCfilesSummary.Location = new System.Drawing.Point(56, 118);
+            this.labelRCFCfilesSummary.Name = "labelRCFCfilesSummary";
+            this.labelRCFCfilesSummary.Size = new System.Drawing.Size(99, 26);
+            this.labelRCFCfilesSummary.TabIndex = 1;
+            this.labelRCFCfilesSummary.Text = "# C-Files";
             // 
-            // button3
+            // label1
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.button3.Location = new System.Drawing.Point(87, 31);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(243, 166);
-            this.button3.TabIndex = 8;
-            this.button3.Text = "HEST1 AND BUILD C-FILES";
-            this.button3.UseVisualStyleBackColor = true;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(56, 33);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(432, 26);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "The system has detected the following files:\r\n";
             // 
-            // groupBox1
+            // labelSelectMode
             // 
-            this.groupBox1.Controls.Add(this.label4);
-            this.groupBox1.Controls.Add(this.label3);
-            this.groupBox1.Controls.Add(this.button3);
-            this.groupBox1.Controls.Add(this.button2);
-            this.groupBox1.Location = new System.Drawing.Point(42, 348);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(891, 268);
-            this.groupBox1.TabIndex = 9;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Please select a checking method:";
+            this.labelSelectMode.AutoSize = true;
+            this.labelSelectMode.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.labelSelectMode.Location = new System.Drawing.Point(372, 47);
+            this.labelSelectMode.Name = "labelSelectMode";
+            this.labelSelectMode.Size = new System.Drawing.Size(263, 29);
+            this.labelSelectMode.TabIndex = 6;
+            this.labelSelectMode.Text = "CHEKING METHODS\r\n";
             // 
-            // label3
+            // panelResultsWindow
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(84, 207);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(258, 39);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Hest 1 checks the files for execution and output only.\r\nIf any C-Files were selec" +
-    "ted, the system will try to \r\nbuild them and execute them.\r\n";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(566, 207);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(306, 26);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Hest 2, will let you choose the kind of output that is expected....\r\n\r\n";
-            // 
-            // ResoultWindow
-            // 
-            this.ResoultWindow.Controls.Add(this.groupBox2SummaryReport);
-            this.ResoultWindow.Controls.Add(this.label5SummaryFilesHEST1HEST2);
-            this.ResoultWindow.Controls.Add(this.buttonExitProgram);
-            this.ResoultWindow.Controls.Add(this.button4GenerateReport);
-            this.ResoultWindow.Controls.Add(this.buttonNewRevision);
-            this.ResoultWindow.Location = new System.Drawing.Point(12, 12);
-            this.ResoultWindow.Name = "ResoultWindow";
-            this.ResoultWindow.Size = new System.Drawing.Size(984, 705);
-            this.ResoultWindow.TabIndex = 7;
-            // 
-            // buttonNewRevision
-            // 
-            this.buttonNewRevision.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonNewRevision.Location = new System.Drawing.Point(24, 634);
-            this.buttonNewRevision.Name = "buttonNewRevision";
-            this.buttonNewRevision.Size = new System.Drawing.Size(226, 41);
-            this.buttonNewRevision.TabIndex = 5;
-            this.buttonNewRevision.Text = "NEW REVISION";
-            this.buttonNewRevision.UseVisualStyleBackColor = true;
-            // 
-            // label5SummaryFilesHEST1HEST2
-            // 
-            this.label5SummaryFilesHEST1HEST2.AutoSize = true;
-            this.label5SummaryFilesHEST1HEST2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label5SummaryFilesHEST1HEST2.Location = new System.Drawing.Point(248, 72);
-            this.label5SummaryFilesHEST1HEST2.Name = "label5SummaryFilesHEST1HEST2";
-            this.label5SummaryFilesHEST1HEST2.Size = new System.Drawing.Size(459, 29);
-            this.label5SummaryFilesHEST1HEST2.TabIndex = 6;
-            this.label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST1 METHOD";
+            this.panelResultsWindow.Controls.Add(this.groupBox2SummaryReport);
+            this.panelResultsWindow.Controls.Add(this.label5SummaryFilesHEST1HEST2);
+            this.panelResultsWindow.Controls.Add(this.button4GenerateReport);
+            this.panelResultsWindow.Controls.Add(this.buttonNewRevision);
+            this.panelResultsWindow.Location = new System.Drawing.Point(12, 12);
+            this.panelResultsWindow.Name = "panelResultsWindow";
+            this.panelResultsWindow.Size = new System.Drawing.Size(984, 636);
+            this.panelResultsWindow.TabIndex = 7;
             // 
             // groupBox2SummaryReport
             // 
@@ -464,71 +428,77 @@
             this.groupBox2SummaryReport.TabStop = false;
             this.groupBox2SummaryReport.Text = "SUMMARY RESULTS";
             // 
-            // buttonExitProgram
+            // label16
             // 
-            this.buttonExitProgram.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.buttonExitProgram.Location = new System.Drawing.Point(719, 634);
-            this.buttonExitProgram.Name = "buttonExitProgram";
-            this.buttonExitProgram.Size = new System.Drawing.Size(226, 41);
-            this.buttonExitProgram.TabIndex = 5;
-            this.buttonExitProgram.Text = "EXIT";
-            this.buttonExitProgram.UseVisualStyleBackColor = true;
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(716, 121);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(20, 24);
+            this.label16.TabIndex = 0;
+            this.label16.Text = "#";
             // 
-            // button4GenerateReport
+            // label12
             // 
-            this.button4GenerateReport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
-            this.button4GenerateReport.Location = new System.Drawing.Point(359, 437);
-            this.button4GenerateReport.Name = "button4GenerateReport";
-            this.button4GenerateReport.Size = new System.Drawing.Size(235, 136);
-            this.button4GenerateReport.TabIndex = 5;
-            this.button4GenerateReport.Text = "GENERATE REPORT";
-            this.button4GenerateReport.UseVisualStyleBackColor = true;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(423, 121);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(20, 24);
+            this.label12.TabIndex = 0;
+            this.label12.Text = "#";
             // 
-            // labelFilesChecked
+            // label10NumCmakeFilesBuilt
             // 
-            this.labelFilesChecked.AutoSize = true;
-            this.labelFilesChecked.Location = new System.Drawing.Point(67, 40);
-            this.labelFilesChecked.Name = "labelFilesChecked";
-            this.labelFilesChecked.Size = new System.Drawing.Size(162, 24);
-            this.labelFilesChecked.TabIndex = 0;
-            this.labelFilesChecked.Text = "FILES CHECKED:";
+            this.label10NumCmakeFilesBuilt.AutoSize = true;
+            this.label10NumCmakeFilesBuilt.Location = new System.Drawing.Point(252, 121);
+            this.label10NumCmakeFilesBuilt.Name = "label10NumCmakeFilesBuilt";
+            this.label10NumCmakeFilesBuilt.Size = new System.Drawing.Size(20, 24);
+            this.label10NumCmakeFilesBuilt.TabIndex = 0;
+            this.label10NumCmakeFilesBuilt.Text = "#";
             // 
-            // label6
+            // label15
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(86, 81);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(85, 24);
-            this.label6.TabIndex = 0;
-            this.label6.Text = "C-FILES:";
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(716, 81);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(20, 24);
+            this.label15.TabIndex = 0;
+            this.label15.Text = "#";
             // 
-            // label7
+            // label11
             // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(87, 162);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(150, 24);
-            this.label7.TabIndex = 0;
-            this.label7.Text = "PYTHON FILES:";
-            this.label7.Click += new System.EventHandler(this.Label7_Click);
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(423, 81);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(20, 24);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "#";
             // 
-            // label8
+            // label9NumCFilesChecked
             // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(86, 195);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(119, 24);
-            this.label8.TabIndex = 0;
-            this.label8.Text = "JAVA FILES:";
+            this.label9NumCFilesChecked.AutoSize = true;
+            this.label9NumCFilesChecked.Location = new System.Drawing.Point(252, 81);
+            this.label9NumCFilesChecked.Name = "label9NumCFilesChecked";
+            this.label9NumCFilesChecked.Size = new System.Drawing.Size(20, 24);
+            this.label9NumCFilesChecked.TabIndex = 0;
+            this.label9NumCFilesChecked.Text = "#";
             // 
-            // label9NumJavaFilesChecked
+            // label17
             // 
-            this.label9NumJavaFilesChecked.AutoSize = true;
-            this.label9NumJavaFilesChecked.Location = new System.Drawing.Point(252, 195);
-            this.label9NumJavaFilesChecked.Name = "label9NumJavaFilesChecked";
-            this.label9NumJavaFilesChecked.Size = new System.Drawing.Size(20, 24);
-            this.label9NumJavaFilesChecked.TabIndex = 0;
-            this.label9NumJavaFilesChecked.Text = "#";
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(716, 162);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(20, 24);
+            this.label17.TabIndex = 0;
+            this.label17.Text = "#";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(423, 162);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(20, 24);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "#";
             // 
             // label10NumPythonFilesChecked
             // 
@@ -539,14 +509,41 @@
             this.label10NumPythonFilesChecked.TabIndex = 0;
             this.label10NumPythonFilesChecked.Text = "#";
             // 
-            // label9NumCFilesChecked
+            // label18
             // 
-            this.label9NumCFilesChecked.AutoSize = true;
-            this.label9NumCFilesChecked.Location = new System.Drawing.Point(252, 81);
-            this.label9NumCFilesChecked.Name = "label9NumCFilesChecked";
-            this.label9NumCFilesChecked.Size = new System.Drawing.Size(20, 24);
-            this.label9NumCFilesChecked.TabIndex = 0;
-            this.label9NumCFilesChecked.Text = "#";
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(716, 195);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(20, 24);
+            this.label18.TabIndex = 0;
+            this.label18.Text = "#";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(423, 195);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(20, 24);
+            this.label14.TabIndex = 0;
+            this.label14.Text = "#";
+            // 
+            // label9NumJavaFilesChecked
+            // 
+            this.label9NumJavaFilesChecked.AutoSize = true;
+            this.label9NumJavaFilesChecked.Location = new System.Drawing.Point(252, 195);
+            this.label9NumJavaFilesChecked.Name = "label9NumJavaFilesChecked";
+            this.label9NumJavaFilesChecked.Size = new System.Drawing.Size(20, 24);
+            this.label9NumJavaFilesChecked.TabIndex = 0;
+            this.label9NumJavaFilesChecked.Text = "#";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(86, 195);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(119, 24);
+            this.label8.TabIndex = 0;
+            this.label8.Text = "JAVA FILES:";
             // 
             // label9
             // 
@@ -558,23 +555,24 @@
             this.label9.Text = "C-FILES BUILT:";
             this.label9.Click += new System.EventHandler(this.Label7_Click);
             // 
-            // label10NumCmakeFilesBuilt
+            // label7
             // 
-            this.label10NumCmakeFilesBuilt.AutoSize = true;
-            this.label10NumCmakeFilesBuilt.Location = new System.Drawing.Point(252, 121);
-            this.label10NumCmakeFilesBuilt.Name = "label10NumCmakeFilesBuilt";
-            this.label10NumCmakeFilesBuilt.Size = new System.Drawing.Size(20, 24);
-            this.label10NumCmakeFilesBuilt.TabIndex = 0;
-            this.label10NumCmakeFilesBuilt.Text = "#";
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(87, 162);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(150, 24);
+            this.label7.TabIndex = 0;
+            this.label7.Text = "PYTHON FILES:";
+            this.label7.Click += new System.EventHandler(this.Label7_Click);
             // 
-            // label5
+            // label6
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(369, 40);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(166, 24);
-            this.label5.TabIndex = 0;
-            this.label5.Text = "ERRORS FOUND:";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(86, 81);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(85, 24);
+            this.label6.TabIndex = 0;
+            this.label6.Text = "C-FILES:";
             // 
             // label10
             // 
@@ -585,77 +583,94 @@
             this.label10.TabIndex = 0;
             this.label10.Text = "SUSPECTED FROUD:";
             // 
-            // label11
+            // label5
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(423, 81);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(20, 24);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "#";
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(369, 40);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(166, 24);
+            this.label5.TabIndex = 0;
+            this.label5.Text = "ERRORS FOUND:";
             // 
-            // label12
+            // labelFilesChecked
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(423, 121);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(20, 24);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "#";
+            this.labelFilesChecked.AutoSize = true;
+            this.labelFilesChecked.Location = new System.Drawing.Point(67, 40);
+            this.labelFilesChecked.Name = "labelFilesChecked";
+            this.labelFilesChecked.Size = new System.Drawing.Size(162, 24);
+            this.labelFilesChecked.TabIndex = 0;
+            this.labelFilesChecked.Text = "FILES CHECKED:";
             // 
-            // label13
+            // label5SummaryFilesHEST1HEST2
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(423, 162);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(20, 24);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "#";
+            this.label5SummaryFilesHEST1HEST2.AutoSize = true;
+            this.label5SummaryFilesHEST1HEST2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label5SummaryFilesHEST1HEST2.Location = new System.Drawing.Point(248, 72);
+            this.label5SummaryFilesHEST1HEST2.Name = "label5SummaryFilesHEST1HEST2";
+            this.label5SummaryFilesHEST1HEST2.Size = new System.Drawing.Size(468, 29);
+            this.label5SummaryFilesHEST1HEST2.TabIndex = 6;
+            this.label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST-1 METHOD";
             // 
-            // label14
+            // button4GenerateReport
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(423, 195);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(20, 24);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "#";
+            this.button4GenerateReport.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.button4GenerateReport.Location = new System.Drawing.Point(361, 420);
+            this.button4GenerateReport.Name = "button4GenerateReport";
+            this.button4GenerateReport.Size = new System.Drawing.Size(243, 110);
+            this.button4GenerateReport.TabIndex = 5;
+            this.button4GenerateReport.Text = "GENERATE REPORT";
+            this.button4GenerateReport.UseVisualStyleBackColor = true;
             // 
-            // label15
+            // buttonNewRevision
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(716, 81);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(20, 24);
-            this.label15.TabIndex = 0;
-            this.label15.Text = "#";
+            this.buttonNewRevision.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonNewRevision.Location = new System.Drawing.Point(361, 556);
+            this.buttonNewRevision.Name = "buttonNewRevision";
+            this.buttonNewRevision.Size = new System.Drawing.Size(243, 38);
+            this.buttonNewRevision.TabIndex = 5;
+            this.buttonNewRevision.Text = "NEW REVISION";
+            this.buttonNewRevision.UseVisualStyleBackColor = true;
             // 
-            // label16
+            // buttonExitProgramEND
             // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(716, 121);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(20, 24);
-            this.label16.TabIndex = 0;
-            this.label16.Text = "#";
+            this.buttonExitProgramEND.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonExitProgramEND.Location = new System.Drawing.Point(770, 676);
+            this.buttonExitProgramEND.Name = "buttonExitProgramEND";
+            this.buttonExitProgramEND.Size = new System.Drawing.Size(226, 41);
+            this.buttonExitProgramEND.TabIndex = 5;
+            this.buttonExitProgramEND.Text = "EXIT";
+            this.buttonExitProgramEND.UseVisualStyleBackColor = true;
+            this.buttonExitProgramEND.Visible = false;
+            this.buttonExitProgramEND.Click += new System.EventHandler(this.ButtonExitProgramEND_Click);
             // 
-            // label17
+            // buttonExitPro
             // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(716, 162);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(20, 24);
-            this.label17.TabIndex = 0;
-            this.label17.Text = "#";
+            this.buttonExitPro.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
+            this.buttonExitPro.Location = new System.Drawing.Point(12, 676);
+            this.buttonExitPro.Name = "buttonExitPro";
+            this.buttonExitPro.Size = new System.Drawing.Size(226, 41);
+            this.buttonExitPro.TabIndex = 5;
+            this.buttonExitPro.Text = "EXIT";
+            this.buttonExitPro.UseVisualStyleBackColor = true;
+            this.buttonExitPro.Click += new System.EventHandler(this.ButtonExitPro_Click);
             // 
-            // label18
+            // PanelSignIn
             // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(716, 195);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(20, 24);
-            this.label18.TabIndex = 0;
-            this.label18.Text = "#";
+            this.PanelSignIn.Controls.Add(this.button1EnterProg);
+            this.PanelSignIn.Location = new System.Drawing.Point(12, 12);
+            this.PanelSignIn.Name = "PanelSignIn";
+            this.PanelSignIn.Size = new System.Drawing.Size(984, 636);
+            this.PanelSignIn.TabIndex = 8;
+            // 
+            // button1EnterProg
+            // 
+            this.button1EnterProg.Location = new System.Drawing.Point(389, 444);
+            this.button1EnterProg.Name = "button1EnterProg";
+            this.button1EnterProg.Size = new System.Drawing.Size(159, 86);
+            this.button1EnterProg.TabIndex = 0;
+            this.button1EnterProg.Text = "Enter";
+            this.button1EnterProg.UseVisualStyleBackColor = true;
+            this.button1EnterProg.Click += new System.EventHandler(this.Button1EnterProg_Click);
             // 
             // MainWindow
             // 
@@ -664,15 +679,18 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.ResoultWindow);
-            this.Controls.Add(this.panelSelectMode);
-            this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.panelFilesOverView);
+            this.Controls.Add(this.panelDragFiles);
+            this.Controls.Add(this.panelResultsWindow);
+            this.Controls.Add(this.panelSelectMode);
+            this.Controls.Add(this.PanelSignIn);
+            this.Controls.Add(this.buttonExitPro);
+            this.Controls.Add(this.buttonBackSFW);
+            this.Controls.Add(this.buttonNextPanel);
+            this.Controls.Add(this.buttonExitProgramEND);
             this.Name = "MainWindow";
             this.Text = "Drag files";
-            this.MaximizedBoundsChanged += new System.EventHandler(this.Wnd_dropFiles_Load);
-            this.MaximumSizeChanged += new System.EventHandler(this.Wnd_dropFiles_Load);
-            this.Load += new System.EventHandler(this.Wnd_dropFiles_Load);
+            this.Load += new System.EventHandler(this.MainWindow_Load);
             this.panelDragFiles.ResumeLayout(false);
             this.panelDragFiles.PerformLayout();
             this.panelFilesOverView.ResumeLayout(false);
@@ -683,14 +701,15 @@
             this.groupBoxFilesToBeChecked.PerformLayout();
             this.panelSelectMode.ResumeLayout(false);
             this.panelSelectMode.PerformLayout();
-            this.groupBoxFilesSummary.ResumeLayout(false);
-            this.groupBoxFilesSummary.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            this.ResoultWindow.ResumeLayout(false);
-            this.ResoultWindow.PerformLayout();
+            this.groupBoxFilesSummary.ResumeLayout(false);
+            this.groupBoxFilesSummary.PerformLayout();
+            this.panelResultsWindow.ResumeLayout(false);
+            this.panelResultsWindow.PerformLayout();
             this.groupBox2SummaryReport.ResumeLayout(false);
             this.groupBox2SummaryReport.PerformLayout();
+            this.PanelSignIn.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -699,7 +718,7 @@
 
         private System.Windows.Forms.Panel panelDragFiles;
         private System.Windows.Forms.Label label1DragFiles;
-        private System.Windows.Forms.Button button1CheckFiles;
+        private System.Windows.Forms.Button buttonNextPanel;
         private System.Windows.Forms.ListBox listBox1DragFiles;
         private System.Windows.Forms.Panel panelFilesOverView;
         private System.Windows.Forms.GroupBox groupBoxFilesToBuild;
@@ -712,26 +731,24 @@
         private System.Windows.Forms.CheckBox checkBoxPythonFiles;
         private System.Windows.Forms.Label label1SummaryFiles;
         private System.Windows.Forms.Button buttonBackSFW;
-        private System.Windows.Forms.Button buttonNextSFW;
         private System.Windows.Forms.Panel panelSelectMode;
         private System.Windows.Forms.Label labelSelectMode;
-        private System.Windows.Forms.Button buttonBackSummaryWindow;
         private System.Windows.Forms.GroupBox groupBoxFilesSummary;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button buttonSelectedHest1;
+        private System.Windows.Forms.Button buttonSelectedHEST2;
         private System.Windows.Forms.Label labelCfilesMakeSummary;
         private System.Windows.Forms.Label labelJavaFilesSummary;
         private System.Windows.Forms.Label labelPythonFilesSummary;
         private System.Windows.Forms.Label labelRCFCfilesSummary;
-        private System.Windows.Forms.Panel ResoultWindow;
+        private System.Windows.Forms.Panel panelResultsWindow;
         private System.Windows.Forms.GroupBox groupBox2SummaryReport;
         private System.Windows.Forms.Label labelFilesChecked;
         private System.Windows.Forms.Label label5SummaryFilesHEST1HEST2;
-        private System.Windows.Forms.Button buttonExitProgram;
+        private System.Windows.Forms.Button buttonExitProgramEND;
         private System.Windows.Forms.Button button4GenerateReport;
         private System.Windows.Forms.Button buttonNewRevision;
         private System.Windows.Forms.Label label9NumCFilesChecked;
@@ -752,6 +769,9 @@
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button buttonExitPro;
+        private System.Windows.Forms.Panel PanelSignIn;
+        private System.Windows.Forms.Button button1EnterProg;
     }
 }
 

@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using System.IO;
 namespace DropFilesTest1
 {
-    public partial class wnd_dropFiles : Form
+    public partial class MainWindow : Form
     {
-        public wnd_dropFiles()
+        public MainWindow()
         {
             InitializeComponent();
         }
@@ -48,6 +48,11 @@ namespace DropFilesTest1
         }
 
         private void Label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Label7_Click(object sender, EventArgs e)
         {
 
         }

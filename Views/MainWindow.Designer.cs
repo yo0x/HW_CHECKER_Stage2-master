@@ -558,7 +558,6 @@
             this.label9.Size = new System.Drawing.Size(141, 24);
             this.label9.TabIndex = 0;
             this.label9.Text = "C-FILES BUILT:";
-            this.label9.Click += new System.EventHandler(this.Label7_Click);
             // 
             // label7
             // 
@@ -568,7 +567,6 @@
             this.label7.Size = new System.Drawing.Size(150, 24);
             this.label7.TabIndex = 0;
             this.label7.Text = "PYTHON FILES:";
-            this.label7.Click += new System.EventHandler(this.Label7_Click);
             // 
             // label6
             // 
@@ -625,6 +623,7 @@
             this.button4GenerateReport.TabIndex = 5;
             this.button4GenerateReport.Text = "GENERATE DETAIL  REPORT";
             this.button4GenerateReport.UseVisualStyleBackColor = true;
+            this.button4GenerateReport.Click += new System.EventHandler(this.Button4GenerateReport_Click);
             // 
             // buttonNewRevision
             // 
@@ -684,8 +683,8 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelResultsWindow);
+            this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.PanelSignIn);

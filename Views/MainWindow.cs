@@ -10,6 +10,9 @@ using System.Windows.Forms;
 using System.IO;
 namespace DropFilesTest1
 {
+    /// <summary>Main Window Class <c>Point</c> All the events logic here and access to models.
+    /// </summary>
+    ///
     public partial class MainWindow : Form
     {
 
@@ -24,13 +27,6 @@ namespace DropFilesTest1
         public MainWindow()
         {
             InitializeComponent();
-        }
-
-   
-        private void RichTextBoxDropFiles_DragDrop(object sender, DragEventArgs e)
-        {
-           
-            
         }
         private void Button1CheckFiles_Click(object sender, EventArgs e)
         {
@@ -48,14 +44,6 @@ namespace DropFilesTest1
                 listBox1DragFiles.Items.Add(name);
             }
         }
-        private void Label2_Click(object sender, EventArgs e)
-        {
-
-        }
-        private void Label7_Click(object sender, EventArgs e)
-        {
-
-        }
         private void MainWindow_Load(object sender, EventArgs e)
         {
             listPanel.Add(PanelSignIn);
@@ -65,11 +53,11 @@ namespace DropFilesTest1
             listPanel.Add(panelResultsWindow);
             listPanel[PanelIndex].BringToFront();
 
-        }
+        }//Add panels to List Order.
         private void ButtonNextPanel_Click(object sender, EventArgs e)
         {
             NextPanelBehav();
-        }
+        }//Next event button.
         private void ButtonExitPro_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -80,6 +68,7 @@ namespace DropFilesTest1
         }
         public void NextPanelBehav()
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
             switch (PanelIndex)
             {
                 case 0:
@@ -122,11 +111,13 @@ namespace DropFilesTest1
         }
         public void NextPanel()
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
             if (PanelIndex < listPanel.Count - 1)
                 listPanel[++PanelIndex].BringToFront();
         }
         public void PrevPanel()
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
             if (PanelIndex > 0)
                 listPanel[--PanelIndex].BringToFront();
         }
@@ -137,6 +128,7 @@ namespace DropFilesTest1
         }
         private void ButtonSelectedHest1_Click(object sender, EventArgs e)//HEST 1 selection button.
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
             ExecCheckedFiles();
             label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST-1 METHOD.";
             NextPanelBehav();
@@ -164,6 +156,7 @@ namespace DropFilesTest1
         }
         private OrderedFiles ClasssifiesAndLoadsFiles()
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
             OrderedFiles myOrderedFiles = new OrderedFiles();
             myOrderedFiles = LanguageRecognizion.classifierProgLang(FilesTool.filesToCheck);
             // label4NumCfiles.Text = Convert.ToString(myOrderedFiles.cFiles.Count);
@@ -171,6 +164,8 @@ namespace DropFilesTest1
         }
         private void executeGivenFiles(int caseSwitch)
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
+
             OrderedFiles myOrderedFiles = new OrderedFiles();
             myOrderedFiles = LanguageRecognizion.classifierProgLang(FilesTool.filesToCheck);
             switch (caseSwitch)
@@ -221,6 +216,8 @@ namespace DropFilesTest1
         }
         private void ExecCheckedFiles()
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
+
             if (checkBoxCfiles.Checked == true)
                 executeGivenFiles(1);
             if (checkBoxPythonFiles.Checked == true)
@@ -232,13 +229,15 @@ namespace DropFilesTest1
         {
 
         }
-        private void ResultsToExcel()
+        private void ResultsToExcel(List<FileResult> myListToExcel)
         {
-        DataTable table = new DataTable();
-            using (var reader = FastMember.ObjectReader.Create(RevisionResultCfiles))
-            {
-                table.Load(reader);
-            }
+            /// <summary>method <c>draw</c> renders the point.</summary>
+
+            DataTable tableFromList = ConvertListToDataTable(myListToExcel);
+            //using (var reader = FastMember.ObjectReader.Create( myListToExcel))
+            //{
+            //    table.Load(reader);
+            //}
             using (Syncfusion.XlsIO.ExcelEngine excelEngine = new Syncfusion.XlsIO.ExcelEngine())
             {
                 Syncfusion.XlsIO.IApplication application = excelEngine.Excel;
@@ -249,16 +248,16 @@ namespace DropFilesTest1
                 Syncfusion.XlsIO.IWorksheet sheet = workbook.Worksheets[0];
 
                 //Create a dataset from XML file
-                DataSet customersDataSet = new DataSet();
-                customersDataSet.ReadXml(Path.GetFullPath(@"../../Data/Employees.xml"));
+                //DataSet customersDataSet = new DataSet();
+                //customersDataSet.ReadXml(Path.GetFullPath(@"../../Data/Employees.xml"));
 
                 //Create datatable from the dataset
-                DataTable dataTable = new DataTable();
-                dataTable = customersDataSet.Tables[0];
+               // DataTable dataTable = new DataTable();
+               // dataTable = customersDataSet.Tables[0];
 
                 //Import data from the data table with column header, at first row and first column, 
                 //and by its column type.
-                sheet.ImportDataTable(dataTable, true, 1, 1, true);
+                sheet.ImportDataTable(tableFromList, true, 1, 1, true);
 
                 //Creating Excel table or list object and apply style to the table
                 Syncfusion.XlsIO.IListObject Table = sheet.ListObjects.Create("Employee_PersonalDetails", sheet.UsedRange);
@@ -269,7 +268,7 @@ namespace DropFilesTest1
                 sheet.UsedRange.AutofitColumns();
 
                 //Save the file in the given path
-                Stream excelStream = File.Create(Path.GetFullPath(@"Output.xlsx"));
+                Stream excelStream = File.Create(Path.GetFullPath($"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\OutPutExcel.xlsx"));
                 workbook.SaveAs(excelStream);
                 excelStream.Dispose();
             }
@@ -277,6 +276,8 @@ namespace DropFilesTest1
         } 
         private void PopulateResultsPreview()
         {
+            /// <summary>method <c>draw</c> renders the point.</summary>
+
             int CerrorIndex =0;
             int PythonErrorIndex = 0;
             int JavaErrorIndex = 0;
@@ -307,6 +308,39 @@ namespace DropFilesTest1
 
 
         }
+        static DataTable ConvertListToDataTable(List<FileResult> list)
+        {
+            // New table.
+            DataTable table = new DataTable();
 
+            // Get max columns.
+            int columns = 6;
+
+            //foreach (var element in list)
+            //{
+            //    if (element > columns)
+            //    {
+            //        columns = element.Length;
+            //    }
+            //}
+           
+            // Add columns.
+            for (int i = 0; i < columns; i++)
+            {
+                table.Columns.Add();
+            }
+            table.Rows.Add("File name", "StudentID", "Department", "Compiled Successfully", "Errors", "File's output");
+            // Add rows.
+            foreach (var array in list)
+            {
+                table.Rows.Add(array.FileName,array.StudenId,array.Department,array.Compiled.ToString(),array.Errors,array.FileOutput);
+            }
+
+            return table;
+        }
+        private void Button4GenerateReport_Click(object sender, EventArgs e)
+        {
+            ResultsToExcel(RevisionResultCfiles);
+        }
     }
 }

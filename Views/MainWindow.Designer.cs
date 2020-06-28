@@ -60,16 +60,16 @@
             this.panelResultsWindow = new System.Windows.Forms.Panel();
             this.groupBox2SummaryReport = new System.Windows.Forms.GroupBox();
             this.label16 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
+            this.labelErrorCbuildFiles = new System.Windows.Forms.Label();
             this.label10NumCmakeFilesBuilt = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
+            this.labelErrorsCfiles = new System.Windows.Forms.Label();
             this.label9NumCFilesChecked = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
+            this.labelErrorPython = new System.Windows.Forms.Label();
             this.label10NumPythonFilesChecked = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
+            this.labelErrorJavaFiles = new System.Windows.Forms.Label();
             this.label9NumJavaFilesChecked = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -407,16 +407,16 @@
             // groupBox2SummaryReport
             // 
             this.groupBox2SummaryReport.Controls.Add(this.label16);
-            this.groupBox2SummaryReport.Controls.Add(this.label12);
+            this.groupBox2SummaryReport.Controls.Add(this.labelErrorCbuildFiles);
             this.groupBox2SummaryReport.Controls.Add(this.label10NumCmakeFilesBuilt);
             this.groupBox2SummaryReport.Controls.Add(this.label15);
-            this.groupBox2SummaryReport.Controls.Add(this.label11);
+            this.groupBox2SummaryReport.Controls.Add(this.labelErrorsCfiles);
             this.groupBox2SummaryReport.Controls.Add(this.label9NumCFilesChecked);
             this.groupBox2SummaryReport.Controls.Add(this.label17);
-            this.groupBox2SummaryReport.Controls.Add(this.label13);
+            this.groupBox2SummaryReport.Controls.Add(this.labelErrorPython);
             this.groupBox2SummaryReport.Controls.Add(this.label10NumPythonFilesChecked);
             this.groupBox2SummaryReport.Controls.Add(this.label18);
-            this.groupBox2SummaryReport.Controls.Add(this.label14);
+            this.groupBox2SummaryReport.Controls.Add(this.labelErrorJavaFiles);
             this.groupBox2SummaryReport.Controls.Add(this.label9NumJavaFilesChecked);
             this.groupBox2SummaryReport.Controls.Add(this.label8);
             this.groupBox2SummaryReport.Controls.Add(this.label9);
@@ -442,14 +442,14 @@
             this.label16.TabIndex = 0;
             this.label16.Text = "#";
             // 
-            // label12
+            // labelErrorCbuildFiles
             // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(423, 121);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(20, 24);
-            this.label12.TabIndex = 0;
-            this.label12.Text = "#";
+            this.labelErrorCbuildFiles.AutoSize = true;
+            this.labelErrorCbuildFiles.Location = new System.Drawing.Point(423, 121);
+            this.labelErrorCbuildFiles.Name = "labelErrorCbuildFiles";
+            this.labelErrorCbuildFiles.Size = new System.Drawing.Size(20, 24);
+            this.labelErrorCbuildFiles.TabIndex = 0;
+            this.labelErrorCbuildFiles.Text = "#";
             // 
             // label10NumCmakeFilesBuilt
             // 
@@ -469,14 +469,14 @@
             this.label15.TabIndex = 0;
             this.label15.Text = "#";
             // 
-            // label11
+            // labelErrorsCfiles
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(423, 81);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(20, 24);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "#";
+            this.labelErrorsCfiles.AutoSize = true;
+            this.labelErrorsCfiles.Location = new System.Drawing.Point(423, 81);
+            this.labelErrorsCfiles.Name = "labelErrorsCfiles";
+            this.labelErrorsCfiles.Size = new System.Drawing.Size(20, 24);
+            this.labelErrorsCfiles.TabIndex = 0;
+            this.labelErrorsCfiles.Text = "#";
             // 
             // label9NumCFilesChecked
             // 
@@ -496,14 +496,14 @@
             this.label17.TabIndex = 0;
             this.label17.Text = "#";
             // 
-            // label13
+            // labelErrorPython
             // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(423, 162);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(20, 24);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "#";
+            this.labelErrorPython.AutoSize = true;
+            this.labelErrorPython.Location = new System.Drawing.Point(423, 162);
+            this.labelErrorPython.Name = "labelErrorPython";
+            this.labelErrorPython.Size = new System.Drawing.Size(20, 24);
+            this.labelErrorPython.TabIndex = 0;
+            this.labelErrorPython.Text = "#";
             // 
             // label10NumPythonFilesChecked
             // 
@@ -523,14 +523,14 @@
             this.label18.TabIndex = 0;
             this.label18.Text = "#";
             // 
-            // label14
+            // labelErrorJavaFiles
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(423, 195);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(20, 24);
-            this.label14.TabIndex = 0;
-            this.label14.Text = "#";
+            this.labelErrorJavaFiles.AutoSize = true;
+            this.labelErrorJavaFiles.Location = new System.Drawing.Point(423, 195);
+            this.labelErrorJavaFiles.Name = "labelErrorJavaFiles";
+            this.labelErrorJavaFiles.Size = new System.Drawing.Size(20, 24);
+            this.labelErrorJavaFiles.TabIndex = 0;
+            this.labelErrorJavaFiles.Text = "#";
             // 
             // label9NumJavaFilesChecked
             // 
@@ -623,7 +623,7 @@
             this.button4GenerateReport.Name = "button4GenerateReport";
             this.button4GenerateReport.Size = new System.Drawing.Size(243, 110);
             this.button4GenerateReport.TabIndex = 5;
-            this.button4GenerateReport.Text = "GENERATE REPORT";
+            this.button4GenerateReport.Text = "GENERATE DETAIL  REPORT";
             this.button4GenerateReport.UseVisualStyleBackColor = true;
             // 
             // buttonNewRevision
@@ -685,16 +685,16 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.panelSelectMode);
+            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelDragFiles);
-            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);
             this.Controls.Add(this.buttonExitProgramEND);
             this.Name = "MainWindow";
-            this.Text = "Drag files";
+            this.Text = "KINNERET COLLEGE - HOME WORK CHECKER by EYA TEAM";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.panelDragFiles.ResumeLayout(false);
             this.panelDragFiles.PerformLayout();
@@ -765,13 +765,13 @@
         private System.Windows.Forms.Label label10NumCmakeFilesBuilt;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label labelErrorCbuildFiles;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label labelErrorsCfiles;
         private System.Windows.Forms.Label label17;
-        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label labelErrorPython;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label labelErrorJavaFiles;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button buttonExitPro;

@@ -22,7 +22,7 @@ namespace DropFilesTest1
         List<FileResult> RevisionResultPythonFiles = new List<FileResult>();
         OrderedFiles MyOF = new OrderedFiles();
 
-        int IndexFile = 0;
+        //int IndexFile = 0;
         int PanelIndex;
         public MainWindow()
         {
@@ -30,8 +30,7 @@ namespace DropFilesTest1
         }
         private void Button1CheckFiles_Click(object sender, EventArgs e)
         {
-            FilesOverview fo = new FilesOverview();
-            fo.Show();
+            
         }
         private void ListBox1DragFiles_DragEnter(object sender, DragEventArgs e)
         {
@@ -65,10 +64,11 @@ namespace DropFilesTest1
         private void ButtonBackSFW_Click(object sender, EventArgs e)
         {
             PrevPanel();
+            buttonNextPanel.Visible = true;
         }
+        /// <summary>method <c>NextPanelBehav</c> forwards or backwards the panel order toggling visibility.</summary>
         public void NextPanelBehav()
         {
-            /// <summary>method <c>draw</c> renders the point.</summary>
             switch (PanelIndex)
             {
                 case 0:
@@ -109,18 +109,19 @@ namespace DropFilesTest1
 
          
         }
+        /// <summary>method <c>NextPanel</c> makes next panel visible.</summary>
         public void NextPanel()
         {
-            /// <summary>method <c>draw</c> renders the point.</summary>
             if (PanelIndex < listPanel.Count - 1)
                 listPanel[++PanelIndex].BringToFront();
         }
+        /// <summary>method <c>PrevPanel</c> makes previous panel visible.</summary>
         public void PrevPanel()
         {
-            /// <summary>method <c>draw</c> renders the point.</summary>
             if (PanelIndex > 0)
                 listPanel[--PanelIndex].BringToFront();
         }
+
         private void Button1EnterProg_Click(object sender, EventArgs e)
         {
             NextPanelBehav();
@@ -154,6 +155,8 @@ namespace DropFilesTest1
                 listBox1DragFiles.Items.Add(name);
             }
         }
+        /// <summary>method <c>ClasssifiesAndLoadsFiles</c>gets files from listBox drop and returns a myOrderedFiles instance.</summary>
+
         private OrderedFiles ClasssifiesAndLoadsFiles()
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
@@ -162,6 +165,7 @@ namespace DropFilesTest1
             // label4NumCfiles.Text = Convert.ToString(myOrderedFiles.cFiles.Count);
             return myOrderedFiles;
         }
+        /// <summary>method <c>executeGivenFiles</c>execute all files in myOrderedFiles</summary>
         private void executeGivenFiles(int caseSwitch)
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
@@ -214,9 +218,9 @@ namespace DropFilesTest1
 
 
         }
+        /// <summary>method <c>ExecCheckedFiles</c>executes files that where selected in the CheckBoxes.</summary>
         private void ExecCheckedFiles()
         {
-            /// <summary>method <c>draw</c> renders the point.</summary>
 
             if (checkBoxCfiles.Checked == true)
                 executeGivenFiles(1);
@@ -225,10 +229,12 @@ namespace DropFilesTest1
             if (checkBoxJavaFiles.Checked == true)
                 executeGivenFiles(2);
         }
+
         private void Label3_Click(object sender, EventArgs e)
         {
 
         }
+        /// <summary>method <c>ResultsToExcel</c>Writes the results into a Excel file.</summary>
         private void ResultsToExcel(List<FileResult> myListToExcel)
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
@@ -273,10 +279,10 @@ namespace DropFilesTest1
                 excelStream.Dispose();
             }
 
-        } 
+        }
+        /// <summary>method <c>PopulateResultsPreview</c>files up the data in the correct labels. Number of files to be checked.</summary>
         private void PopulateResultsPreview()
         {
-            /// <summary>method <c>draw</c> renders the point.</summary>
 
             int CerrorIndex =0;
             int PythonErrorIndex = 0;
@@ -308,6 +314,8 @@ namespace DropFilesTest1
 
 
         }
+        /// <summary>method <c>ConvertListToDataTable</c>Return dataTable with all values to be written into the Excel File.</summary>
+
         static DataTable ConvertListToDataTable(List<FileResult> list)
         {
             // New table.
@@ -338,9 +346,15 @@ namespace DropFilesTest1
 
             return table;
         }
+
         private void Button4GenerateReport_Click(object sender, EventArgs e)
         {
             ResultsToExcel(RevisionResultCfiles);
+        }
+
+        private void LabelCmakeFiles_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

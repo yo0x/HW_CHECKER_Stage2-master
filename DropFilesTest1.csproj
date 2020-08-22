@@ -77,52 +77,16 @@
     <Compile Include="Controller\DragFiles1.cs" />
     <Compile Include="Controller\FilesClassifer.cs" />
     <Compile Include="Controller\FilesExecuter.cs" />
-    <Compile Include="Views\FilesOverview.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\FilesOverview.Designer.cs">
-      <DependentUpon>FilesOverview.cs</DependentUpon>
-    </Compile>
     <Compile Include="Views\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Views\MainWindow.Designer.cs">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\Hest2.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Hest2.Designer.cs">
-      <DependentUpon>Hest2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ModeCheck.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ModeCheck.Designer.cs">
-      <DependentUpon>ModeCheck.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Result.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\Result.Designer.cs">
-      <DependentUpon>Result.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Views\FilesOverview.resx">
-      <DependentUpon>FilesOverview.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Views\MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Hest2.resx">
-      <DependentUpon>Hest2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ModeCheck.resx">
-      <DependentUpon>ModeCheck.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\Result.resx">
-      <DependentUpon>Result.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

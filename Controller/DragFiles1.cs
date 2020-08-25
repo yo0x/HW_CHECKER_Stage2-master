@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DropFilesTest1
+namespace HomeWorkCheckApp
 {
     internal class DragFiles
     {

@@ -6,9 +6,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DropFilesTest1
+namespace HomeWorkCheckApp
 {
-    static class FilesExecuterHest1
+    public static class FilesExecuterHest1
     {
 
         public static (string compilerOutPut, string execFileOutput) executeFile(string myFileToExec)
@@ -76,7 +76,7 @@ namespace DropFilesTest1
 
     }
 
-    static class FilesExecuterHest2
+    public static class FilesExecuterHest2
     {
         public static (string compilerOutPut, string execFileOutput) executeFile(string myFileToExec, string fileParameters)
         {

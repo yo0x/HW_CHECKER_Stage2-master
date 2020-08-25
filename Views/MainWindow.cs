@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
-namespace DropFilesTest1
+namespace HomeWorkCheckApp
 {
     /// <summary>Main Window Class <c>Point</c> All the events logic here and access to models.
     /// </summary>
@@ -156,13 +156,33 @@ namespace DropFilesTest1
         private void ListBox1DragFiles_DragEnter_1(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            FilesTool.filesToCheck = new string[filesDrop.Length];
-            FilesTool.filesToCheck = filesDrop;
+           // string[] filesDropToProccess = new string[filesDrop.Length];
+            //FilesTool.filesToCheck = new string[filesDrop.Length];
+            //FilesTool.filesToCheck = filesDrop;
+
+            List<string> list = new List<string>();
             foreach (string item in filesDrop)
             {
-                var name = Path.GetFileName(item.ToString());
-                listBox1DragFiles.Items.Add(name);
+                if(Directory.Exists(item))
+                {
+                    string[] FilesInDir = Directory.GetFiles(item);
+                    foreach (string file in FilesInDir)
+                    {
+                        var name = Path.GetFileName(file.ToString());
+                        list.Add(file);
+                        listBox1DragFiles.Items.Add(name);
+                    }
+                }
+                if (File.Exists(item))
+                {
+                    var name = Path.GetFileName(item.ToString());
+                    list.Add(item);
+                    listBox1DragFiles.Items.Add(name);
+                }
+               
             }
+            FilesTool.filesToCheck = list.ToArray();
+            CountFilesDragged();
         }
         /// <summary>method <c>ClasssifiesAndLoadsFiles</c>gets files from listBox drop and returns a myOrderedFiles instance.</summary>
 
@@ -202,7 +222,7 @@ namespace DropFilesTest1
                             //.executeFile(item);
 
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
                         }
 
                     }
@@ -225,7 +245,7 @@ namespace DropFilesTest1
                             //.executeFile(item);
 
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                            RevisionResultJavaFiles.Add(new FileResult(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
                         }
 
 
@@ -250,7 +270,8 @@ namespace DropFilesTest1
                             //.executeFile(item);
 
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+
+                        RevisionResultPythonFiles.Add(new FileResult(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
                         }
 
 
@@ -367,13 +388,17 @@ namespace DropFilesTest1
         }
         /// <summary>method <c>ConvertListToDataTable</c>Return dataTable with all values to be written into the Excel File.</summary>
 
+        private void CountFilesDragged()
+        {
+            labelNumberFilesDragged.Text = listBox1DragFiles.Items.Count.ToString();
+        }
         static DataTable ConvertListToDataTable(List<FileResult> list)
         {
             // New table.
             DataTable table = new DataTable();
 
             // Get max columns.
-            int columns = 6;
+            int columns = 8;
 
             //foreach (var element in list)
             //{
@@ -388,11 +413,11 @@ namespace DropFilesTest1
             {
                 table.Columns.Add();
             }
-            table.Rows.Add("File name", "StudentID", "Department", "Compiled Successfully", "Errors", "File's output");
+            table.Rows.Add("File name", "StudentID", "Department", "Compiled Successfully", "Errors", "File's output", "Passed HEST2?", "HEST2 - Expected OutPut");
             // Add rows.
             foreach (var array in list)
             {
-                table.Rows.Add(array.FileName, array.StudenId, array.Department, array.Compiled.ToString(), array.Errors, array.FileOutput);
+                table.Rows.Add(array.FileName, array.StudenId, array.Department, array.Compiled.ToString(), array.Errors, array.FileOutput, array.Hest2PassedTest,array.UserDefinedExpectedOutPut);
             }
 
             return table;
@@ -412,6 +437,10 @@ namespace DropFilesTest1
         {
             this.isHest1 = false;
             ExecCheckedFiles();
+            NextPanelBehav();
+
         }
+
+      
     }
 }

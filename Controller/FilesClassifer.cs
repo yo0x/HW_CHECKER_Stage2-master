@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
 
-namespace DropFilesTest1
+namespace HomeWorkCheckApp
 {
     /// <summary>Class <c>FilesTool</c> Allows to handle different functionality from the files to be checked.
     /// </summary>
@@ -52,6 +52,10 @@ namespace DropFilesTest1
         public bool Compiled { get; set; }
         public string Errors { get; set; }
         public string FileOutput { get; set; }
+        public bool Hest2PassedTest { get; set; }
+        public string UserDefinedExpectedOutPut { get; set; }
+
+        public FileResult() { }
         public FileResult(string MyFileName, string myStudenId,string myDept, bool Comp, string MyErr, string FileOut)
         {
             FileName = MyFileName;
@@ -60,13 +64,37 @@ namespace DropFilesTest1
             Compiled = Comp;
             Errors = MyErr;
             FileOutput = FileOut;
+            PassHest2();
         }
         public FileResult(string MyErr, string FileOut)
         {
             Errors = MyErr;
             FileOutput = FileOut;
+            PassHest2();
+
+        }
+        public FileResult(string MyErr, string FileOut, string UserDefinedOutPut)
+        {
+            Errors = MyErr;
+            FileOutput = FileOut;
+            UserDefinedExpectedOutPut = UserDefinedOutPut;
+            PassHest2();
+
+        }
+
+        public void PassHest2()
+        {
+            if (UserDefinedExpectedOutPut.Equals(FileOutput))
+            {
+                Hest2PassedTest = true;
+            }
+            else
+            {
+                Hest2PassedTest = false;
+            }
         }
     }
+   
 
     /// <summary>Class <c>LanguageRecognizion</c> Divides files by language and adds them to the correspondent list. 
     /// </summary>

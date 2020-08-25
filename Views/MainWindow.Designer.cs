@@ -1,4 +1,4 @@
-﻿namespace DropFilesTest1
+﻿namespace HomeWorkCheckApp
 {
     partial class MainWindow
     {
@@ -86,14 +86,16 @@
             this.PanelSignIn = new System.Windows.Forms.Panel();
             this.button1EnterProg = new System.Windows.Forms.Button();
             this.Hest2Panel = new System.Windows.Forms.Panel();
+            this.button1Hest2EvalueateFiles = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
+            this.textBoxHEST2ExpectedOutPut = new System.Windows.Forms.TextBox();
             this.textBox1InputParameters = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.button1Hest2EvalueateFiles = new System.Windows.Forms.Button();
-            this.textBoxHEST2ExpectedOutPut = new System.Windows.Forms.TextBox();
+            this.label19 = new System.Windows.Forms.Label();
+            this.labelNumberFilesDragged = new System.Windows.Forms.Label();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
             this.groupBoxFilesToBuild.SuspendLayout();
@@ -110,6 +112,8 @@
             // 
             // panelDragFiles
             // 
+            this.panelDragFiles.Controls.Add(this.labelNumberFilesDragged);
+            this.panelDragFiles.Controls.Add(this.label19);
             this.panelDragFiles.Controls.Add(this.label1DragFiles);
             this.panelDragFiles.Controls.Add(this.listBox1DragFiles);
             this.panelDragFiles.Location = new System.Drawing.Point(12, 12);
@@ -700,6 +704,16 @@
             this.Hest2Panel.Size = new System.Drawing.Size(984, 636);
             this.Hest2Panel.TabIndex = 6;
             // 
+            // button1Hest2EvalueateFiles
+            // 
+            this.button1Hest2EvalueateFiles.Location = new System.Drawing.Point(389, 554);
+            this.button1Hest2EvalueateFiles.Name = "button1Hest2EvalueateFiles";
+            this.button1Hest2EvalueateFiles.Size = new System.Drawing.Size(232, 42);
+            this.button1Hest2EvalueateFiles.TabIndex = 5;
+            this.button1Hest2EvalueateFiles.Text = "Evaluate files";
+            this.button1Hest2EvalueateFiles.UseVisualStyleBackColor = true;
+            this.button1Hest2EvalueateFiles.Click += new System.EventHandler(this.Button1Hest2EvalueateFiles_Click);
+            // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.label14);
@@ -732,6 +746,14 @@
             this.label13.Text = "Enter here parameters to be passed to files.\r\nExample: fileBeenChecked.c - {param" +
     "eters}";
             // 
+            // textBoxHEST2ExpectedOutPut
+            // 
+            this.textBoxHEST2ExpectedOutPut.Location = new System.Drawing.Point(424, 82);
+            this.textBoxHEST2ExpectedOutPut.Multiline = true;
+            this.textBoxHEST2ExpectedOutPut.Name = "textBoxHEST2ExpectedOutPut";
+            this.textBoxHEST2ExpectedOutPut.Size = new System.Drawing.Size(364, 264);
+            this.textBoxHEST2ExpectedOutPut.TabIndex = 3;
+            // 
             // textBox1InputParameters
             // 
             this.textBox1InputParameters.Location = new System.Drawing.Point(34, 82);
@@ -760,23 +782,23 @@
             this.label11.TabIndex = 0;
             this.label11.Text = "HEST 2";
             // 
-            // button1Hest2EvalueateFiles
+            // label19
             // 
-            this.button1Hest2EvalueateFiles.Location = new System.Drawing.Point(389, 554);
-            this.button1Hest2EvalueateFiles.Name = "button1Hest2EvalueateFiles";
-            this.button1Hest2EvalueateFiles.Size = new System.Drawing.Size(232, 42);
-            this.button1Hest2EvalueateFiles.TabIndex = 5;
-            this.button1Hest2EvalueateFiles.Text = "Evaluate files";
-            this.button1Hest2EvalueateFiles.UseVisualStyleBackColor = true;
-            this.button1Hest2EvalueateFiles.Click += new System.EventHandler(this.Button1Hest2EvalueateFiles_Click);
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(330, 580);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(122, 13);
+            this.label19.TabIndex = 7;
+            this.label19.Text = "Number of files dragged:";
             // 
-            // textBoxHEST2ExpectedOutPut
+            // labelNumberFilesDragged
             // 
-            this.textBoxHEST2ExpectedOutPut.Location = new System.Drawing.Point(424, 82);
-            this.textBoxHEST2ExpectedOutPut.Multiline = true;
-            this.textBoxHEST2ExpectedOutPut.Name = "textBoxHEST2ExpectedOutPut";
-            this.textBoxHEST2ExpectedOutPut.Size = new System.Drawing.Size(364, 264);
-            this.textBoxHEST2ExpectedOutPut.TabIndex = 3;
+            this.labelNumberFilesDragged.AutoSize = true;
+            this.labelNumberFilesDragged.Location = new System.Drawing.Point(459, 580);
+            this.labelNumberFilesDragged.Name = "labelNumberFilesDragged";
+            this.labelNumberFilesDragged.Size = new System.Drawing.Size(10, 13);
+            this.labelNumberFilesDragged.TabIndex = 8;
+            this.labelNumberFilesDragged.Text = "-";
             // 
             // MainWindow
             // 
@@ -785,11 +807,11 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelResultsWindow);
-            this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
@@ -892,6 +914,8 @@
         private System.Windows.Forms.TextBox textBox1InputParameters;
         private System.Windows.Forms.Button button1Hest2EvalueateFiles;
         private System.Windows.Forms.TextBox textBoxHEST2ExpectedOutPut;
+        private System.Windows.Forms.Label labelNumberFilesDragged;
+        private System.Windows.Forms.Label label19;
     }
 }
 

@@ -21,7 +21,7 @@ namespace DropFilesTest1
         List<FileResult> RevisionResultJavaFiles = new List<FileResult>();
         List<FileResult> RevisionResultPythonFiles = new List<FileResult>();
         OrderedFiles MyOF = new OrderedFiles();
-
+        bool isHest1;
         //int IndexFile = 0;
         int PanelIndex;
         public MainWindow()
@@ -30,7 +30,7 @@ namespace DropFilesTest1
         }
         private void Button1CheckFiles_Click(object sender, EventArgs e)
         {
-            
+
         }
         private void ListBox1DragFiles_DragEnter(object sender, DragEventArgs e)
         {
@@ -49,6 +49,7 @@ namespace DropFilesTest1
             listPanel.Add(panelDragFiles);
             listPanel.Add(panelFilesOverView);
             listPanel.Add(panelSelectMode);
+            // listPanel.Add(Hest2Panel);
             listPanel.Add(panelResultsWindow);
             listPanel[PanelIndex].BringToFront();
 
@@ -71,11 +72,13 @@ namespace DropFilesTest1
         {
             switch (PanelIndex)
             {
+                //Login Panel
                 case 0:
                     NextPanel();
                     buttonNextPanel.Visible = true;
                     buttonExitProgramEND.Visible = false;
                     break;
+                //Drag Files panel
                 case 1:
                     NextPanel();
                     buttonExitPro.Visible = false;
@@ -85,15 +88,15 @@ namespace DropFilesTest1
                     checkBoxPythonFiles.Text = $" {Convert.ToString(MyOF.pythonFiles.Count)} Python Files";
                     checkBoxJavaFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
                     checkBoxCMakeFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
-
-
                     break;
+                //Select files to be Checked panel.
                 case 2:
                     NextPanel();
                     //PopulateResultsPreview();
                     buttonNextPanel.Visible = false;
 
                     break;
+                //Select HEST1 OR HEST2
                 case 3:
                     NextPanel();
                     PopulateResultsPreview();
@@ -101,13 +104,14 @@ namespace DropFilesTest1
                     buttonExitProgramEND.Visible = true;
 
                     break;
+                //Generate report to excel.
                 case 4:
                     break;
                 default:
                     break;
             }
 
-         
+
         }
         /// <summary>method <c>NextPanel</c> makes next panel visible.</summary>
         public void NextPanel()
@@ -125,14 +129,17 @@ namespace DropFilesTest1
         private void Button1EnterProg_Click(object sender, EventArgs e)
         {
             NextPanelBehav();
-          
+
         }
         private void ButtonSelectedHest1_Click(object sender, EventArgs e)//HEST 1 selection button.
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
+            Hest2Panel.Visible = false;
             ExecCheckedFiles();
             label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST-1 METHOD.";
             NextPanelBehav();
+            // NextPanelBehav();
+
 
         }
         private void ButtonExitProgramEND_Click(object sender, EventArgs e)
@@ -141,7 +148,9 @@ namespace DropFilesTest1
         }
         private void ButtonSelectedHEST2_Click(object sender, EventArgs e)
         {
-            NextPanelBehav();
+            //            NextPanelBehav();
+            Hest2Panel.BringToFront();
+            Hest2Panel.Visible = true;
             label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST-2 METHOD.";
         }
         private void ListBox1DragFiles_DragEnter_1(object sender, DragEventArgs e)
@@ -177,22 +186,48 @@ namespace DropFilesTest1
                 case 1:
                     foreach (string item in myOrderedFiles.cFiles)
                     {
-                        (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
-                        //.executeFile(item);
 
-                        // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                        RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        if (isHest1)
+                        {
+                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
+                            //.executeFile(item);
+
+                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
+                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+
+                        }
+                        else
+                        {
+                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
+                            //.executeFile(item);
+
+                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
+                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        }
 
                     }
                     break;
                 case 2:
                     foreach (string item in myOrderedFiles.javaFiles)
                     {
-                        (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
-                        //.executeFile(item);
 
-                        // MessageBox.Show($"Compiler out put: {compilerOutPut}   \r\n\n   exeFileOutPut:{execFileOutput}");
-                        RevisionResultJavaFiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        if (isHest1)
+                        {
+                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
+                            //.executeFile(item);
+
+                            // MessageBox.Show($"Compiler out put: {compilerOutPut}   \r\n\n   exeFileOutPut:{execFileOutput}");
+                            RevisionResultJavaFiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        }
+                        else
+                        {
+                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
+                            //.executeFile(item);
+
+                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
+                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        }
+
 
 
                     }
@@ -200,11 +235,25 @@ namespace DropFilesTest1
                 case 3:
                     foreach (string item in myOrderedFiles.pythonFiles)
                     {
-                        (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
-                        //.executeFile(item);
 
-                        // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                        RevisionResultPythonFiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        if (isHest1)
+                        {
+                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
+                            //.executeFile(item);
+
+                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
+                            RevisionResultPythonFiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        }
+                        else
+                        {
+                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
+                            //.executeFile(item);
+
+                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
+                            RevisionResultCfiles.Add(new FileResult(compilerOutPut, execFileOutput));
+                        }
+
+
 
 
                     }
@@ -228,6 +277,8 @@ namespace DropFilesTest1
                 executeGivenFiles(3);
             if (checkBoxJavaFiles.Checked == true)
                 executeGivenFiles(2);
+
+
         }
 
         private void Label3_Click(object sender, EventArgs e)
@@ -258,8 +309,8 @@ namespace DropFilesTest1
                 //customersDataSet.ReadXml(Path.GetFullPath(@"../../Data/Employees.xml"));
 
                 //Create datatable from the dataset
-               // DataTable dataTable = new DataTable();
-               // dataTable = customersDataSet.Tables[0];
+                // DataTable dataTable = new DataTable();
+                // dataTable = customersDataSet.Tables[0];
 
                 //Import data from the data table with column header, at first row and first column, 
                 //and by its column type.
@@ -284,7 +335,7 @@ namespace DropFilesTest1
         private void PopulateResultsPreview()
         {
 
-            int CerrorIndex =0;
+            int CerrorIndex = 0;
             int PythonErrorIndex = 0;
             int JavaErrorIndex = 0;
 
@@ -296,7 +347,7 @@ namespace DropFilesTest1
             foreach (FileResult item in RevisionResultCfiles)
             {
                 if (item.Errors.Length > 0) { ++CerrorIndex; }
-                
+
             }
             foreach (var item in RevisionResultPythonFiles)
             {
@@ -308,7 +359,7 @@ namespace DropFilesTest1
                 if (item.Errors.Length > 0) { ++JavaErrorIndex; }
 
             }
-            labelErrorsCfiles .Text = $"{Convert.ToString(CerrorIndex)}";
+            labelErrorsCfiles.Text = $"{Convert.ToString(CerrorIndex)}";
             labelErrorPython.Text = $"{Convert.ToString(PythonErrorIndex)}";
             labelErrorJavaFiles.Text = $"{Convert.ToString(JavaErrorIndex)}";
 
@@ -331,7 +382,7 @@ namespace DropFilesTest1
             //        columns = element.Length;
             //    }
             //}
-           
+
             // Add columns.
             for (int i = 0; i < columns; i++)
             {
@@ -341,7 +392,7 @@ namespace DropFilesTest1
             // Add rows.
             foreach (var array in list)
             {
-                table.Rows.Add(array.FileName,array.StudenId,array.Department,array.Compiled.ToString(),array.Errors,array.FileOutput);
+                table.Rows.Add(array.FileName, array.StudenId, array.Department, array.Compiled.ToString(), array.Errors, array.FileOutput);
             }
 
             return table;
@@ -355,6 +406,12 @@ namespace DropFilesTest1
         private void LabelCmakeFiles_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void Button1Hest2EvalueateFiles_Click(object sender, EventArgs e)
+        {
+            this.isHest1 = false;
+            ExecCheckedFiles();
         }
     }
 }

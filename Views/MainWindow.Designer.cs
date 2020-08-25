@@ -85,18 +85,15 @@
             this.buttonExitPro = new System.Windows.Forms.Button();
             this.PanelSignIn = new System.Windows.Forms.Panel();
             this.button1EnterProg = new System.Windows.Forms.Button();
-            this.Hest2 = new System.Windows.Forms.Panel();
-            this.label11 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1InputParameters = new System.Windows.Forms.TextBox();
+            this.Hest2Panel = new System.Windows.Forms.Panel();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.listBox1OutPutFiles = new System.Windows.Forms.ListBox();
-            this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.checkBoxCfilesTocheckOn = new System.Windows.Forms.CheckBox();
-            this.checkBox2PythonToBeCheckOn = new System.Windows.Forms.CheckBox();
-            this.checkBox3JAvaFilesToCheckOn = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox1InputParameters = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.button1Hest2EvalueateFiles = new System.Windows.Forms.Button();
+            this.textBoxHEST2ExpectedOutPut = new System.Windows.Forms.TextBox();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
             this.groupBoxFilesToBuild.SuspendLayout();
@@ -107,8 +104,7 @@
             this.panelResultsWindow.SuspendLayout();
             this.groupBox2SummaryReport.SuspendLayout();
             this.PanelSignIn.SuspendLayout();
-            this.Hest2.SuspendLayout();
-            this.groupBox2.SuspendLayout();
+            this.Hest2Panel.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -178,7 +174,7 @@
             // checkBoxCMakeFiles
             // 
             this.checkBoxCMakeFiles.AutoSize = true;
-            this.checkBoxCMakeFiles.Location = new System.Drawing.Point(342, 130);
+            this.checkBoxCMakeFiles.Location = new System.Drawing.Point(342, 153);
             this.checkBoxCMakeFiles.Name = "checkBoxCMakeFiles";
             this.checkBoxCMakeFiles.Size = new System.Drawing.Size(159, 30);
             this.checkBoxCMakeFiles.TabIndex = 9;
@@ -190,10 +186,10 @@
             this.labelCmakeFiles.AutoSize = true;
             this.labelCmakeFiles.Location = new System.Drawing.Point(87, 44);
             this.labelCmakeFiles.Name = "labelCmakeFiles";
-            this.labelCmakeFiles.Size = new System.Drawing.Size(578, 52);
+            this.labelCmakeFiles.Size = new System.Drawing.Size(578, 78);
             this.labelCmakeFiles.TabIndex = 8;
             this.labelCmakeFiles.Text = "0  \"C-Make\" files have been recognized.\r\nPlease check box in order to build them " +
-    "and execute them.";
+    "and execute them.\r\nThis will be execute only by HEST1.";
             this.labelCmakeFiles.Click += new System.EventHandler(this.LabelCmakeFiles_Click);
             // 
             // groupBoxFilesToBeChecked
@@ -218,7 +214,7 @@
             this.label2.Size = new System.Drawing.Size(550, 52);
             this.label2.TabIndex = 6;
             this.label2.Text = "The following files have been recognized by the system.\r\nPlease choose files to b" +
-    "e checked.";
+    "e checked by HES1 or HEST2.";
             // 
             // checkBoxCfiles
             // 
@@ -693,26 +689,56 @@
             this.button1EnterProg.UseVisualStyleBackColor = true;
             this.button1EnterProg.Click += new System.EventHandler(this.Button1EnterProg_Click);
             // 
-            // Hest2
+            // Hest2Panel
             // 
-            this.Hest2.Controls.Add(this.groupBox3);
-            this.Hest2.Controls.Add(this.groupBox2);
-            this.Hest2.Controls.Add(this.label12);
-            this.Hest2.Controls.Add(this.label11);
-            this.Hest2.Location = new System.Drawing.Point(12, 12);
-            this.Hest2.Name = "Hest2";
-            this.Hest2.Size = new System.Drawing.Size(984, 636);
-            this.Hest2.TabIndex = 9;
+            this.Hest2Panel.Controls.Add(this.button1Hest2EvalueateFiles);
+            this.Hest2Panel.Controls.Add(this.groupBox3);
+            this.Hest2Panel.Controls.Add(this.label12);
+            this.Hest2Panel.Controls.Add(this.label11);
+            this.Hest2Panel.Location = new System.Drawing.Point(12, 12);
+            this.Hest2Panel.Name = "Hest2Panel";
+            this.Hest2Panel.Size = new System.Drawing.Size(984, 636);
+            this.Hest2Panel.TabIndex = 6;
             // 
-            // label11
+            // groupBox3
             // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label11.Location = new System.Drawing.Point(68, 42);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(116, 34);
-            this.label11.TabIndex = 0;
-            this.label11.Text = "HEST 2";
+            this.groupBox3.Controls.Add(this.label14);
+            this.groupBox3.Controls.Add(this.label13);
+            this.groupBox3.Controls.Add(this.textBoxHEST2ExpectedOutPut);
+            this.groupBox3.Controls.Add(this.textBox1InputParameters);
+            this.groupBox3.Location = new System.Drawing.Point(99, 146);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(846, 374);
+            this.groupBox3.TabIndex = 4;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "I/O Configurations";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(421, 52);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(217, 13);
+            this.label14.TabIndex = 6;
+            this.label14.Text = "Entere here the expected output for the files.";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(31, 31);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(212, 26);
+            this.label13.TabIndex = 5;
+            this.label13.Text = "Enter here parameters to be passed to files.\r\nExample: fileBeenChecked.c - {param" +
+    "eters}";
+            // 
+            // textBox1InputParameters
+            // 
+            this.textBox1InputParameters.Location = new System.Drawing.Point(34, 82);
+            this.textBox1InputParameters.Multiline = true;
+            this.textBox1InputParameters.Name = "textBox1InputParameters";
+            this.textBox1InputParameters.Size = new System.Drawing.Size(364, 264);
+            this.textBox1InputParameters.TabIndex = 3;
             // 
             // label12
             // 
@@ -724,94 +750,33 @@
             this.label12.TabIndex = 1;
             this.label12.Text = "Testing user defined output";
             // 
-            // groupBox2
+            // label11
             // 
-            this.groupBox2.Controls.Add(this.checkBox3JAvaFilesToCheckOn);
-            this.groupBox2.Controls.Add(this.checkBox2PythonToBeCheckOn);
-            this.groupBox2.Controls.Add(this.checkBoxCfilesTocheckOn);
-            this.groupBox2.Location = new System.Drawing.Point(99, 542);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(295, 70);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "Test the below configurations on the following files:";
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label11.Location = new System.Drawing.Point(68, 42);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(116, 34);
+            this.label11.TabIndex = 0;
+            this.label11.Text = "HEST 2";
             // 
-            // textBox1InputParameters
+            // button1Hest2EvalueateFiles
             // 
-            this.textBox1InputParameters.Location = new System.Drawing.Point(34, 82);
-            this.textBox1InputParameters.Multiline = true;
-            this.textBox1InputParameters.Name = "textBox1InputParameters";
-            this.textBox1InputParameters.Size = new System.Drawing.Size(364, 264);
-            this.textBox1InputParameters.TabIndex = 3;
+            this.button1Hest2EvalueateFiles.Location = new System.Drawing.Point(389, 554);
+            this.button1Hest2EvalueateFiles.Name = "button1Hest2EvalueateFiles";
+            this.button1Hest2EvalueateFiles.Size = new System.Drawing.Size(232, 42);
+            this.button1Hest2EvalueateFiles.TabIndex = 5;
+            this.button1Hest2EvalueateFiles.Text = "Evaluate files";
+            this.button1Hest2EvalueateFiles.UseVisualStyleBackColor = true;
+            this.button1Hest2EvalueateFiles.Click += new System.EventHandler(this.Button1Hest2EvalueateFiles_Click);
             // 
-            // groupBox3
+            // textBoxHEST2ExpectedOutPut
             // 
-            this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Controls.Add(this.listBox1OutPutFiles);
-            this.groupBox3.Controls.Add(this.textBox1InputParameters);
-            this.groupBox3.Location = new System.Drawing.Point(99, 146);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(846, 374);
-            this.groupBox3.TabIndex = 4;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "I/O Configurations";
-            // 
-            // listBox1OutPutFiles
-            // 
-            this.listBox1OutPutFiles.FormattingEnabled = true;
-            this.listBox1OutPutFiles.Location = new System.Drawing.Point(421, 82);
-            this.listBox1OutPutFiles.Name = "listBox1OutPutFiles";
-            this.listBox1OutPutFiles.Size = new System.Drawing.Size(394, 264);
-            this.listBox1OutPutFiles.TabIndex = 4;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(31, 52);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(211, 13);
-            this.label13.TabIndex = 5;
-            this.label13.Text = "Enter here parameters to be passed to files:";
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(421, 52);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(210, 13);
-            this.label14.TabIndex = 6;
-            this.label14.Text = "Drag here .TXT file with the desired output.";
-            // 
-            // checkBoxCfilesTocheckOn
-            // 
-            this.checkBoxCfilesTocheckOn.AutoSize = true;
-            this.checkBoxCfilesTocheckOn.Location = new System.Drawing.Point(30, 38);
-            this.checkBoxCfilesTocheckOn.Name = "checkBoxCfilesTocheckOn";
-            this.checkBoxCfilesTocheckOn.Size = new System.Drawing.Size(57, 17);
-            this.checkBoxCfilesTocheckOn.TabIndex = 0;
-            this.checkBoxCfilesTocheckOn.Text = "C-Files";
-            this.checkBoxCfilesTocheckOn.UseVisualStyleBackColor = true;
-            // 
-            // checkBox2PythonToBeCheckOn
-            // 
-            this.checkBox2PythonToBeCheckOn.AutoSize = true;
-            this.checkBox2PythonToBeCheckOn.Location = new System.Drawing.Point(103, 38);
-            this.checkBox2PythonToBeCheckOn.Name = "checkBox2PythonToBeCheckOn";
-            this.checkBox2PythonToBeCheckOn.Size = new System.Drawing.Size(83, 17);
-            this.checkBox2PythonToBeCheckOn.TabIndex = 1;
-            this.checkBox2PythonToBeCheckOn.Text = "Python Files";
-            this.checkBox2PythonToBeCheckOn.UseVisualStyleBackColor = true;
-            // 
-            // checkBox3JAvaFilesToCheckOn
-            // 
-            this.checkBox3JAvaFilesToCheckOn.AutoSize = true;
-            this.checkBox3JAvaFilesToCheckOn.Location = new System.Drawing.Point(205, 38);
-            this.checkBox3JAvaFilesToCheckOn.Name = "checkBox3JAvaFilesToCheckOn";
-            this.checkBox3JAvaFilesToCheckOn.Size = new System.Drawing.Size(73, 17);
-            this.checkBox3JAvaFilesToCheckOn.TabIndex = 2;
-            this.checkBox3JAvaFilesToCheckOn.Text = "Java Files";
-            this.checkBox3JAvaFilesToCheckOn.UseVisualStyleBackColor = true;
+            this.textBoxHEST2ExpectedOutPut.Location = new System.Drawing.Point(424, 82);
+            this.textBoxHEST2ExpectedOutPut.Multiline = true;
+            this.textBoxHEST2ExpectedOutPut.Name = "textBoxHEST2ExpectedOutPut";
+            this.textBoxHEST2ExpectedOutPut.Size = new System.Drawing.Size(364, 264);
+            this.textBoxHEST2ExpectedOutPut.TabIndex = 3;
             // 
             // MainWindow
             // 
@@ -820,11 +785,11 @@
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelSelectMode);
+            this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.panelDragFiles);
-            this.Controls.Add(this.Hest2);
-            this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
@@ -852,10 +817,8 @@
             this.groupBox2SummaryReport.ResumeLayout(false);
             this.groupBox2SummaryReport.PerformLayout();
             this.PanelSignIn.ResumeLayout(false);
-            this.Hest2.ResumeLayout(false);
-            this.Hest2.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
+            this.Hest2Panel.ResumeLayout(false);
+            this.Hest2Panel.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
@@ -920,18 +883,15 @@
         private System.Windows.Forms.Button buttonExitPro;
         private System.Windows.Forms.Panel PanelSignIn;
         private System.Windows.Forms.Button button1EnterProg;
-        private System.Windows.Forms.Panel Hest2;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Panel Hest2Panel;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.ListBox listBox1OutPutFiles;
         private System.Windows.Forms.TextBox textBox1InputParameters;
-        private System.Windows.Forms.CheckBox checkBox3JAvaFilesToCheckOn;
-        private System.Windows.Forms.CheckBox checkBox2PythonToBeCheckOn;
-        private System.Windows.Forms.CheckBox checkBoxCfilesTocheckOn;
+        private System.Windows.Forms.Button button1Hest2EvalueateFiles;
+        private System.Windows.Forms.TextBox textBoxHEST2ExpectedOutPut;
     }
 }
 

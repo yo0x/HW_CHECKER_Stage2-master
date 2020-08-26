@@ -96,7 +96,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller\DragFiles1.cs" />
     <Compile Include="Controller\FilesClassifer.cs" />
     <Compile Include="Controller\FilesExecuter.cs" />
     <Compile Include="Views\MainWindow.cs">

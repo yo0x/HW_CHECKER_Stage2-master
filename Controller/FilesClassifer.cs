@@ -11,7 +11,7 @@ namespace HomeWorkCheckApp
     /// <summary>Class <c>FilesTool</c> Allows to handle different functionality from the files to be checked.
     /// </summary>
     ///
-    static class FilesTool
+    public static class FilesTool
     {
         public static string[] filesToCheck;
         /// <summary>method <c>processFileOutPut</c> returns the text of the file being read.</summary>
@@ -35,7 +35,7 @@ namespace HomeWorkCheckApp
     /// <summary>Class <c>OrderedFiles</c> Data Structure for the files to be organized. 
     /// </summary>
     ///
-    class OrderedFiles
+    public class OrderedFiles
     {
         public List<string> cFiles = new List<string>();
         public List<string> pythonFiles = new List<string>();
@@ -44,7 +44,7 @@ namespace HomeWorkCheckApp
     /// <summary>Class <c>FileResult</c> Data Structure for the test results. 
     /// </summary>
     ///
-    class FileResult
+    public class FileResult
     {
         public string FileName { get; set; }
         public string StudenId { get; set; }
@@ -99,7 +99,7 @@ namespace HomeWorkCheckApp
     /// <summary>Class <c>LanguageRecognizion</c> Divides files by language and adds them to the correspondent list. 
     /// </summary>
     ///
-    static class LanguageRecognizion
+    public static class LanguageRecognizion
     {
 
 

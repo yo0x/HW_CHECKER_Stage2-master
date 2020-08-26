@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Diagnostics.CodeAnalysis;
+
 namespace HomeWorkCheckApp
 {
     /// <summary>Main Window Class <c>Point</c> All the events logic here and access to models.
@@ -24,14 +26,12 @@ namespace HomeWorkCheckApp
         bool isHest1;
         //int IndexFile = 0;
         int PanelIndex;
+        [ExcludeFromCodeCoverage]
         public MainWindow()
         {
             InitializeComponent();
         }
-        private void Button1CheckFiles_Click(object sender, EventArgs e)
-        {
-
-        }
+        [ExcludeFromCodeCoverage]
         private void ListBox1DragFiles_DragEnter(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -43,6 +43,7 @@ namespace HomeWorkCheckApp
                 listBox1DragFiles.Items.Add(name);
             }
         }
+        [ExcludeFromCodeCoverage]
         private void MainWindow_Load(object sender, EventArgs e)
         {
             listPanel.Add(PanelSignIn);
@@ -54,20 +55,24 @@ namespace HomeWorkCheckApp
             listPanel[PanelIndex].BringToFront();
 
         }//Add panels to List Order.
+        [ExcludeFromCodeCoverage]
         private void ButtonNextPanel_Click(object sender, EventArgs e)
         {
             NextPanelBehav();
         }//Next event button.
+        [ExcludeFromCodeCoverage]
         private void ButtonExitPro_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        [ExcludeFromCodeCoverage]
         private void ButtonBackSFW_Click(object sender, EventArgs e)
         {
             PrevPanel();
             buttonNextPanel.Visible = true;
         }
         /// <summary>method <c>NextPanelBehav</c> forwards or backwards the panel order toggling visibility.</summary>
+        [ExcludeFromCodeCoverage]
         public void NextPanelBehav()
         {
             switch (PanelIndex)
@@ -114,23 +119,28 @@ namespace HomeWorkCheckApp
 
         }
         /// <summary>method <c>NextPanel</c> makes next panel visible.</summary>
+        /// 
+        [ExcludeFromCodeCoverage]
         public void NextPanel()
         {
             if (PanelIndex < listPanel.Count - 1)
                 listPanel[++PanelIndex].BringToFront();
         }
         /// <summary>method <c>PrevPanel</c> makes previous panel visible.</summary>
+        /// 
+        [ExcludeFromCodeCoverage]
         public void PrevPanel()
         {
             if (PanelIndex > 0)
                 listPanel[--PanelIndex].BringToFront();
         }
-
+        [ExcludeFromCodeCoverage]
         private void Button1EnterProg_Click(object sender, EventArgs e)
         {
             NextPanelBehav();
 
         }
+        [ExcludeFromCodeCoverage]
         private void ButtonSelectedHest1_Click(object sender, EventArgs e)//HEST 1 selection button.
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
@@ -142,10 +152,12 @@ namespace HomeWorkCheckApp
 
 
         }
+        [ExcludeFromCodeCoverage]
         private void ButtonExitProgramEND_Click(object sender, EventArgs e)
         {
             this.Close();
         }
+        [ExcludeFromCodeCoverage]
         private void ButtonSelectedHEST2_Click(object sender, EventArgs e)
         {
             //            NextPanelBehav();
@@ -153,6 +165,7 @@ namespace HomeWorkCheckApp
             Hest2Panel.Visible = true;
             label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST-2 METHOD.";
         }
+        [ExcludeFromCodeCoverage]
         private void ListBox1DragFiles_DragEnter_1(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -185,8 +198,8 @@ namespace HomeWorkCheckApp
             CountFilesDragged();
         }
         /// <summary>method <c>ClasssifiesAndLoadsFiles</c>gets files from listBox drop and returns a myOrderedFiles instance.</summary>
-
-        private OrderedFiles ClasssifiesAndLoadsFiles()
+        [ExcludeFromCodeCoverage]
+        public OrderedFiles ClasssifiesAndLoadsFiles()
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
             OrderedFiles myOrderedFiles = new OrderedFiles();
@@ -195,6 +208,7 @@ namespace HomeWorkCheckApp
             return myOrderedFiles;
         }
         /// <summary>method <c>executeGivenFiles</c>execute all files in myOrderedFiles</summary>
+        [ExcludeFromCodeCoverage]
         private void executeGivenFiles(int caseSwitch)
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
@@ -289,6 +303,7 @@ namespace HomeWorkCheckApp
 
         }
         /// <summary>method <c>ExecCheckedFiles</c>executes files that where selected in the CheckBoxes.</summary>
+        [ExcludeFromCodeCoverage]
         private void ExecCheckedFiles()
         {
 
@@ -302,11 +317,9 @@ namespace HomeWorkCheckApp
 
         }
 
-        private void Label3_Click(object sender, EventArgs e)
-        {
 
-        }
         /// <summary>method <c>ResultsToExcel</c>Writes the results into a Excel file.</summary>
+        [ExcludeFromCodeCoverage]
         private void ResultsToExcel(List<FileResult> myListToExcel)
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
@@ -353,6 +366,7 @@ namespace HomeWorkCheckApp
 
         }
         /// <summary>method <c>PopulateResultsPreview</c>files up the data in the correct labels. Number of files to be checked.</summary>
+        [ExcludeFromCodeCoverage]
         private void PopulateResultsPreview()
         {
 
@@ -387,16 +401,17 @@ namespace HomeWorkCheckApp
 
         }
         /// <summary>method <c>ConvertListToDataTable</c>Return dataTable with all values to be written into the Excel File.</summary>
-
+        [ExcludeFromCodeCoverage]
         private void CountFilesDragged()
         {
             labelNumberFilesDragged.Text = listBox1DragFiles.Items.Count.ToString();
         }
+        [ExcludeFromCodeCoverage]
         static DataTable ConvertListToDataTable(List<FileResult> list)
         {
             // New table.
             DataTable table = new DataTable();
-
+            
             // Get max columns.
             int columns = 8;
 
@@ -422,17 +437,14 @@ namespace HomeWorkCheckApp
 
             return table;
         }
-
+        [ExcludeFromCodeCoverage]
         private void Button4GenerateReport_Click(object sender, EventArgs e)
         {
             ResultsToExcel(RevisionResultCfiles);
         }
 
-        private void LabelCmakeFiles_Click(object sender, EventArgs e)
-        {
 
-        }
-
+        [ExcludeFromCodeCoverage]
         private void Button1Hest2EvalueateFiles_Click(object sender, EventArgs e)
         {
             this.isHest1 = false;

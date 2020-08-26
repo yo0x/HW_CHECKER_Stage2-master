@@ -1,4 +1,6 @@
-﻿namespace HomeWorkCheckApp
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace HomeWorkCheckApp
 {
     partial class MainWindow
     {
@@ -11,6 +13,7 @@
         /// Clean up any resources being used.
         /// </summary>
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        [ExcludeFromCodeCoverage]
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -26,6 +29,8 @@
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
+        /// 
+        [ExcludeFromCodeCoverage]
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
@@ -194,7 +199,7 @@
             this.labelCmakeFiles.TabIndex = 8;
             this.labelCmakeFiles.Text = "0  \"C-Make\" files have been recognized.\r\nPlease check box in order to build them " +
     "and execute them.\r\nThis will be execute only by HEST1.";
-            this.labelCmakeFiles.Click += new System.EventHandler(this.LabelCmakeFiles_Click);
+//            this.labelCmakeFiles.Click += new System.EventHandler(this.LabelCmakeFiles_Click);
             // 
             // groupBoxFilesToBeChecked
             // 
@@ -316,7 +321,7 @@
             this.label3.TabIndex = 9;
             this.label3.Text = "Hest 1 checks the files for execution \r\nand output only.\r\nIf any C-Files were sel" +
     "ected, the system \r\nwill try to build them and execute them.\r\n";
-            this.label3.Click += new System.EventHandler(this.Label3_Click);
+          //  this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // buttonSelectedHest1
             // 

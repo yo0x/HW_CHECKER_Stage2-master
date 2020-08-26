@@ -101,6 +101,7 @@ namespace HomeWorkCheckApp
             this.textBox1InputParameters = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
             this.groupBoxFilesToBuild.SuspendLayout();
@@ -698,6 +699,7 @@ namespace HomeWorkCheckApp
             // 
             // PanelSignIn
             // 
+            this.PanelSignIn.Controls.Add(this.label20);
             this.PanelSignIn.Controls.Add(this.button1EnterProg);
             this.PanelSignIn.Location = new System.Drawing.Point(12, 12);
             this.PanelSignIn.Name = "PanelSignIn";
@@ -803,6 +805,17 @@ namespace HomeWorkCheckApp
             this.label11.TabIndex = 0;
             this.label11.Text = "HEST 2";
             // 
+            // label20
+            // 
+            this.label20.AutoSize = true;
+            this.label20.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label20.Location = new System.Drawing.Point(203, 177);
+            this.label20.Name = "label20";
+            this.label20.Size = new System.Drawing.Size(545, 52);
+            this.label20.TabIndex = 1;
+            this.label20.Text = "Welcome to HomeWorkApp Checker.\r\nYou have been granted acces to out amazing app.\r" +
+    "\n";
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -810,12 +823,12 @@ namespace HomeWorkCheckApp
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelResultsWindow);
-            this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);
@@ -843,6 +856,7 @@ namespace HomeWorkCheckApp
             this.groupBox2SummaryReport.ResumeLayout(false);
             this.groupBox2SummaryReport.PerformLayout();
             this.PanelSignIn.ResumeLayout(false);
+            this.PanelSignIn.PerformLayout();
             this.Hest2Panel.ResumeLayout(false);
             this.Hest2Panel.PerformLayout();
             this.groupBox3.ResumeLayout(false);
@@ -920,6 +934,7 @@ namespace HomeWorkCheckApp
         private System.Windows.Forms.TextBox textBoxHEST2ExpectedOutPut;
         private System.Windows.Forms.Label labelNumberFilesDragged;
         private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.Label label20;
     }
 }
 

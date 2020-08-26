@@ -24,7 +24,7 @@ namespace HomeWorkCheckApp
             {
                 // Create a file to write to.
                 MessageBox.Show($"File: {myFilePath}. \r Does not Exist. \r Please Contact the EYA Support Team");
-
+                return "404";
             }
             // Open the file to read from.
             string readText = File.ReadAllText(myFilePath);

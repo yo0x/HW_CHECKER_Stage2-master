@@ -85,14 +85,24 @@ namespace HomeWorkCheckApp
                     break;
                 //Drag Files panel
                 case 1:
-                    NextPanel();
-                    buttonExitPro.Visible = false;
-                    buttonBackSFW.Visible = true;
-                    MyOF = ClasssifiesAndLoadsFiles();
-                    checkBoxCfiles.Text = $" {Convert.ToString(MyOF.cFiles.Count)} C-Files";
-                    checkBoxPythonFiles.Text = $" {Convert.ToString(MyOF.pythonFiles.Count)} Python Files";
-                    checkBoxJavaFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
-                    checkBoxCMakeFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
+                    if(listBox1DragFiles.Items.Count == 0)
+                    {
+                        MessageBox.Show("Please Drag files before continuing.","Alert",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Warning);
+                    }
+                    else
+                    {
+                        NextPanel();
+                        buttonExitPro.Visible = false;
+                        buttonBackSFW.Visible = true;
+                        MyOF = ClasssifiesAndLoadsFiles();
+                        checkBoxCfiles.Text = $" {Convert.ToString(MyOF.cFiles.Count)} C-Files";
+                        checkBoxPythonFiles.Text = $" {Convert.ToString(MyOF.pythonFiles.Count)} Python Files";
+                        checkBoxJavaFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
+                        checkBoxCMakeFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
+                    }
+                  
                     break;
                 //Select files to be Checked panel.
                 case 2:

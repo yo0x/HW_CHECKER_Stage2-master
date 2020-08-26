@@ -35,6 +35,8 @@ namespace HomeWorkCheckApp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panelDragFiles = new System.Windows.Forms.Panel();
+            this.labelNumberFilesDragged = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label1DragFiles = new System.Windows.Forms.Label();
             this.listBox1DragFiles = new System.Windows.Forms.ListBox();
             this.buttonNextPanel = new System.Windows.Forms.Button();
@@ -99,8 +101,6 @@ namespace HomeWorkCheckApp
             this.textBox1InputParameters = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.label19 = new System.Windows.Forms.Label();
-            this.labelNumberFilesDragged = new System.Windows.Forms.Label();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
             this.groupBoxFilesToBuild.SuspendLayout();
@@ -125,6 +125,24 @@ namespace HomeWorkCheckApp
             this.panelDragFiles.Name = "panelDragFiles";
             this.panelDragFiles.Size = new System.Drawing.Size(984, 636);
             this.panelDragFiles.TabIndex = 4;
+            // 
+            // labelNumberFilesDragged
+            // 
+            this.labelNumberFilesDragged.AutoSize = true;
+            this.labelNumberFilesDragged.Location = new System.Drawing.Point(459, 580);
+            this.labelNumberFilesDragged.Name = "labelNumberFilesDragged";
+            this.labelNumberFilesDragged.Size = new System.Drawing.Size(10, 13);
+            this.labelNumberFilesDragged.TabIndex = 8;
+            this.labelNumberFilesDragged.Text = "-";
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.Location = new System.Drawing.Point(330, 580);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(122, 13);
+            this.label19.TabIndex = 7;
+            this.label19.Text = "Number of files dragged:";
             // 
             // label1DragFiles
             // 
@@ -199,7 +217,6 @@ namespace HomeWorkCheckApp
             this.labelCmakeFiles.TabIndex = 8;
             this.labelCmakeFiles.Text = "0  \"C-Make\" files have been recognized.\r\nPlease check box in order to build them " +
     "and execute them.\r\nThis will be execute only by HEST1.";
-//            this.labelCmakeFiles.Click += new System.EventHandler(this.LabelCmakeFiles_Click);
             // 
             // groupBoxFilesToBeChecked
             // 
@@ -321,7 +338,6 @@ namespace HomeWorkCheckApp
             this.label3.TabIndex = 9;
             this.label3.Text = "Hest 1 checks the files for execution \r\nand output only.\r\nIf any C-Files were sel" +
     "ected, the system \r\nwill try to build them and execute them.\r\n";
-          //  this.label3.Click += new System.EventHandler(this.Label3_Click);
             // 
             // buttonSelectedHest1
             // 
@@ -787,24 +803,6 @@ namespace HomeWorkCheckApp
             this.label11.TabIndex = 0;
             this.label11.Text = "HEST 2";
             // 
-            // label19
-            // 
-            this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(330, 580);
-            this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(122, 13);
-            this.label19.TabIndex = 7;
-            this.label19.Text = "Number of files dragged:";
-            // 
-            // labelNumberFilesDragged
-            // 
-            this.labelNumberFilesDragged.AutoSize = true;
-            this.labelNumberFilesDragged.Location = new System.Drawing.Point(459, 580);
-            this.labelNumberFilesDragged.Name = "labelNumberFilesDragged";
-            this.labelNumberFilesDragged.Size = new System.Drawing.Size(10, 13);
-            this.labelNumberFilesDragged.TabIndex = 8;
-            this.labelNumberFilesDragged.Text = "-";
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -822,6 +820,7 @@ namespace HomeWorkCheckApp
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);
             this.Controls.Add(this.buttonExitProgramEND);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "MainWindow";
             this.Text = "KINNERET COLLEGE - HOME WORK CHECKER by EYA TEAM";
             this.Load += new System.EventHandler(this.MainWindow_Load);

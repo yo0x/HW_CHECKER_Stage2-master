@@ -42,9 +42,6 @@ namespace HomeWorkCheckApp
             this.listBox1DragFiles = new System.Windows.Forms.ListBox();
             this.buttonNextPanel = new System.Windows.Forms.Button();
             this.panelFilesOverView = new System.Windows.Forms.Panel();
-            this.groupBoxFilesToBuild = new System.Windows.Forms.GroupBox();
-            this.checkBoxCMakeFiles = new System.Windows.Forms.CheckBox();
-            this.labelCmakeFiles = new System.Windows.Forms.Label();
             this.groupBoxFilesToBeChecked = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.checkBoxCfiles = new System.Windows.Forms.CheckBox();
@@ -82,15 +79,17 @@ namespace HomeWorkCheckApp
             this.Hest2Panel = new System.Windows.Forms.Panel();
             this.button1Hest2EvalueateFiles = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.listBox2Hest2Output = new System.Windows.Forms.ListBox();
+            this.listBox1Hest2InputParam = new System.Windows.Forms.ListBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBoxHEST2ExpectedOutPut = new System.Windows.Forms.TextBox();
-            this.textBox1InputParameters = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.button1ClearListBoxHest2In = new System.Windows.Forms.Button();
+            this.button1ClearListBoxHest2Output = new System.Windows.Forms.Button();
+            this.button1ClearFilesDragger = new System.Windows.Forms.Button();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
-            this.groupBoxFilesToBuild.SuspendLayout();
             this.groupBoxFilesToBeChecked.SuspendLayout();
             this.panelSelectMode.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -103,6 +102,7 @@ namespace HomeWorkCheckApp
             // 
             // panelDragFiles
             // 
+            this.panelDragFiles.Controls.Add(this.button1ClearFilesDragger);
             this.panelDragFiles.Controls.Add(this.label21);
             this.panelDragFiles.Controls.Add(this.labelNumberFilesDragged);
             this.panelDragFiles.Controls.Add(this.label19);
@@ -126,7 +126,7 @@ namespace HomeWorkCheckApp
             // labelNumberFilesDragged
             // 
             this.labelNumberFilesDragged.AutoSize = true;
-            this.labelNumberFilesDragged.Location = new System.Drawing.Point(459, 580);
+            this.labelNumberFilesDragged.Location = new System.Drawing.Point(211, 580);
             this.labelNumberFilesDragged.Name = "labelNumberFilesDragged";
             this.labelNumberFilesDragged.Size = new System.Drawing.Size(10, 13);
             this.labelNumberFilesDragged.TabIndex = 8;
@@ -135,7 +135,7 @@ namespace HomeWorkCheckApp
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(330, 580);
+            this.label19.Location = new System.Drawing.Point(84, 580);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(122, 13);
             this.label19.TabIndex = 7;
@@ -154,6 +154,7 @@ namespace HomeWorkCheckApp
             // listBox1DragFiles
             // 
             this.listBox1DragFiles.AllowDrop = true;
+            this.listBox1DragFiles.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.listBox1DragFiles.FormattingEnabled = true;
             this.listBox1DragFiles.Location = new System.Drawing.Point(87, 158);
             this.listBox1DragFiles.Name = "listBox1DragFiles";
@@ -175,45 +176,12 @@ namespace HomeWorkCheckApp
             // 
             // panelFilesOverView
             // 
-            this.panelFilesOverView.Controls.Add(this.groupBoxFilesToBuild);
             this.panelFilesOverView.Controls.Add(this.groupBoxFilesToBeChecked);
             this.panelFilesOverView.Controls.Add(this.label1SummaryFiles);
             this.panelFilesOverView.Location = new System.Drawing.Point(12, 12);
             this.panelFilesOverView.Name = "panelFilesOverView";
             this.panelFilesOverView.Size = new System.Drawing.Size(984, 636);
             this.panelFilesOverView.TabIndex = 5;
-            // 
-            // groupBoxFilesToBuild
-            // 
-            this.groupBoxFilesToBuild.Controls.Add(this.checkBoxCMakeFiles);
-            this.groupBoxFilesToBuild.Controls.Add(this.labelCmakeFiles);
-            this.groupBoxFilesToBuild.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.groupBoxFilesToBuild.Location = new System.Drawing.Point(74, 356);
-            this.groupBoxFilesToBuild.Name = "groupBoxFilesToBuild";
-            this.groupBoxFilesToBuild.Size = new System.Drawing.Size(834, 194);
-            this.groupBoxFilesToBuild.TabIndex = 10;
-            this.groupBoxFilesToBuild.TabStop = false;
-            this.groupBoxFilesToBuild.Text = "C files to build";
-            // 
-            // checkBoxCMakeFiles
-            // 
-            this.checkBoxCMakeFiles.AutoSize = true;
-            this.checkBoxCMakeFiles.Location = new System.Drawing.Point(342, 153);
-            this.checkBoxCMakeFiles.Name = "checkBoxCMakeFiles";
-            this.checkBoxCMakeFiles.Size = new System.Drawing.Size(159, 30);
-            this.checkBoxCMakeFiles.TabIndex = 9;
-            this.checkBoxCMakeFiles.Text = "C-Make Files";
-            this.checkBoxCMakeFiles.UseVisualStyleBackColor = true;
-            // 
-            // labelCmakeFiles
-            // 
-            this.labelCmakeFiles.AutoSize = true;
-            this.labelCmakeFiles.Location = new System.Drawing.Point(87, 44);
-            this.labelCmakeFiles.Name = "labelCmakeFiles";
-            this.labelCmakeFiles.Size = new System.Drawing.Size(578, 78);
-            this.labelCmakeFiles.TabIndex = 8;
-            this.labelCmakeFiles.Text = "0  \"C-Make\" files have been recognized.\r\nPlease check box in order to build them " +
-    "and execute them.\r\nThis will be execute only by HEST1.";
             // 
             // groupBoxFilesToBeChecked
             // 
@@ -222,7 +190,7 @@ namespace HomeWorkCheckApp
             this.groupBoxFilesToBeChecked.Controls.Add(this.checkBoxJavaFiles);
             this.groupBoxFilesToBeChecked.Controls.Add(this.checkBoxPythonFiles);
             this.groupBoxFilesToBeChecked.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.groupBoxFilesToBeChecked.Location = new System.Drawing.Point(74, 134);
+            this.groupBoxFilesToBeChecked.Location = new System.Drawing.Point(74, 257);
             this.groupBoxFilesToBeChecked.Name = "groupBoxFilesToBeChecked";
             this.groupBoxFilesToBeChecked.Size = new System.Drawing.Size(834, 190);
             this.groupBoxFilesToBeChecked.TabIndex = 9;
@@ -584,7 +552,7 @@ namespace HomeWorkCheckApp
             // 
             // button1Hest2EvalueateFiles
             // 
-            this.button1Hest2EvalueateFiles.Location = new System.Drawing.Point(389, 554);
+            this.button1Hest2EvalueateFiles.Location = new System.Drawing.Point(389, 580);
             this.button1Hest2EvalueateFiles.Name = "button1Hest2EvalueateFiles";
             this.button1Hest2EvalueateFiles.Size = new System.Drawing.Size(232, 42);
             this.button1Hest2EvalueateFiles.TabIndex = 5;
@@ -594,51 +562,63 @@ namespace HomeWorkCheckApp
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.button1ClearListBoxHest2Output);
+            this.groupBox3.Controls.Add(this.button1ClearListBoxHest2In);
+            this.groupBox3.Controls.Add(this.listBox2Hest2Output);
+            this.groupBox3.Controls.Add(this.listBox1Hest2InputParam);
             this.groupBox3.Controls.Add(this.label14);
             this.groupBox3.Controls.Add(this.label13);
-            this.groupBox3.Controls.Add(this.textBoxHEST2ExpectedOutPut);
-            this.groupBox3.Controls.Add(this.textBox1InputParameters);
             this.groupBox3.Location = new System.Drawing.Point(99, 146);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(846, 374);
+            this.groupBox3.Size = new System.Drawing.Size(846, 414);
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "I/O Configurations";
             // 
+            // listBox2Hest2Output
+            // 
+            this.listBox2Hest2Output.AllowDrop = true;
+            this.listBox2Hest2Output.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listBox2Hest2Output.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox2Hest2Output.FormattingEnabled = true;
+            this.listBox2Hest2Output.Location = new System.Drawing.Point(455, 84);
+            this.listBox2Hest2Output.Name = "listBox2Hest2Output";
+            this.listBox2Hest2Output.Size = new System.Drawing.Size(365, 260);
+            this.listBox2Hest2Output.TabIndex = 7;
+            this.listBox2Hest2Output.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox2Hest2Output_DragEnter);
+            // 
+            // listBox1Hest2InputParam
+            // 
+            this.listBox1Hest2InputParam.AllowDrop = true;
+            this.listBox1Hest2InputParam.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.listBox1Hest2InputParam.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.listBox1Hest2InputParam.FormattingEnabled = true;
+            this.listBox1Hest2InputParam.Location = new System.Drawing.Point(29, 84);
+            this.listBox1Hest2InputParam.Name = "listBox1Hest2InputParam";
+            this.listBox1Hest2InputParam.Size = new System.Drawing.Size(365, 260);
+            this.listBox1Hest2InputParam.TabIndex = 7;
+            this.listBox1Hest2InputParam.SelectedIndexChanged += new System.EventHandler(this.listBox1Hest2InputParam_SelectedIndexChanged);
+            this.listBox1Hest2InputParam.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox1Hest2InputParam_DragEnter);
+            // 
             // label14
             // 
             this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(421, 52);
+            this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label14.Location = new System.Drawing.Point(550, 37);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(217, 13);
+            this.label14.Size = new System.Drawing.Size(183, 25);
             this.label14.TabIndex = 6;
-            this.label14.Text = "Entere here the expected output for the files.";
+            this.label14.Text = "Expected output";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(31, 31);
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
+            this.label13.Location = new System.Drawing.Point(66, 37);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(212, 26);
+            this.label13.Size = new System.Drawing.Size(287, 25);
             this.label13.TabIndex = 5;
-            this.label13.Text = "Enter here parameters to be passed to files.\r\nExample: fileBeenChecked.c - {param" +
-    "eters}";
-            // 
-            // textBoxHEST2ExpectedOutPut
-            // 
-            this.textBoxHEST2ExpectedOutPut.Location = new System.Drawing.Point(424, 82);
-            this.textBoxHEST2ExpectedOutPut.Multiline = true;
-            this.textBoxHEST2ExpectedOutPut.Name = "textBoxHEST2ExpectedOutPut";
-            this.textBoxHEST2ExpectedOutPut.Size = new System.Drawing.Size(364, 264);
-            this.textBoxHEST2ExpectedOutPut.TabIndex = 3;
-            // 
-            // textBox1InputParameters
-            // 
-            this.textBox1InputParameters.Location = new System.Drawing.Point(34, 82);
-            this.textBox1InputParameters.Multiline = true;
-            this.textBox1InputParameters.Name = "textBox1InputParameters";
-            this.textBox1InputParameters.Size = new System.Drawing.Size(364, 264);
-            this.textBox1InputParameters.TabIndex = 3;
+            this.label13.Text = "Parameters to be checked";
             // 
             // label12
             // 
@@ -660,6 +640,36 @@ namespace HomeWorkCheckApp
             this.label11.TabIndex = 0;
             this.label11.Text = "HEST 2";
             // 
+            // button1ClearListBoxHest2In
+            // 
+            this.button1ClearListBoxHest2In.Location = new System.Drawing.Point(188, 360);
+            this.button1ClearListBoxHest2In.Name = "button1ClearListBoxHest2In";
+            this.button1ClearListBoxHest2In.Size = new System.Drawing.Size(75, 23);
+            this.button1ClearListBoxHest2In.TabIndex = 8;
+            this.button1ClearListBoxHest2In.Text = "Clear";
+            this.button1ClearListBoxHest2In.UseVisualStyleBackColor = true;
+            this.button1ClearListBoxHest2In.Click += new System.EventHandler(this.button1ClearListBoxHest2In_Click);
+            // 
+            // button1ClearListBoxHest2Output
+            // 
+            this.button1ClearListBoxHest2Output.Location = new System.Drawing.Point(600, 360);
+            this.button1ClearListBoxHest2Output.Name = "button1ClearListBoxHest2Output";
+            this.button1ClearListBoxHest2Output.Size = new System.Drawing.Size(75, 23);
+            this.button1ClearListBoxHest2Output.TabIndex = 8;
+            this.button1ClearListBoxHest2Output.Text = "Clear";
+            this.button1ClearListBoxHest2Output.UseVisualStyleBackColor = true;
+            this.button1ClearListBoxHest2Output.Click += new System.EventHandler(this.button1ClearListBoxHest2Output_Click);
+            // 
+            // button1ClearFilesDragger
+            // 
+            this.button1ClearFilesDragger.Location = new System.Drawing.Point(444, 575);
+            this.button1ClearFilesDragger.Name = "button1ClearFilesDragger";
+            this.button1ClearFilesDragger.Size = new System.Drawing.Size(75, 23);
+            this.button1ClearFilesDragger.TabIndex = 10;
+            this.button1ClearFilesDragger.Text = "Clear";
+            this.button1ClearFilesDragger.UseVisualStyleBackColor = true;
+            this.button1ClearFilesDragger.Click += new System.EventHandler(this.button1ClearFilesDragger_Click);
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -667,12 +677,12 @@ namespace HomeWorkCheckApp
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
-            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.Hest2Panel);
-            this.Controls.Add(this.panelSelectMode);
-            this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.panelDragFiles);
+            this.Controls.Add(this.panelResultsWindow);
+            this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
+            this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);
@@ -685,8 +695,6 @@ namespace HomeWorkCheckApp
             this.panelDragFiles.PerformLayout();
             this.panelFilesOverView.ResumeLayout(false);
             this.panelFilesOverView.PerformLayout();
-            this.groupBoxFilesToBuild.ResumeLayout(false);
-            this.groupBoxFilesToBuild.PerformLayout();
             this.groupBoxFilesToBeChecked.ResumeLayout(false);
             this.groupBoxFilesToBeChecked.PerformLayout();
             this.panelSelectMode.ResumeLayout(false);
@@ -714,9 +722,6 @@ namespace HomeWorkCheckApp
         private System.Windows.Forms.Button buttonNextPanel;
         private System.Windows.Forms.ListBox listBox1DragFiles;
         private System.Windows.Forms.Panel panelFilesOverView;
-        private System.Windows.Forms.GroupBox groupBoxFilesToBuild;
-        private System.Windows.Forms.CheckBox checkBoxCMakeFiles;
-        private System.Windows.Forms.Label labelCmakeFiles;
         private System.Windows.Forms.GroupBox groupBoxFilesToBeChecked;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.CheckBox checkBoxCfiles;
@@ -756,13 +761,16 @@ namespace HomeWorkCheckApp
         private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox1InputParameters;
         private System.Windows.Forms.Button button1Hest2EvalueateFiles;
-        private System.Windows.Forms.TextBox textBoxHEST2ExpectedOutPut;
         private System.Windows.Forms.Label labelNumberFilesDragged;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.ListBox listBox2Hest2Output;
+        private System.Windows.Forms.ListBox listBox1Hest2InputParam;
+        private System.Windows.Forms.Button button1ClearListBoxHest2Output;
+        private System.Windows.Forms.Button button1ClearListBoxHest2In;
+        private System.Windows.Forms.Button button1ClearFilesDragger;
     }
 }
 

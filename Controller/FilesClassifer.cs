@@ -14,6 +14,12 @@ namespace HomeWorkCheckApp
     public static class FilesTool
     {
         public static string[] filesToCheck;
+        //Files input to be checked HEST2
+        public static string[] inputToBeCheckedHest2;
+        //Tests to perform in Hest 2
+        public static string[] testsToPerformHest2;
+
+
         /// <summary>method <c>processFileOutPut</c> returns the text of the file being read.</summary>
 
         public static string processFileOutPut(string myFilePath)
@@ -41,10 +47,45 @@ namespace HomeWorkCheckApp
         public List<string> pythonFiles = new List<string>();
         public List<string> javaFiles = new List<string>();
     }
-    /// <summary>Class <c>FileResult</c> Data Structure for the test results. 
+    /// <summary>Class <c>FileResultHest1</c> Data Structure for the test results. 
     /// </summary>
     ///
-    public class FileResult
+    public class FileResultHest1
+    {
+        public string FileName { get; set; }
+        public string StudenId { get; set; }
+        public string Department { get; set; }
+        public bool Compiled { get; set; }
+        public string Errors { get; set; }
+        public string FileOutput { get; set; }
+
+        public FileResultHest1() { }
+        public FileResultHest1(string MyFileName, string myStudenId,string myDept, bool Comp, string MyErr, string FileOut)
+        {
+            FileName = MyFileName;
+            StudenId = myStudenId;
+            Department = myDept;
+            Compiled = Comp;
+            Errors = MyErr;
+            FileOutput = FileOut;
+        }
+        public FileResultHest1(string MyErr, string FileOut)
+        {
+            Errors = MyErr;
+            FileOutput = FileOut;
+
+        }
+        public FileResultHest1(string MyErr, string FileOut, string UserDefinedOutPut)
+        {
+            Errors = MyErr;
+            FileOutput = FileOut;
+
+        }
+
+        
+    }
+
+    public class FileResultHest2
     {
         public string FileName { get; set; }
         public string StudenId { get; set; }
@@ -55,8 +96,8 @@ namespace HomeWorkCheckApp
         public bool Hest2PassedTest { get; set; }
         public string UserDefinedExpectedOutPut { get; set; }
 
-        public FileResult() { }
-        public FileResult(string MyFileName, string myStudenId,string myDept, bool Comp, string MyErr, string FileOut)
+        public FileResultHest2() { }
+        public FileResultHest2(string MyFileName, string myStudenId, string myDept, bool Comp, string MyErr, string FileOut)
         {
             FileName = MyFileName;
             StudenId = myStudenId;
@@ -66,14 +107,14 @@ namespace HomeWorkCheckApp
             FileOutput = FileOut;
             PassHest2();
         }
-        public FileResult(string MyErr, string FileOut)
+        public FileResultHest2(string MyErr, string FileOut)
         {
             Errors = MyErr;
             FileOutput = FileOut;
             PassHest2();
 
         }
-        public FileResult(string MyErr, string FileOut, string UserDefinedOutPut)
+        public FileResultHest2(string MyErr, string FileOut, string UserDefinedOutPut)
         {
             Errors = MyErr;
             FileOutput = FileOut;
@@ -94,7 +135,6 @@ namespace HomeWorkCheckApp
             }
         }
     }
-   
 
     /// <summary>Class <c>LanguageRecognizion</c> Divides files by language and adds them to the correspondent list. 
     /// </summary>

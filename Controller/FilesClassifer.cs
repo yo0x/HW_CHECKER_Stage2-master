@@ -36,7 +36,6 @@ namespace HomeWorkCheckApp
             string readText = File.ReadAllText(myFilePath);
             return readText;
         }
-
     }
     /// <summary>Class <c>OrderedFiles</c> Data Structure for the files to be organized. 
     /// </summary>
@@ -114,12 +113,13 @@ namespace HomeWorkCheckApp
             PassHest2();
 
         }
-        public FileResultHest2(string MyErr, string FileOut, string UserDefinedOutPut)
+        public FileResultHest2(string MyErr, string FileOut, string UserDefinedOutPut,bool hest2Test)
         {
             Errors = MyErr;
             FileOutput = FileOut;
             UserDefinedExpectedOutPut = UserDefinedOutPut;
             PassHest2();
+            Hest2PassedTest = hest2Test;
 
         }
 

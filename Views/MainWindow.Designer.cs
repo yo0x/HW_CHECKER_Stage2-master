@@ -35,6 +35,7 @@ namespace HomeWorkCheckApp
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.panelDragFiles = new System.Windows.Forms.Panel();
+            this.button1ClearFilesDragger = new System.Windows.Forms.Button();
             this.label21 = new System.Windows.Forms.Label();
             this.labelNumberFilesDragged = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
@@ -79,15 +80,14 @@ namespace HomeWorkCheckApp
             this.Hest2Panel = new System.Windows.Forms.Panel();
             this.button1Hest2EvalueateFiles = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button1ClearListBoxHest2Output = new System.Windows.Forms.Button();
+            this.button1ClearListBoxHest2In = new System.Windows.Forms.Button();
             this.listBox2Hest2Output = new System.Windows.Forms.ListBox();
             this.listBox1Hest2InputParam = new System.Windows.Forms.ListBox();
             this.label14 = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
-            this.button1ClearListBoxHest2In = new System.Windows.Forms.Button();
-            this.button1ClearListBoxHest2Output = new System.Windows.Forms.Button();
-            this.button1ClearFilesDragger = new System.Windows.Forms.Button();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
             this.groupBoxFilesToBeChecked.SuspendLayout();
@@ -112,6 +112,16 @@ namespace HomeWorkCheckApp
             this.panelDragFiles.Name = "panelDragFiles";
             this.panelDragFiles.Size = new System.Drawing.Size(984, 636);
             this.panelDragFiles.TabIndex = 4;
+            // 
+            // button1ClearFilesDragger
+            // 
+            this.button1ClearFilesDragger.Location = new System.Drawing.Point(444, 575);
+            this.button1ClearFilesDragger.Name = "button1ClearFilesDragger";
+            this.button1ClearFilesDragger.Size = new System.Drawing.Size(75, 23);
+            this.button1ClearFilesDragger.TabIndex = 10;
+            this.button1ClearFilesDragger.Text = "Clear";
+            this.button1ClearFilesDragger.UseVisualStyleBackColor = true;
+            this.button1ClearFilesDragger.Click += new System.EventHandler(this.button1ClearFilesDragger_Click);
             // 
             // label21
             // 
@@ -575,6 +585,26 @@ namespace HomeWorkCheckApp
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "I/O Configurations";
             // 
+            // button1ClearListBoxHest2Output
+            // 
+            this.button1ClearListBoxHest2Output.Location = new System.Drawing.Point(600, 360);
+            this.button1ClearListBoxHest2Output.Name = "button1ClearListBoxHest2Output";
+            this.button1ClearListBoxHest2Output.Size = new System.Drawing.Size(75, 23);
+            this.button1ClearListBoxHest2Output.TabIndex = 8;
+            this.button1ClearListBoxHest2Output.Text = "Clear";
+            this.button1ClearListBoxHest2Output.UseVisualStyleBackColor = true;
+            this.button1ClearListBoxHest2Output.Click += new System.EventHandler(this.button1ClearListBoxHest2Output_Click);
+            // 
+            // button1ClearListBoxHest2In
+            // 
+            this.button1ClearListBoxHest2In.Location = new System.Drawing.Point(188, 360);
+            this.button1ClearListBoxHest2In.Name = "button1ClearListBoxHest2In";
+            this.button1ClearListBoxHest2In.Size = new System.Drawing.Size(75, 23);
+            this.button1ClearListBoxHest2In.TabIndex = 8;
+            this.button1ClearListBoxHest2In.Text = "Clear";
+            this.button1ClearListBoxHest2In.UseVisualStyleBackColor = true;
+            this.button1ClearListBoxHest2In.Click += new System.EventHandler(this.button1ClearListBoxHest2In_Click);
+            // 
             // listBox2Hest2Output
             // 
             this.listBox2Hest2Output.AllowDrop = true;
@@ -640,36 +670,6 @@ namespace HomeWorkCheckApp
             this.label11.TabIndex = 0;
             this.label11.Text = "HEST 2";
             // 
-            // button1ClearListBoxHest2In
-            // 
-            this.button1ClearListBoxHest2In.Location = new System.Drawing.Point(188, 360);
-            this.button1ClearListBoxHest2In.Name = "button1ClearListBoxHest2In";
-            this.button1ClearListBoxHest2In.Size = new System.Drawing.Size(75, 23);
-            this.button1ClearListBoxHest2In.TabIndex = 8;
-            this.button1ClearListBoxHest2In.Text = "Clear";
-            this.button1ClearListBoxHest2In.UseVisualStyleBackColor = true;
-            this.button1ClearListBoxHest2In.Click += new System.EventHandler(this.button1ClearListBoxHest2In_Click);
-            // 
-            // button1ClearListBoxHest2Output
-            // 
-            this.button1ClearListBoxHest2Output.Location = new System.Drawing.Point(600, 360);
-            this.button1ClearListBoxHest2Output.Name = "button1ClearListBoxHest2Output";
-            this.button1ClearListBoxHest2Output.Size = new System.Drawing.Size(75, 23);
-            this.button1ClearListBoxHest2Output.TabIndex = 8;
-            this.button1ClearListBoxHest2Output.Text = "Clear";
-            this.button1ClearListBoxHest2Output.UseVisualStyleBackColor = true;
-            this.button1ClearListBoxHest2Output.Click += new System.EventHandler(this.button1ClearListBoxHest2Output_Click);
-            // 
-            // button1ClearFilesDragger
-            // 
-            this.button1ClearFilesDragger.Location = new System.Drawing.Point(444, 575);
-            this.button1ClearFilesDragger.Name = "button1ClearFilesDragger";
-            this.button1ClearFilesDragger.Size = new System.Drawing.Size(75, 23);
-            this.button1ClearFilesDragger.TabIndex = 10;
-            this.button1ClearFilesDragger.Text = "Clear";
-            this.button1ClearFilesDragger.UseVisualStyleBackColor = true;
-            this.button1ClearFilesDragger.Click += new System.EventHandler(this.button1ClearFilesDragger_Click);
-            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -678,11 +678,11 @@ namespace HomeWorkCheckApp
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.Hest2Panel);
-            this.Controls.Add(this.panelDragFiles);
-            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
+            this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.PanelSignIn);
+            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);

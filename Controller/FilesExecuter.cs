@@ -110,7 +110,9 @@ namespace HomeWorkCheckApp
             else if (Path.GetExtension(myFileToExec).Equals(".java"))
             {
                 string commandCfiles = $"/c javac -d {dirOutPutToCompiledFiles} {myFileToExec} 2> {fileCompOutPut}";
-                string commandExeCompCFile = $"/c java {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.class {fileParameters} 2> {fileExecOutPut}";
+                string commandExeCompCFile = $"/c java {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)} {fileParameters} 2> {fileExecOutPut}";
+
+                //string commandExeCompCFile = $"/c java {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.class {fileParameters} 2> {fileExecOutPut}";
                 commadToCompiler = commandCfiles;
                 commadToExecuteFile = commandExeCompCFile;
             }

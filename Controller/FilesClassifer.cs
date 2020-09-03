@@ -68,10 +68,11 @@ namespace HomeWorkCheckApp
             Errors = MyErr;
             FileOutput = FileOut;
         }
-        public FileResultHest1(string MyErr, string FileOut)
+        public FileResultHest1(string MyErr, string FileOut, bool compiledSuccess)
         {
             Errors = MyErr;
             FileOutput = FileOut;
+            Compiled = compiledSuccess;
 
         }
         public FileResultHest1(string MyErr, string FileOut, string UserDefinedOutPut)

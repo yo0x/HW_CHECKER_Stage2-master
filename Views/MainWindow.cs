@@ -17,12 +17,10 @@ namespace HomeWorkCheckApp
     ///
     public partial class MainWindow : Form
     {
-
         List<Panel> listPanel = new List<Panel>();
         List<FileResultHest1> RevisionResultCfilesHest1 = new List<FileResultHest1>();
         List<FileResultHest1> RevisionResultJavaFilesHest1 = new List<FileResultHest1>();
         List<FileResultHest1> RevisionResultPythonFilesHest1 = new List<FileResultHest1>();
-
         List<FileResultHest2> RevisionResultCfilesHest2 = new List<FileResultHest2>();
         List<FileResultHest2> RevisionResultJavaFilesHest2 = new List<FileResultHest2>();
         List<FileResultHest2> RevisionResultPythonFilesHest2 = new List<FileResultHest2>();
@@ -252,11 +250,11 @@ namespace HomeWorkCheckApp
 
                         if (isHest1)
                         {
-                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
+                            (string compilerOutPut, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
                             //.executeFile(item);
 
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput));
+                            RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, compiledSuccsesfully));
 
                         }
                         else
@@ -266,13 +264,23 @@ namespace HomeWorkCheckApp
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
                             //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
 
-                            foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
+                           (string OutputFromFile, bool wasSuccessfull) =  FilesExecuterHest2.compileFile(item);
+                            if(wasSuccessfull)
                             {
-                                string s = FilesTool.processFileOutPut(inputCheck);
+                                foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
+                                {
+                                    //string s = FilesTool.processFileOutPut(inputCheck);
 
-                                (string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, FilesTool.processFileOutPut(inputCheck));
-                                RevisionResultCfilesHest2.Add(new FileResultHest2(compilerOutPut, execFileOutput, inputCheck, CheckHest2(execFileOutput, inputCheck)));
+                                    string execFileOutput = FilesExecuterHest2.executeFile(item, FilesTool.processFileOutPut(inputCheck));
+
+                                    //RevisionResultCfilesHest2.Add(new FileResultHest2(compilerOutPut, execFileOutput, inputCheck, CheckHest2(execFileOutput, inputCheck)));
+                                }
                             }
+                            else
+                            {
+                                string execFileOutput = $"ERROR: {OutputFromFile}";
+                            }
+                            
     
                         }
 
@@ -367,7 +375,6 @@ namespace HomeWorkCheckApp
 
 
         }
-
         public bool CheckHest2(string intStr, string outStr)
         {
 
@@ -382,8 +389,6 @@ namespace HomeWorkCheckApp
             }
                 
         }
-
-
         /// <summary>method <c>ResultsToExcelHest1</c>Writes the results into a Excel file.</summary>
         [ExcludeFromCodeCoverage]
         private void ResultsToExcelHest1(List<FileResultHest1> myListToExcel, string fileType)
@@ -406,11 +411,11 @@ namespace HomeWorkCheckApp
 
                 sheet[1, 1].Text = "File Name";
                 sheet[1, 2].Text = "StudentID";
-                sheet[1, 3].Text = "File Name";
-                sheet[1, 4].Text = "Departament";
-                sheet[1, 5].Text = "Compiled Successfully";
-                sheet[1, 6].Text = "Compiler errors";
-                sheet[1, 7].Text = "File's output";
+             //   sheet[1, 3].Text = "File Name";
+                sheet[1, 3].Text = "Departament";
+                sheet[1, 4].Text = "Compiled Successfully";
+                sheet[1, 5].Text = "Compiler errors";
+                sheet[1, 6].Text = "File's output";
                // sheet[1, 8].Text = "Expected Output";
                // sheet[1, 9].Text = "Passed HEST2";
 
@@ -441,7 +446,6 @@ namespace HomeWorkCheckApp
             }
 
         }
-
         [ExcludeFromCodeCoverage]
         private void ResultsToExcelHest2(List<FileResultHest2> myListToExcel, string fileType)
         {
@@ -568,7 +572,6 @@ namespace HomeWorkCheckApp
 
             return table;
         }
-
         [ExcludeFromCodeCoverage]
         static DataTable ConvertListToDataTableHest2(List<FileResultHest2> list)
         {
@@ -600,7 +603,6 @@ namespace HomeWorkCheckApp
 
             return table;
         }
-
         [ExcludeFromCodeCoverage]
         private void Button4GenerateReport_Click(object sender, EventArgs e)
         {
@@ -637,8 +639,6 @@ namespace HomeWorkCheckApp
                 }
             }
         }
-
-
         [ExcludeFromCodeCoverage]
         private void Button1Hest2EvalueateFiles_Click(object sender, EventArgs e)
         {
@@ -647,7 +647,6 @@ namespace HomeWorkCheckApp
             NextPanelBehav();
 
         }
-
         private void listBox2Hest2Output_DragEnter(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -677,7 +676,6 @@ namespace HomeWorkCheckApp
             }
             FilesTool.testsToPerformHest2 = list.ToArray();
         }
-
         private void listBox1Hest2InputParam_DragEnter(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -707,23 +705,19 @@ namespace HomeWorkCheckApp
             }
             FilesTool.inputToBeCheckedHest2 = list.ToArray();
         }
-
         private void listBox1Hest2InputParam_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         private void button1ClearListBoxHest2In_Click(object sender, EventArgs e)
         {
             listBox1Hest2InputParam.Items.Clear();
         }
-
         private void button1ClearListBoxHest2Output_Click(object sender, EventArgs e)
         {
             listBox2Hest2Output.Items.Clear();
 
         }
-
         private void button1ClearFilesDragger_Click(object sender, EventArgs e)
         {
             listBox1DragFiles.Items.Clear();

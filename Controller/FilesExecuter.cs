@@ -45,20 +45,20 @@ namespace HomeWorkCheckApp
                 }
                 else if (Path.GetExtension(myFileToCompile).Equals(".py"))
                 {
-                    string commandCfiles = $"{myFileToCompile}";
-                    argumentsToCompiler = commandCfiles;
+                    string commandPyFiles = $" {myFileToCompile}";
+                    argumentsToCompiler = commandPyFiles;
                     compilerUsed = PythonComp;
-                    string compiledCFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToCompile)}";
-                    compiledFileToExec = compiledCFile;
+                   // string compiledPythonFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToCompile)}.py";
+                    compiledFileToExec = myFileToCompile;
 
                 }
                 else if (Path.GetExtension(myFileToCompile).Equals(".java"))
                 {
-                    string commandCfiles = $"-d {dirOutPutToCompiledFiles} {myFileToCompile}";
-                    argumentsToCompiler = commandCfiles;
+                    string commandJavaFiles = $"-d {dirOutPutToCompiledFiles} {myFileToCompile}";
+                    argumentsToCompiler = commandJavaFiles;
                     compilerUsed = JavaComp;
-                    string compiledCFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToCompile)}.class";
-                    compiledFileToExec = compiledCFile;
+                    string cmpiledJavaFilePath = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToCompile)}";
+                    compiledFileToExec = cmpiledJavaFilePath;
                 }
 
 
@@ -70,13 +70,14 @@ namespace HomeWorkCheckApp
                 myProcess.StartInfo.CreateNoWindow = true;
                 myProcess.StartInfo.Arguments = argumentsToCompiler;
                 myProcess.Start();
-                if (myProcess.StandardOutput.ReadToEnd().Equals(null))
+                string debuggError = myProcess.StandardError.ReadToEnd();
+                if (debuggError.Equals(""))
                 {
                     return ("Compiled Successfuly", true, compiledFileToExec);
                 }
                 else
                 {
-                    return (myProcess.StandardError.ReadToEnd(), false, "Error check logs.");
+                    return (debuggError, false, "Error check logs.");
 
                 }
 
@@ -86,22 +87,60 @@ namespace HomeWorkCheckApp
 
         public static (string compilerOutPutStdErros, string execFileOutputStdOutput, bool compiledSuccessfully) executeFile(string myFileToExec)
         {
+            //string cComp = "gcc.exe";
+            string JavaComp = "java.exe";
+            string PythonComp = "python.exe";
+            string compilerUsed = "";
+            string argumentsToCompiler = "";
+
+
+            if (Path.GetExtension(myFileToExec).Equals(".exe"))
+            {
+               
+                compilerUsed = myFileToExec;
+                argumentsToCompiler = $"";
+
+
+
+            }
+            else if (Path.GetExtension(myFileToExec).Equals(".py"))
+            {
+                
+                compilerUsed = PythonComp;
+                argumentsToCompiler = $" {myFileToExec}";
+
+
+
+            }
+            else 
+            {
+               
+                compilerUsed = JavaComp;
+                argumentsToCompiler = $" {myFileToExec}";
+
+
+            }
+
             using (Process myProcess = new Process())
             {
-                myProcess.StartInfo.FileName = myFileToExec;
+                myProcess.StartInfo.FileName = compilerUsed;
                 myProcess.StartInfo.UseShellExecute = false;
                 myProcess.StartInfo.RedirectStandardError = true;
-               // myProcess.StartInfo.RedirectStandardInput = true;
+                myProcess.StartInfo.RedirectStandardInput = true;
                 myProcess.StartInfo.RedirectStandardOutput = true;
                 myProcess.StartInfo.CreateNoWindow = true;
+                myProcess.StartInfo.Arguments = argumentsToCompiler;
+
                 myProcess.Start();
-                if(myProcess.StandardOutput.ReadToEnd().Equals(null))
+                string debuggError = myProcess.StandardError.ReadToEnd();
+
+                if (debuggError.Equals(""))
                 {
-                    return (myProcess.StandardError.ReadToEnd(), myProcess.StandardOutput.ReadToEnd(), true);
+                    return (debuggError, myProcess.StandardOutput.ReadToEnd(), true);
 
                 }else
                 {
-                    return (myProcess.StandardError.ReadToEnd() , myProcess.StandardOutput.ReadToEnd(), false);
+                    return (debuggError, myProcess.StandardOutput.ReadToEnd(), false);
 
                 }
 
@@ -303,9 +342,9 @@ namespace HomeWorkCheckApp
                 {
                     CompilerUsed = PythonComp;
 
-                    string commandCfiles = $"{myFileToExec}";
+                    string commandCfiles = $" {myFileToExec}";
                     argumentsToCompiler = commandCfiles;
-                    string compiledPyhonFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.exe";
+                    string compiledPyhonFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.py";
                     compiledFileToExec = compiledPyhonFile;
 
                 }
@@ -315,7 +354,7 @@ namespace HomeWorkCheckApp
 
                     string commandCfiles = $"-d {dirOutPutToCompiledFiles} {myFileToExec}";
                     argumentsToCompiler = commandCfiles;
-                    string compiledJavaFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.exe";
+                    string compiledJavaFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}";
                     compiledFileToExec = compiledJavaFile;
                 }
 
@@ -328,7 +367,7 @@ namespace HomeWorkCheckApp
                 myProcess.StartInfo.CreateNoWindow = true;
                 myProcess.StartInfo.Arguments = argumentsToCompiler;
                 myProcess.Start();
-                if (myProcess.StandardOutput.ReadToEnd().Equals(null))
+                if (myProcess.StandardOutput.ReadToEnd().Equals(""))
                 {
                     return ("Done",true, compiledFileToExec);
                 }
@@ -371,7 +410,7 @@ namespace HomeWorkCheckApp
                 myStreamWriter.Close();
                 myProcess.WaitForExit();
 
-                if (myProcess.StandardError.ReadToEnd().Equals(null))
+                if (myProcess.StandardError.ReadToEnd().Equals(""))
                 {
                     return (execFileOutput: myProcess.StandardOutput.ReadToEnd(), ExecutedNoErrors: true, errorOnExecution: myProcess.StandardError.ReadToEnd());
                 }

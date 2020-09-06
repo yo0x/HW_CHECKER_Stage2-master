@@ -677,12 +677,12 @@ namespace HomeWorkCheckApp
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.PanelSignIn);
-            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);

@@ -255,7 +255,7 @@ namespace HomeWorkCheckApp
 
                             if(compiledOk)
                             {
-                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
+                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
                                 RevisionResultCfilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
 
                             }
@@ -308,7 +308,7 @@ namespace HomeWorkCheckApp
 
                             if (compiledOk)
                             {
-                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
+                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
                                 RevisionResultJavaFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
 
                             }
@@ -363,7 +363,7 @@ namespace HomeWorkCheckApp
 
                             if (compiledOk)
                             {
-                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
+                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
                                 RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
 
                             }
@@ -682,15 +682,15 @@ namespace HomeWorkCheckApp
 
                 if (checkBoxCfiles.Checked)
                 {
-                    ResultsToExcelHest2(RevisionResultCfilesHest2,"CFiles");
+                    ResultsToExcelHest2(RevisionResultCfilesHest2,"CFiles_HEST2");
                 }
                 if (checkBoxJavaFiles.Checked)
                 {
-                    ResultsToExcelHest2(RevisionResultJavaFilesHest2, "JavaFiles");
+                    ResultsToExcelHest2(RevisionResultJavaFilesHest2, "JavaFiles_HEST2");
                 }
                 if (checkBoxPythonFiles.Checked)
                 {
-                    ResultsToExcelHest2(RevisionResultPythonFilesHest2,"PyhtonFiles");
+                    ResultsToExcelHest2(RevisionResultPythonFilesHest2,"PyhtonFiles_HEST2");
                 }
             }
         }

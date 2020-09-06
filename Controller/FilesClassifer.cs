@@ -59,30 +59,39 @@ namespace HomeWorkCheckApp
         public string FileOutput { get; set; }
 
         public FileResultHest1() { }
-        public FileResultHest1(string MyFileName, string myStudenId,string myDept, bool Comp, string MyErr, string FileOut)
+
+        public FileResultHest1(string fileOutPut,bool compiledSuccessfuly, string ErrorsFile)
         {
-            FileName = MyFileName;
-            StudenId = myStudenId;
-            Department = myDept;
-            Compiled = Comp;
-            Errors = MyErr;
-            FileOutput = FileOut;
-        }
-        public FileResultHest1(string MyErr, string FileOut, bool compiledSuccess)
-        {
-            Errors = MyErr;
-            FileOutput = FileOut;
-            Compiled = compiledSuccess;
+            Compiled = compiledSuccessfuly;
+            FileOutput = fileOutPut;
+            Errors = ErrorsFile;
 
         }
-        public FileResultHest1(string MyErr, string FileOut, string UserDefinedOutPut)
-        {
-            Errors = MyErr;
-            FileOutput = FileOut;
+      
+        //public FileResultHest1(string MyFileName, string myStudenId,string myDept, bool Comp, string MyErr, string FileOut)
+        //{
+        //    FileName = MyFileName;
+        //    StudenId = myStudenId;
+        //    Department = myDept;
+        //    Compiled = Comp;
+        //    Errors = MyErr;
+        //    FileOutput = FileOut;
+        //}
+        //public FileResultHest1(string MyErr, string FileOut, bool compiledSuccess)
+        //{
+        //    Errors = MyErr;
+        //    FileOutput = FileOut;
+        //    Compiled = compiledSuccess;
 
-        }
+        //}
+        //public FileResultHest1(string MyErr, string FileOut, string UserDefinedOutPut)
+        //{
+        //    Errors = MyErr;
+        //    FileOutput = FileOut;
 
-        
+        //}
+
+
     }
 
     public class FileResultHest2
@@ -97,44 +106,53 @@ namespace HomeWorkCheckApp
         public string UserDefinedExpectedOutPut { get; set; }
 
         public FileResultHest2() { }
-        public FileResultHest2(string MyFileName, string myStudenId, string myDept, bool Comp, string MyErr, string FileOut)
-        {
-            FileName = MyFileName;
-            StudenId = myStudenId;
-            Department = myDept;
-            Compiled = Comp;
-            Errors = MyErr;
-            FileOutput = FileOut;
-            PassHest2();
-        }
-        public FileResultHest2(string MyErr, string FileOut)
-        {
-            Errors = MyErr;
-            FileOutput = FileOut;
-            PassHest2();
 
-        }
-        public FileResultHest2(string MyErr, string FileOut, string UserDefinedOutPut,bool hest2Test)
+        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors)
         {
-            Errors = MyErr;
-            FileOutput = FileOut;
-            UserDefinedExpectedOutPut = UserDefinedOutPut;
-            PassHest2();
-            Hest2PassedTest = hest2Test;
-
+           
+            Compiled = hasErrors;
+            Errors = executionErrors;
+            FileOutput = executionOutPut;
         }
 
-        public void PassHest2()
-        {
-            if (UserDefinedExpectedOutPut.Equals(FileOutput))
-            {
-                Hest2PassedTest = true;
-            }
-            else
-            {
-                Hest2PassedTest = false;
-            }
-        }
+        //public FileResultHest2(string MyFileName, string myStudenId, string myDept, bool Comp, string MyErr, string FileOut)
+        //{
+        //    FileName = MyFileName;
+        //    StudenId = myStudenId;
+        //    Department = myDept;
+        //    Compiled = Comp;
+        //    Errors = MyErr;
+        //    FileOutput = FileOut;
+        //    PassHest2();
+        //}
+        //public FileResultHest2(string MyErr, string FileOut)
+        //{
+        //    Errors = MyErr;
+        //    FileOutput = FileOut;
+        //    PassHest2();
+
+        //}
+        //public FileResultHest2(string MyErr, string FileOut, string UserDefinedOutPut,bool hest2Test)
+        //{
+        //    Errors = MyErr;
+        //    FileOutput = FileOut;
+        //    UserDefinedExpectedOutPut = UserDefinedOutPut;
+        //    PassHest2();
+        //    Hest2PassedTest = hest2Test;
+
+        //}
+
+        //public void PassHest2()
+        //{
+        //    if (UserDefinedExpectedOutPut.Equals(FileOutput))
+        //    {
+        //        Hest2PassedTest = true;
+        //    }
+        //    else
+        //    {
+        //        Hest2PassedTest = false;
+        //    }
+        //}
     }
 
     /// <summary>Class <c>LanguageRecognizion</c> Divides files by language and adds them to the correspondent list. 

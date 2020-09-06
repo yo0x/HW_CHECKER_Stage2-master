@@ -250,11 +250,22 @@ namespace HomeWorkCheckApp
 
                         if (isHest1)
                         {
-                            (string compilerOutPut, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
-                            //.executeFile(item);
 
-                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, compiledSuccsesfully));
+                          (string compilerOutPutComp, bool compiledOk, string compiledFileToCheck ) =   FilesExecuterHest1.compileFile(item);
+
+                            if(compiledOk)
+                            {
+                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
+                                RevisionResultCfilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
+
+                            }
+                            else
+                            {
+                                RevisionResultCfilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp));
+
+                            }
+
+
 
                         }
                         else
@@ -264,24 +275,24 @@ namespace HomeWorkCheckApp
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
                             //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
 
-                           (string OutputFromFile, bool wasSuccessfull) =  FilesExecuterHest2.compileFile(item);
+                           (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) =  FilesExecuterHest2.compileFile(item);
                             if(wasSuccessfull)
                             {
                                 foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
                                 {
                                     //string s = FilesTool.processFileOutPut(inputCheck);
 
-                                    string execFileOutput = FilesExecuterHest2.executeFile(item, FilesTool.processFileOutPut(inputCheck));
+                                    (string execOutput, bool hasErrors, string ErrorsOnExec ) = FilesExecuterHest2.executeFile(CompiledFilePath,inputCheck);
 
-                                    //RevisionResultCfilesHest2.Add(new FileResultHest2(compilerOutPut, execFileOutput, inputCheck, CheckHest2(execFileOutput, inputCheck)));
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec));
                                 }
                             }
                             else
                             {
-                                string execFileOutput = $"ERROR: {OutputFromFile}";
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile));
                             }
-                            
-    
+
+
                         }
 
                     }
@@ -292,26 +303,49 @@ namespace HomeWorkCheckApp
 
                         if (isHest1)
                         {
-                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
-                            //.executeFile(item);
 
-                            // MessageBox.Show($"Compiler out put: {compilerOutPut}   \r\n\n   exeFileOutPut:{execFileOutput}");
-                            RevisionResultJavaFilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput));
+                            (string compilerOutPutComp, bool compiledOk, string compiledFileToCheck) = FilesExecuterHest1.compileFile(item);
+
+                            if (compiledOk)
+                            {
+                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
+                                RevisionResultJavaFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
+
+                            }
+                            else
+                            {
+                                RevisionResultJavaFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp));
+
+                            }
+
+
+
                         }
                         else
                         {
                             //(string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
                             //.executeFile(item);
-
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            //RevisionResultJavaFilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
-                            foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
-                            {
+                            //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
 
-                                (string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, FilesTool.processFileOutPut(inputCheck));
-                              //  if()
-                                RevisionResultJavaFilesHest2.Add(new FileResultHest2(compilerOutPut, execFileOutput, inputCheck, CheckHest2(execFileOutput, inputCheck)));
+                            (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
+                            if (wasSuccessfull)
+                            {
+                                foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
+                                {
+                                    //string s = FilesTool.processFileOutPut(inputCheck);
+
+                                    (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
+
+                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec));
+                                }
                             }
+                            else
+                            {
+                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile));
+                            }
+
+
                         }
 
 
@@ -324,29 +358,50 @@ namespace HomeWorkCheckApp
 
                         if (isHest1)
                         {
-                            (string compilerOutPut, string execFileOutput) = FilesExecuterHest1.executeFile(item);
-                            //.executeFile(item);
 
-                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            RevisionResultPythonFilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput));
+                            (string compilerOutPutComp, bool compiledOk, string compiledFileToCheck) = FilesExecuterHest1.compileFile(item);
+
+                            if (compiledOk)
+                            {
+                                (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
+
+                            }
+                            else
+                            {
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp));
+
+                            }
+
+
+
                         }
                         else
                         {
                             //(string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
                             //.executeFile(item);
-
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
+                            //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
 
-                            // RevisionResultPythonFilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
-                            foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
+                            (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
+                            if (wasSuccessfull)
                             {
+                                foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
+                                {
+                                    //string s = FilesTool.processFileOutPut(inputCheck);
 
-                                (string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, FilesTool.processFileOutPut(inputCheck));
-                                RevisionResultPythonFilesHest2.Add(new FileResultHest2(compilerOutPut, execFileOutput, inputCheck,CheckHest2(execFileOutput,inputCheck)));
+                                    (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
+                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec));
+                                }
                             }
-                        }
+                            else
+                            {
+                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile));
+                            }
 
+
+                        }
 
 
 

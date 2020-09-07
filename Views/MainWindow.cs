@@ -268,7 +268,7 @@ namespace HomeWorkCheckApp
 
 
                         }
-                        else
+                        else//HEST2
                         {
                             //(string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
                             //.executeFile(item);
@@ -284,12 +284,13 @@ namespace HomeWorkCheckApp
 
                                     (string execOutput, bool hasErrors, string ErrorsOnExec ) = FilesExecuterHest2.executeFile(CompiledFilePath,inputCheck);
 
-                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec));
+                                    bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2,Path.GetFileName(inputCheck)));
                                 }
                             }
                             else
                             {
-                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile));
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile,false,"none"));
                             }
 
 
@@ -337,14 +338,14 @@ namespace HomeWorkCheckApp
 
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
-                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec));
+                                    bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
                                 }
                             }
                             else
                             {
-                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile));
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
                             }
-
 
                         }
 
@@ -383,6 +384,7 @@ namespace HomeWorkCheckApp
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
                             //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
 
+
                             (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
                             if (wasSuccessfull)
                             {
@@ -392,14 +394,14 @@ namespace HomeWorkCheckApp
 
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
-                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec));
+                                    bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
                                 }
                             }
                             else
                             {
-                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile));
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
                             }
-
 
                         }
 
@@ -555,6 +557,8 @@ namespace HomeWorkCheckApp
             }
 
         }
+
+
         /// <summary>method <c>PopulateResultsPreview</c>files up the data in the correct labels. Number of files to be checked.</summary>
         [ExcludeFromCodeCoverage]
         private void PopulateResultsPreview()
@@ -777,5 +781,6 @@ namespace HomeWorkCheckApp
         {
             listBox1DragFiles.Items.Clear();
         }
+        
     }
 }

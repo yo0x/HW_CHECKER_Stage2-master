@@ -19,7 +19,18 @@ namespace HomeWorkCheckApp
         //Tests to perform in Hest 2
         public static string[] testsToPerformHest2;
 
+        public static bool PassedHest2Test(string inPutstr, string outPut)
+        {
 
+            if(inPutstr.Equals(outPut))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
         /// <summary>method <c>processFileOutPut</c> returns the text of the file being read.</summary>
 
         public static string processFileOutPut(string myFilePath)
@@ -104,15 +115,18 @@ namespace HomeWorkCheckApp
         public string FileOutput { get; set; }
         public bool Hest2PassedTest { get; set; }
         public string UserDefinedExpectedOutPut { get; set; }
+        public string InputBeingCheck { get; set; }
 
         public FileResultHest2() { }
 
-        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors)
+        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked)
         {
            
             Compiled = hasErrors;
             Errors = executionErrors;
             FileOutput = executionOutPut;
+            Hest2PassedTest = passedHest2;
+            InputBeingCheck = inputBeingChecked;
         }
 
         //public FileResultHest2(string MyFileName, string myStudenId, string myDept, bool Comp, string MyErr, string FileOut)

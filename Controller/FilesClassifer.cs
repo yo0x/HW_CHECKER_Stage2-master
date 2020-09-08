@@ -19,10 +19,34 @@ namespace HomeWorkCheckApp
         //Tests to perform in Hest 2
         public static string[] testsToPerformHest2;
 
-        public static bool PassedHest2Test(string inPutstr, string outPut)
+        public static bool PassedHest2Test(string ExecuteOutput, string InputCheckPath)
         {
+            string fileNameIn = Path.GetFileNameWithoutExtension(InputCheckPath);
+            char numberFileInputChar = 's';
+            string outPutPath = "";
 
-            if(inPutstr.Equals(outPut))
+            for (int i = 0; i < fileNameIn.Length; i++)
+            {
+                if (Char.IsDigit(fileNameIn[i]))
+                    numberFileInputChar = fileNameIn[i];
+                    break;
+            }
+
+
+            foreach (string item in testsToPerformHest2)
+            {
+                string a = Path.GetFileNameWithoutExtension(item);
+                for (int i = 0; i < a.Length; i++)
+                {
+                    if (Char.IsDigit(a[i]) && numberFileInputChar.Equals(a[i]))
+                        {
+                        outPutPath = item;
+                    }
+                        break;
+                }
+            }
+
+            if (ExecuteOutput.Equals(processFileOutPut(outPutPath)))
             {
                 return true;
             }
@@ -71,40 +95,16 @@ namespace HomeWorkCheckApp
 
         public FileResultHest1() { }
 
-        public FileResultHest1(string fileOutPut,bool compiledSuccessfuly, string ErrorsFile)
+        public FileResultHest1(string fileOutPut, bool compiledSuccessfuly, string ErrorsFile)
         {
             Compiled = compiledSuccessfuly;
             FileOutput = fileOutPut;
             Errors = ErrorsFile;
 
         }
-      
-        //public FileResultHest1(string MyFileName, string myStudenId,string myDept, bool Comp, string MyErr, string FileOut)
-        //{
-        //    FileName = MyFileName;
-        //    StudenId = myStudenId;
-        //    Department = myDept;
-        //    Compiled = Comp;
-        //    Errors = MyErr;
-        //    FileOutput = FileOut;
-        //}
-        //public FileResultHest1(string MyErr, string FileOut, bool compiledSuccess)
-        //{
-        //    Errors = MyErr;
-        //    FileOutput = FileOut;
-        //    Compiled = compiledSuccess;
-
-        //}
-        //public FileResultHest1(string MyErr, string FileOut, string UserDefinedOutPut)
-        //{
-        //    Errors = MyErr;
-        //    FileOutput = FileOut;
-
-        //}
 
 
     }
-
     public class FileResultHest2
     {
         public string FileName { get; set; }
@@ -121,7 +121,7 @@ namespace HomeWorkCheckApp
 
         public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked)
         {
-           
+
             Compiled = hasErrors;
             Errors = executionErrors;
             FileOutput = executionOutPut;
@@ -129,49 +129,8 @@ namespace HomeWorkCheckApp
             InputBeingCheck = inputBeingChecked;
         }
 
-        //public FileResultHest2(string MyFileName, string myStudenId, string myDept, bool Comp, string MyErr, string FileOut)
-        //{
-        //    FileName = MyFileName;
-        //    StudenId = myStudenId;
-        //    Department = myDept;
-        //    Compiled = Comp;
-        //    Errors = MyErr;
-        //    FileOutput = FileOut;
-        //    PassHest2();
-        //}
-        //public FileResultHest2(string MyErr, string FileOut)
-        //{
-        //    Errors = MyErr;
-        //    FileOutput = FileOut;
-        //    PassHest2();
 
-        //}
-        //public FileResultHest2(string MyErr, string FileOut, string UserDefinedOutPut,bool hest2Test)
-        //{
-        //    Errors = MyErr;
-        //    FileOutput = FileOut;
-        //    UserDefinedExpectedOutPut = UserDefinedOutPut;
-        //    PassHest2();
-        //    Hest2PassedTest = hest2Test;
-
-        //}
-
-        //public void PassHest2()
-        //{
-        //    if (UserDefinedExpectedOutPut.Equals(FileOutput))
-        //    {
-        //        Hest2PassedTest = true;
-        //    }
-        //    else
-        //    {
-        //        Hest2PassedTest = false;
-        //    }
-        //}
     }
-
-    /// <summary>Class <c>LanguageRecognizion</c> Divides files by language and adds them to the correspondent list. 
-    /// </summary>
-    ///
     public static class LanguageRecognizion
     {
 
@@ -203,4 +162,5 @@ namespace HomeWorkCheckApp
             return orderedFilesByLang;
         }
     }
+    //public class Input
 }

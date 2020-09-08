@@ -367,56 +367,87 @@ namespace HomeWorkCheckApp
                 myProcess.StartInfo.CreateNoWindow = true;
                 myProcess.StartInfo.Arguments = argumentsToCompiler;
                 myProcess.Start();
-                if (myProcess.StandardOutput.ReadToEnd().Equals(""))
+                string debuggError = myProcess.StandardError.ReadToEnd();
+
+                if (debuggError.Equals(""))
                 {
                     return ("Done",true, compiledFileToExec);
                 }
                 else
                 {
-                    return (myProcess.StandardError.ReadToEnd(),false,"Error no Compiled filed.");
+                    return (debuggError, false,"Error no Compiled filed.");
                 }
 
             }
         }
         public static (string execFileOutput, bool ExecutedNoErrors, string errorOnExecution) executeFile(string myFileToExec, string hest2Test)
         {
+            string JavaComp = "java.exe";
+            string PythonComp = "python.exe";
+            string compilerUsed = "";
+            string inputToPassHest2 = "";
+            string hest2TestIput = FilesTool.processFileOutPut(hest2Test);
+
+
+            if (Path.GetExtension(myFileToExec).Equals(".exe"))
+            {
+
+                compilerUsed = myFileToExec;
+                inputToPassHest2 = hest2TestIput;
+
+
+
+            }
+            else if (Path.GetExtension(myFileToExec).Equals(".py"))
+            {
+
+                compilerUsed = PythonComp;
+                inputToPassHest2 = hest2TestIput;
+
+
+
+            }
+            else
+            {
+
+                compilerUsed = JavaComp;
+                inputToPassHest2 = hest2TestIput;
+
+
+            }
             using (Process myProcess = new Process())
             {
-                myProcess.StartInfo.FileName = myFileToExec;
+                myProcess.StartInfo.FileName = compilerUsed;
                 myProcess.StartInfo.UseShellExecute = false;
                 myProcess.StartInfo.RedirectStandardError = true;
                  myProcess.StartInfo.RedirectStandardInput = true;
                 myProcess.StartInfo.RedirectStandardOutput = true;
                 myProcess.StartInfo.CreateNoWindow = true;
+               // myProcess.StartInfo.Arguments = hest2TestIput;
                 myProcess.Start();
 
                 StreamWriter myStreamWriter = myProcess.StandardInput;
+                if (inputToPassHest2.Length > 0)
+                {
+                    myStreamWriter.Write(inputToPassHest2);
+                }
 
                 // Prompt the user for input text lines to sort.
                 // Write each line to the StandardInput stream of
                 // the sort command.
-                String inputText = hest2Test;
-                int numLines = 0;
-                do
-                {
+              
+              //  myStreamWriter.Close();
+            //    myProcess.WaitForExit();
+                string debuggError = myProcess.StandardError.ReadToEnd();
 
-                    inputText = Console.ReadLine();
-                    if (inputText.Length > 0)
-                    {
-                        numLines++;
-                        myStreamWriter.WriteLine(inputText);
-                    }
-                } while (inputText.Length > 0);
-                myStreamWriter.Close();
-                myProcess.WaitForExit();
 
-                if (myProcess.StandardError.ReadToEnd().Equals(""))
+                if (debuggError.Equals(""))
                 {
-                    return (execFileOutput: myProcess.StandardOutput.ReadToEnd(), ExecutedNoErrors: true, errorOnExecution: myProcess.StandardError.ReadToEnd());
+                    return (execFileOutput: myProcess.StandardOutput.ReadToEnd(), ExecutedNoErrors: true, errorOnExecution: debuggError);
                 }
                 else
                 {
-                    return (execFileOutput: myProcess.StandardOutput.ReadToEnd(), ExecutedNoErrors: false, errorOnExecution: myProcess.StandardError.ReadToEnd());
+                    return (execFileOutput: myProcess.StandardOutput.ReadToEnd(), ExecutedNoErrors: false, errorOnExecution: debuggError);
 
                 }
                 // Wait for the sort process to write the sorted text lines.

@@ -615,6 +615,7 @@ namespace HomeWorkCheckApp
             this.listBox2Hest2Output.Name = "listBox2Hest2Output";
             this.listBox2Hest2Output.Size = new System.Drawing.Size(365, 260);
             this.listBox2Hest2Output.TabIndex = 7;
+            this.listBox2Hest2Output.SelectedIndexChanged += new System.EventHandler(this.listBox2Hest2Output_SelectedIndexChanged);
             this.listBox2Hest2Output.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox2Hest2Output_DragEnter);
             // 
             // listBox1Hest2InputParam
@@ -677,9 +678,9 @@ namespace HomeWorkCheckApp
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.panelSelectMode);
-            this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.panelDragFiles);
             this.Controls.Add(this.PanelSignIn);

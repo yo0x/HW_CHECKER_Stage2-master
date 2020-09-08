@@ -339,12 +339,12 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
+                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
                                 }
                             }
                             else
                             {
-                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
+                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
                             }
 
                         }
@@ -395,12 +395,12 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
+                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
                                 }
                             }
                             else
                             {
-                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
+                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
                             }
 
                         }
@@ -529,6 +529,9 @@ namespace HomeWorkCheckApp
                 sheet[1, 6].Text = "File's output";
                 sheet[1, 7].Text = "Expected Output";
                 sheet[1, 8].Text = "Passed HEST2";
+                sheet[1, 9].Text = "Test file";
+
+
 
                 //Create a dataset from XML file
                 //DataSet customersDataSet = new DataSet();
@@ -638,7 +641,7 @@ namespace HomeWorkCheckApp
             DataTable table = new DataTable();
 
             // Get max columns.
-            int columns = 8;
+            int columns = 9;
 
             //foreach (var element in list)
             //{
@@ -657,7 +660,7 @@ namespace HomeWorkCheckApp
             // Add rows.
             foreach (var array in list)
             {
-                table.Rows.Add(array.FileName, array.StudenId, array.Department, array.Compiled.ToString(), array.Errors, array.FileOutput, array.UserDefinedExpectedOutPut,array.Hest2PassedTest);
+                table.Rows.Add(array.FileName, array.StudenId, array.Department, array.Compiled.ToString(), array.Errors, array.FileOutput, array.UserDefinedExpectedOutPut,array.Hest2PassedTest,array.InputBeingCheck);
             }
 
             return table;
@@ -781,6 +784,10 @@ namespace HomeWorkCheckApp
         {
             listBox1DragFiles.Items.Clear();
         }
-        
+
+        private void listBox2Hest2Output_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Windows.Forms;
+using System.Text.RegularExpressions;
 
 namespace HomeWorkCheckApp
 {
@@ -28,8 +29,11 @@ namespace HomeWorkCheckApp
             for (int i = 0; i < fileNameIn.Length; i++)
             {
                 if (Char.IsDigit(fileNameIn[i]))
+                {
                     numberFileInputChar = fileNameIn[i];
                     break;
+                }
+                   
             }
 
 
@@ -41,12 +45,24 @@ namespace HomeWorkCheckApp
                     if (Char.IsDigit(a[i]) && numberFileInputChar.Equals(a[i]))
                         {
                         outPutPath = item;
-                    }
                         break;
+                    }
+                        
                 }
             }
 
-            if (ExecuteOutput.Equals(processFileOutPut(outPutPath)))
+            string OutPutPathContent = processFileOutPut(outPutPath);
+
+
+            string normalized1 = Regex.Replace(OutPutPathContent, @"\s", "");
+            string normalized2 = Regex.Replace(ExecuteOutput, @"\s", "");
+
+            bool stringEquals = String.Equals(
+                normalized1,
+                normalized2,
+                StringComparison.OrdinalIgnoreCase);
+
+            if (stringEquals)
             {
                 return true;
             }

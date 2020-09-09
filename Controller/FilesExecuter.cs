@@ -423,34 +423,29 @@ namespace HomeWorkCheckApp
                  myProcess.StartInfo.RedirectStandardInput = true;
                 myProcess.StartInfo.RedirectStandardOutput = true;
                 myProcess.StartInfo.CreateNoWindow = true;
-               // myProcess.StartInfo.Arguments = hest2TestIput;
+                string javaArgs = $" -classpath {Path.GetDirectoryName(myFileToExec)} {Path.GetFileNameWithoutExtension(myFileToExec)}";
+                myProcess.StartInfo.Arguments = javaArgs;
                 myProcess.Start();
 
                 StreamWriter myStreamWriter = myProcess.StandardInput;
-                if (inputToPassHest2.Length > 0)
-                {
-                    myStreamWriter.Write(inputToPassHest2);
-                }
 
-                // Prompt the user for input text lines to sort.
-                // Write each line to the StandardInput stream of
-                // the sort command.
-              
-              //  myStreamWriter.Close();
-            //    myProcess.WaitForExit();
+                myStreamWriter.WriteLine(hest2TestIput);
+
+
+                string devOUT = myProcess.StandardOutput.ReadToEnd();
+          
                 string debuggError = myProcess.StandardError.ReadToEnd();
 
 
-                if (debuggError.Equals(""))
+                if (devOUT.Length > 0)
                 {
-                    return (execFileOutput: myProcess.StandardOutput.ReadToEnd(), ExecutedNoErrors: true, errorOnExecution: debuggError);
+                    return (execFileOutput: devOUT, ExecutedNoErrors: true, errorOnExecution: debuggError);
                 }
                 else
                 {
-                    return (execFileOutput: myProcess.StandardOutput.ReadToEnd(), ExecutedNoErrors: false, errorOnExecution: debuggError);
+                    return (execFileOutput: devOUT, ExecutedNoErrors: false, errorOnExecution: debuggError);
 
                 }
-                // Wait for the sort process to write the sorted text lines.
 
 
 
@@ -458,81 +453,6 @@ namespace HomeWorkCheckApp
             }
         }
 
-        //        public static (string compilerOutPut, bool compiledSuccessfully) compileFile(string myFileToExec)
-        //        {
-        //            string fileCompOutPut = $"{ Path.GetTempPath() }\\comp.output";
-        //            string fileExecOutPut = $"{ Path.GetTempPath() }\\file.output";
-        //            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
-        //            string dirOutPutToCompiledFiles = $"{desktopPath}\\HwOutput";
-        //            string commadToCompiler = "";
-        ////            string commadToExecuteFile = "";
-
-
-        //            if (!Directory.Exists(dirOutPutToCompiledFiles))
-        //            {
-        //                Directory.CreateDirectory(dirOutPutToCompiledFiles);
-        //            }
-
-        //            if (Path.GetExtension(myFileToExec).Equals(".c"))
-        //            {
-        //                string commandCfiles = $"/c gcc -o {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)} {myFileToExec} 2> {fileCompOutPut}";
-        //                //string commandExeCompCFile = $"/c {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.exe {fileParameters} > {fileExecOutPut}";
-        //                commadToCompiler = commandCfiles;
-
-        //                //commadToExecuteFile = commandExeCompCFile;
-        //            }
-        //            else if (Path.GetExtension(myFileToExec).Equals(".py"))
-        //            {
-        //                string commandCfiles = $"/c python {myFileToExec} 2> {fileCompOutPut}";
-        //                //string commandExeCompCFile = $"/c python {myFileToExec} {fileParameters} > {fileExecOutPut}";
-        //                commadToCompiler = commandCfiles;
-        //                //commadToExecuteFile = commandExeCompCFile;
-        //            }
-        //            else if (Path.GetExtension(myFileToExec).Equals(".java"))
-        //            {
-        //                string commandCfiles = $"/c javac -d {dirOutPutToCompiledFiles} {myFileToExec} 2> {fileCompOutPut}";
-        //                //string commandExeCompCFile = $"/c java {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)} {fileParameters} 2> {fileExecOutPut}";
-
-        //                //string commandExeCompCFile = $"/c java {dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.class {fileParameters} 2> {fileExecOutPut}";
-        //                commadToCompiler = commandCfiles;
-        //                //commadToExecuteFile = commandExeCompCFile;
-        //            }
-
-
-
-
-
-        //            try
-        //            {
-        //                ProcessStartInfo a = new ProcessStartInfo();
-        //                Process proc = new Process();
-        //               // Process procExecFile = new Process();
-        //                proc.StartInfo.FileName = "cmd";
-        //                proc.StartInfo.Arguments = commadToCompiler;
-        //                proc.StartInfo.UseShellExecute = false;
-        //                proc.Start();
-        //                proc.WaitForExit();
-        //                //procExecFile.StartInfo.FileName = "cmd";
-        //                //procExecFile.StartInfo.Arguments = commadToExecuteFile;
-        //                //procExecFile.StartInfo.UseShellExecute = false;
-        //                //procExecFile.Start();
-        //                //procExecFile.WaitForExit();
-        //                if(FilesTool.processFileOutPut(fileCompOutPut).Equals(""))
-        //                {
-        //                    return (compilerOutPut: FilesTool.processFileOutPut(fileCompOutPut), compiledSuccessfully: true);
-        //                }
-        //                else
-        //                {
-        //                    return (compilerOutPut: $"Error: {FilesTool.processFileOutPut(fileCompOutPut)}", compiledSuccessfully: false);
-
-        //                }
-        //            }
-        //            catch (Exception objException)
-        //            {
-        //                return (compilerOutPut: $"Error found: {objException.ToString()}", compiledSuccessfully: false);
-        //                // Log the exception
-
-        //            }
-        //        }
+       
     }
 }

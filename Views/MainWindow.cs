@@ -91,7 +91,7 @@ namespace HomeWorkCheckApp
 
                     if (listBox1DragFiles.Items.Count == 0)
                     {
-                        MessageBox.Show("Please Drag files before continuing.","Alert",
+                        MessageBox.Show("Please Drag files before continuing.", "Alert",
                                  MessageBoxButtons.OK,
                                  MessageBoxIcon.Warning);
                     }
@@ -106,24 +106,25 @@ namespace HomeWorkCheckApp
                         checkBoxCfiles.Text = $" {Convert.ToString(MyOF.cFiles.Count)} C-Files";
                         checkBoxPythonFiles.Text = $" {Convert.ToString(MyOF.pythonFiles.Count)} Python Files";
                         checkBoxJavaFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
-                       // checkBoxCMakeFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
+                        // checkBoxCMakeFiles.Text = $" {Convert.ToString(MyOF.javaFiles.Count)} Java Files";
                     }
-                  
+
                     break;
                 //Select files to be Checked panel.
                 case 2:
-                    if(checkBoxCfiles.Checked == false && checkBoxJavaFiles.Checked == false && checkBoxPythonFiles.Checked == false)
+                    if (checkBoxCfiles.Checked == false && checkBoxJavaFiles.Checked == false && checkBoxPythonFiles.Checked == false)
                     {
                         MessageBox.Show("Please select files before continuing.", "Alert",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning);
-                    }else
+                    }
+                    else
                     {
                         NextPanel();
                         //PopulateResultsPreview();
                         buttonNextPanel.Visible = false;
                     }
-                   
+
 
                     break;
                 //Select HEST1 OR HEST2
@@ -196,14 +197,14 @@ namespace HomeWorkCheckApp
         private void ListBox1DragFiles_DragEnter_1(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-           // string[] filesDropToProccess = new string[filesDrop.Length];
+            // string[] filesDropToProccess = new string[filesDrop.Length];
             //FilesTool.filesToCheck = new string[filesDrop.Length];
             //FilesTool.filesToCheck = filesDrop;
 
             List<string> list = new List<string>();
             foreach (string item in filesDrop)
             {
-                if(Directory.Exists(item))
+                if (Directory.Exists(item))
                 {
                     string[] FilesInDir = Directory.GetFiles(item);
                     foreach (string file in FilesInDir)
@@ -219,7 +220,7 @@ namespace HomeWorkCheckApp
                     list.Add(item);
                     listBox1DragFiles.Items.Add(name);
                 }
-               
+
             }
             FilesTool.filesToCheck = list.ToArray();
             CountFilesDragged();
@@ -251,9 +252,9 @@ namespace HomeWorkCheckApp
                         if (isHest1)
                         {
 
-                          (string compilerOutPutComp, bool compiledOk, string compiledFileToCheck ) =   FilesExecuterHest1.compileFile(item);
+                            (string compilerOutPutComp, bool compiledOk, string compiledFileToCheck) = FilesExecuterHest1.compileFile(item);
 
-                            if(compiledOk)
+                            if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
                                 RevisionResultCfilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
@@ -275,22 +276,22 @@ namespace HomeWorkCheckApp
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
                             //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
 
-                           (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) =  FilesExecuterHest2.compileFile(item);
-                            if(wasSuccessfull)
+                            (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
+                            if (wasSuccessfull)
                             {
                                 foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
                                 {
                                     //string s = FilesTool.processFileOutPut(inputCheck);
 
-                                    (string execOutput, bool hasErrors, string ErrorsOnExec ) = FilesExecuterHest2.executeFile(CompiledFilePath,inputCheck);
+                                    (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2,Path.GetFileName(inputCheck)));
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
                                 }
                             }
                             else
                             {
-                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile,false,"none"));
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
                             }
 
 
@@ -336,10 +337,10 @@ namespace HomeWorkCheckApp
                                 {
                                     //string s = FilesTool.processFileOutPut(inputCheck);
 
-                                    (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
+                                    (string execOutput, bool HasNoErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
+                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, HasNoErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
                                 }
                             }
                             else
@@ -379,18 +380,12 @@ namespace HomeWorkCheckApp
                         }
                         else
                         {
-                            //(string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
-                            //.executeFile(item);
-                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
-
 
                             (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
                             if (wasSuccessfull)
                             {
                                 foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
                                 {
-                                    //string s = FilesTool.processFileOutPut(inputCheck);
 
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
@@ -435,7 +430,7 @@ namespace HomeWorkCheckApp
         public bool CheckHest2(string intStr, string outStr)
         {
 
-            if(intStr.Equals(outStr))
+            if (intStr.Equals(outStr))
             {
                 return true;
 
@@ -444,7 +439,7 @@ namespace HomeWorkCheckApp
             {
                 return false;
             }
-                
+
         }
         /// <summary>method <c>ResultsToExcelHest1</c>Writes the results into a Excel file.</summary>
         [ExcludeFromCodeCoverage]
@@ -468,13 +463,13 @@ namespace HomeWorkCheckApp
 
                 sheet[1, 1].Text = "File Name";
                 sheet[1, 2].Text = "StudentID";
-             //   sheet[1, 3].Text = "File Name";
+                //   sheet[1, 3].Text = "File Name";
                 sheet[1, 3].Text = "Departament";
                 sheet[1, 4].Text = "Compiled Successfully";
                 sheet[1, 5].Text = "Compiler errors";
                 sheet[1, 6].Text = "File's output";
-               // sheet[1, 8].Text = "Expected Output";
-               // sheet[1, 9].Text = "Passed HEST2";
+                // sheet[1, 8].Text = "Expected Output";
+                // sheet[1, 9].Text = "Passed HEST2";
 
                 //Create a dataset from XML file
                 //DataSet customersDataSet = new DataSet();
@@ -544,7 +539,7 @@ namespace HomeWorkCheckApp
                 //Import data from the data table with column header, at first row and first column, 
                 //and by its column type.
                 sheet.ImportDataTable(tableFromList, false, 2, 1, true);
-        
+
                 //Creating Excel table or list object and apply style to the table
                 Syncfusion.XlsIO.IListObject Table = sheet.ListObjects.Create("Employee_PersonalDetails", sheet.UsedRange);
 
@@ -573,7 +568,7 @@ namespace HomeWorkCheckApp
 
 
             label9NumCFilesChecked.Text = $" {Convert.ToString(MyOF.cFiles.Count)}";
-           // label10NumCmakeFilesBuilt.Text = $" 0";
+            // label10NumCmakeFilesBuilt.Text = $" 0";
             label10NumPythonFilesChecked.Text = $" {Convert.ToString(MyOF.pythonFiles.Count)}";
             label9NumJavaFilesChecked.Text = $" {Convert.ToString(MyOF.javaFiles.Count)}";
             foreach (FileResultHest1 item in RevisionResultCfilesHest1)
@@ -608,7 +603,7 @@ namespace HomeWorkCheckApp
         {
             // New table.
             DataTable table = new DataTable();
-            
+
             // Get max columns.
             int columns = 8;
 
@@ -625,7 +620,7 @@ namespace HomeWorkCheckApp
             {
                 table.Columns.Add();
             }
-           // table.Rows.Add("File name", "StudentID", "Department", "Compiled Successfully", "Errors", "File's output");
+            // table.Rows.Add("File name", "StudentID", "Department", "Compiled Successfully", "Errors", "File's output");
             // Add rows.
             foreach (var array in list)
             {
@@ -656,11 +651,11 @@ namespace HomeWorkCheckApp
             {
                 table.Columns.Add();
             }
-           // table.Rows.Add("File name", "StudentID", "Department", "Compiled Successfully", "Compiler errors", "File's output");
+            // table.Rows.Add("File name", "StudentID", "Department", "Compiled Successfully", "Compiler errors", "File's output");
             // Add rows.
             foreach (var array in list)
             {
-                table.Rows.Add(array.FileName, array.StudenId, array.Department, array.Compiled.ToString(), array.Errors, array.FileOutput, array.UserDefinedExpectedOutPut,array.Hest2PassedTest,array.InputBeingCheck);
+                table.Rows.Add(array.FileName, array.StudenId, array.Department, array.Compiled.ToString(), array.Errors, array.FileOutput, array.UserDefinedExpectedOutPut, array.Hest2PassedTest, array.InputBeingCheck);
             }
 
             return table;
@@ -668,7 +663,7 @@ namespace HomeWorkCheckApp
         [ExcludeFromCodeCoverage]
         private void Button4GenerateReport_Click(object sender, EventArgs e)
         {
-            if(isHest1)
+            if (isHest1)
             {
                 if (checkBoxCfiles.Checked)
                 {
@@ -689,7 +684,7 @@ namespace HomeWorkCheckApp
 
                 if (checkBoxCfiles.Checked)
                 {
-                    ResultsToExcelHest2(RevisionResultCfilesHest2,"CFiles_HEST2");
+                    ResultsToExcelHest2(RevisionResultCfilesHest2, "CFiles_HEST2");
                 }
                 if (checkBoxJavaFiles.Checked)
                 {
@@ -697,7 +692,7 @@ namespace HomeWorkCheckApp
                 }
                 if (checkBoxPythonFiles.Checked)
                 {
-                    ResultsToExcelHest2(RevisionResultPythonFilesHest2,"PyhtonFiles_HEST2");
+                    ResultsToExcelHest2(RevisionResultPythonFilesHest2, "PyhtonFiles_HEST2");
                 }
             }
         }
@@ -755,7 +750,7 @@ namespace HomeWorkCheckApp
                     {
                         var name = Path.GetFileName(file.ToString());
                         list.Add(file);
-                       listBox1Hest2InputParam.Items.Add(name);
+                        listBox1Hest2InputParam.Items.Add(name);
                     }
                 }
                 if (File.Exists(item))

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics.CodeAnalysis;
-
+using System.IO.Compression;
 namespace HomeWorkCheckApp
 {
     /// <summary>Main Window Class <c>Point</c> All the events logic here and access to models.
@@ -197,28 +197,74 @@ namespace HomeWorkCheckApp
         private void ListBox1DragFiles_DragEnter_1(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            // string[] filesDropToProccess = new string[filesDrop.Length];
-            //FilesTool.filesToCheck = new string[filesDrop.Length];
-            //FilesTool.filesToCheck = filesDrop;
-
+            string HwOutputFiles = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\HwOutput\\";
             List<string> list = new List<string>();
             foreach (string item in filesDrop)
             {
+
                 if (Directory.Exists(item))
                 {
                     string[] FilesInDir = Directory.GetFiles(item);
                     foreach (string file in FilesInDir)
                     {
+                        string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(file.ToString()));
+
                         var name = Path.GetFileName(file.ToString());
-                        list.Add(file);
-                        listBox1DragFiles.Items.Add(name);
+                        if (Path.GetExtension(file).Equals(".zip"))
+                        {
+
+                            try
+                            {
+                                string folferUnzipFile = $"{HwOutputFiles}\\{lastFolderNameStudenID}";
+                                ZipFile.ExtractToDirectory(file, folferUnzipFile);
+                                //string unzipFilePath = $"{folferUnzipFile}\\{Path.GetFileName(file)}";
+                                string[] FilesInDirUnzip = Directory.GetFiles(folferUnzipFile);
+                                foreach (string pathUnzipFile in FilesInDirUnzip)
+                                {
+                                    list.Add(pathUnzipFile);
+                                    listBox1DragFiles.Items.Add(pathUnzipFile);
+                                }
+                               
+
+
+                            }
+                            catch (Exception objException)
+                            {
+
+                                MessageBox.Show(objException.ToString(), "Alert",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+
+                            }
+                           
+
+                        }
+                        else
+                        {
+                            list.Add(file);
+                            listBox1DragFiles.Items.Add(name);
+                        }
+                       
                     }
                 }
                 if (File.Exists(item))
                 {
                     var name = Path.GetFileName(item.ToString());
-                    list.Add(item);
-                    listBox1DragFiles.Items.Add(name);
+                    string lastFolderName = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
+                    string StudentAndFileName = $"{lastFolderName}\\{name}";
+                    
+                    if (Path.GetExtension(item).Equals(".zip"))
+                    {
+
+                        ZipFile.ExtractToDirectory(item, $"{HwOutputFiles}\\{lastFolderName}");
+                        list.Add($"{HwOutputFiles}\\{lastFolderName}\\{Path.GetFileName(item)}");
+                    }
+                    else
+                    {
+
+                        list.Add(item);
+                        listBox1DragFiles.Items.Add(StudentAndFileName);
+                    }
                 }
 
             }
@@ -248,6 +294,7 @@ namespace HomeWorkCheckApp
                 case 1:
                     foreach (string item in myOrderedFiles.cFiles)
                     {
+                        string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
 
                         if (isHest1)
                         {
@@ -257,12 +304,12 @@ namespace HomeWorkCheckApp
                             if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                                RevisionResultCfilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
+                                RevisionResultCfilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec,item,lastFolderNameStudenID,"Kinneret Computer Science"));
 
                             }
                             else
                             {
-                                RevisionResultCfilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp));
+                                RevisionResultCfilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item,lastFolderNameStudenID,"CS Kinneret"));
 
                             }
 
@@ -275,7 +322,6 @@ namespace HomeWorkCheckApp
                             //.executeFile(item);
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
                             //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
-
                             (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
                             if (wasSuccessfull)
                             {
@@ -286,12 +332,12 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item,lastFolderNameStudenID));
                                 }
                             }
                             else
                             {
-                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item,lastFolderNameStudenID));
                             }
 
 
@@ -302,6 +348,7 @@ namespace HomeWorkCheckApp
                 case 2:
                     foreach (string item in myOrderedFiles.javaFiles)
                     {
+                        string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
 
                         if (isHest1)
                         {
@@ -311,12 +358,12 @@ namespace HomeWorkCheckApp
                             if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                                RevisionResultJavaFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
+                                RevisionResultJavaFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec, item, lastFolderNameStudenID, "Kinneret Computer Science"));
 
                             }
                             else
                             {
-                                RevisionResultJavaFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp));
+                                RevisionResultJavaFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item,lastFolderNameStudenID,"CS Kinneret"));
 
                             }
 
@@ -329,7 +376,6 @@ namespace HomeWorkCheckApp
                             //.executeFile(item);
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
                             //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
-
                             (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
                             if (wasSuccessfull)
                             {
@@ -340,12 +386,12 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool HasNoErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, HasNoErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
+                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, HasNoErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, lastFolderNameStudenID));
                                 }
                             }
                             else
                             {
-                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
+                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, lastFolderNameStudenID));
                             }
 
                         }
@@ -357,6 +403,8 @@ namespace HomeWorkCheckApp
                 case 3:
                     foreach (string item in myOrderedFiles.pythonFiles)
                     {
+                        string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
+
 
                         if (isHest1)
                         {
@@ -366,12 +414,12 @@ namespace HomeWorkCheckApp
                             if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                                RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec));
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec,item,lastFolderNameStudenID,"Cs Kinneret"));
 
                             }
                             else
                             {
-                                RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp));
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item,lastFolderNameStudenID,"CS kinneret"));
 
                             }
 
@@ -390,12 +438,12 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck)));
+                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item,lastFolderNameStudenID));
                                 }
                             }
                             else
                             {
-                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none"));
+                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item,lastFolderNameStudenID));
                             }
 
                         }

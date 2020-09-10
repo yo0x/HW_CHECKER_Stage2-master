@@ -111,11 +111,14 @@ namespace HomeWorkCheckApp
 
         public FileResultHest1() { }
 
-        public FileResultHest1(string fileOutPut, bool compiledSuccessfuly, string ErrorsFile)
+        public FileResultHest1(string fileOutPut, bool compiledSuccessfuly, string ErrorsFile, string myFileName, string myStudentID, string myDept)
         {
             Compiled = compiledSuccessfuly;
             FileOutput = fileOutPut;
             Errors = ErrorsFile;
+            FileName = myFileName;
+            StudenId = myStudentID;
+            Department = myDept;
 
         }
 
@@ -135,7 +138,7 @@ namespace HomeWorkCheckApp
 
         public FileResultHest2() { }
 
-        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked)
+        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked,string myFileName, string myStudenID)
         {
 
             Compiled = hasErrors;
@@ -143,6 +146,8 @@ namespace HomeWorkCheckApp
             FileOutput = executionOutPut;
             Hest2PassedTest = passedHest2;
             InputBeingCheck = inputBeingChecked;
+            FileName = myFileName;
+            StudenId = myStudenID;
         }
 
 

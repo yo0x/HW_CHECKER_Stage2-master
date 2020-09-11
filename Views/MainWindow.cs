@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using System.IO;
 using System.Diagnostics.CodeAnalysis;
 using System.IO.Compression;
+using System.Text.RegularExpressions;
+
 namespace HomeWorkCheckApp
 {
     /// <summary>Main Window Class <c>Point</c> All the events logic here and access to models.
@@ -197,7 +199,7 @@ namespace HomeWorkCheckApp
         private void ListBox1DragFiles_DragEnter_1(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
-            string HwOutputFiles = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\HwOutput\\";
+            string HwOutputFiles = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\HwOutput";
             List<string> list = new List<string>();
             foreach (string item in filesDrop)
             {
@@ -208,6 +210,8 @@ namespace HomeWorkCheckApp
                     foreach (string file in FilesInDir)
                     {
                         string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(file.ToString()));
+                        var resultStudenIdNoHeb = Regex.Replace(lastFolderNameStudenID, @"\p{IsHebrew}", string.Empty);
+                        var resultStudenNoHebNoSpaces = Regex.Replace(resultStudenIdNoHeb, @"\s+", String.Empty);
 
                         var name = Path.GetFileName(file.ToString());
                         if (Path.GetExtension(file).Equals(".zip"))
@@ -215,7 +219,7 @@ namespace HomeWorkCheckApp
 
                             try
                             {
-                                string folferUnzipFile = $"{HwOutputFiles}\\{lastFolderNameStudenID}";
+                                string folferUnzipFile = $"{HwOutputFiles}\\{resultStudenNoHebNoSpaces}";
                                 ZipFile.ExtractToDirectory(file, folferUnzipFile);
                                 //string unzipFilePath = $"{folferUnzipFile}\\{Path.GetFileName(file)}";
                                 string[] FilesInDirUnzip = Directory.GetFiles(folferUnzipFile);
@@ -249,15 +253,17 @@ namespace HomeWorkCheckApp
                 }
                 if (File.Exists(item))
                 {
-                    var name = Path.GetFileName(item.ToString());
-                    string lastFolderName = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
-                    string StudentAndFileName = $"{lastFolderName}\\{name}";
+                    string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
+                    var resultStudenIdNoHeb = Regex.Replace(lastFolderNameStudenID, @"\p{IsHebrew}", string.Empty);
+                    var resultStudenNoHebNoSpaces = Regex.Replace(resultStudenIdNoHeb, @"\s+", String.Empty);
+
+                    string StudentAndFileName = $"{lastFolderNameStudenID}\\{resultStudenNoHebNoSpaces}";
                     
                     if (Path.GetExtension(item).Equals(".zip"))
                     {
 
-                        ZipFile.ExtractToDirectory(item, $"{HwOutputFiles}\\{lastFolderName}");
-                        list.Add($"{HwOutputFiles}\\{lastFolderName}\\{Path.GetFileName(item)}");
+                        ZipFile.ExtractToDirectory(item, $"{HwOutputFiles}\\{resultStudenNoHebNoSpaces}");
+                        list.Add($"{HwOutputFiles}\\{resultStudenNoHebNoSpaces}\\{Path.GetFileName(item)}");
                     }
                     else
                     {
@@ -377,6 +383,8 @@ namespace HomeWorkCheckApp
                             // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
                             //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
                             (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
+                            //(string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(itemToComp);
+
                             if (wasSuccessfull)
                             {
                                 foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
@@ -829,6 +837,11 @@ namespace HomeWorkCheckApp
         }
 
         private void listBox2Hest2Output_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
         {
 
         }

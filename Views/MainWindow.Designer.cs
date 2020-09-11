@@ -462,9 +462,10 @@ namespace HomeWorkCheckApp
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(626, 41);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(166, 24);
+            this.label5.Size = new System.Drawing.Size(232, 24);
             this.label5.TabIndex = 0;
-            this.label5.Text = "ERRORS FOUND:";
+            this.label5.Text = "ERRORS FOUND HEST1:";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // labelFilesChecked
             // 
@@ -679,8 +680,8 @@ namespace HomeWorkCheckApp
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.panelDragFiles);
-            this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelResultsWindow);
+            this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
             this.Controls.Add(this.PanelSignIn);

@@ -91,6 +91,8 @@ namespace HomeWorkCheckApp
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
+            this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.label15WorkingOn = new System.Windows.Forms.Label();
             this.panelDragFiles.SuspendLayout();
             this.panelFilesOverView.SuspendLayout();
             this.groupBoxFilesToBeChecked.SuspendLayout();
@@ -172,7 +174,6 @@ namespace HomeWorkCheckApp
             this.listBox1DragFiles.Name = "listBox1DragFiles";
             this.listBox1DragFiles.Size = new System.Drawing.Size(821, 394);
             this.listBox1DragFiles.TabIndex = 4;
-//            this.listBox1DragFiles.SelectedIndexChanged += new System.EventHandler(this.listBox1DragFiles_SelectedIndexChanged);
             this.listBox1DragFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox1DragFiles_DragEnter_1);
             // 
             // buttonNextPanel
@@ -325,7 +326,7 @@ namespace HomeWorkCheckApp
             this.buttonSelectedHest1.TabIndex = 8;
             this.buttonSelectedHest1.Text = "HEST1 (EXECUTE AND BUILD C-FILES)";
             this.buttonSelectedHest1.UseVisualStyleBackColor = true;
-            this.buttonSelectedHest1.Click += new System.EventHandler(this.ButtonSelectedHest1_Click);
+            this.buttonSelectedHest1.Click += new System.EventHandler(this.ButtonSelectedHest1_ClickAsync);
             // 
             // buttonSelectedHEST2
             // 
@@ -571,7 +572,7 @@ namespace HomeWorkCheckApp
             this.button1Hest2EvalueateFiles.TabIndex = 5;
             this.button1Hest2EvalueateFiles.Text = "Evaluate files";
             this.button1Hest2EvalueateFiles.UseVisualStyleBackColor = true;
-            this.button1Hest2EvalueateFiles.Click += new System.EventHandler(this.Button1Hest2EvalueateFiles_Click);
+            this.button1Hest2EvalueateFiles.Click += new System.EventHandler(this.Button1Hest2EvalueateFiles_ClickAsync);
             // 
             // groupBox3
             // 
@@ -702,6 +703,24 @@ namespace HomeWorkCheckApp
             this.label11.TabIndex = 0;
             this.label11.Text = "HEST 2";
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Location = new System.Drawing.Point(401, 654);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(234, 27);
+            this.progressBar1.TabIndex = 6;
+            this.progressBar1.Visible = false;
+            // 
+            // label15WorkingOn
+            // 
+            this.label15WorkingOn.AutoSize = true;
+            this.label15WorkingOn.Location = new System.Drawing.Point(437, 690);
+            this.label15WorkingOn.Name = "label15WorkingOn";
+            this.label15WorkingOn.Size = new System.Drawing.Size(164, 13);
+            this.label15WorkingOn.TabIndex = 9;
+            this.label15WorkingOn.Text = "WORKING ON IT, HOLD TIGHT";
+            this.label15WorkingOn.Visible = false;
+            // 
             // MainWindow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -709,12 +728,14 @@ namespace HomeWorkCheckApp
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
+            this.Controls.Add(this.label15WorkingOn);
             this.Controls.Add(this.panelDragFiles);
-            this.Controls.Add(this.Hest2Panel);
-            this.Controls.Add(this.PanelSignIn);
-            this.Controls.Add(this.panelResultsWindow);
+            this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.panelSelectMode);
+            this.Controls.Add(this.panelResultsWindow);
+            this.Controls.Add(this.Hest2Panel);
             this.Controls.Add(this.panelFilesOverView);
+            this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);
@@ -744,6 +765,7 @@ namespace HomeWorkCheckApp
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -806,6 +828,8 @@ namespace HomeWorkCheckApp
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Label label15WorkingOn;
     }
 }
 

@@ -21,11 +21,12 @@ namespace HomeWorkCheckApp
         //Tests to perform in Hest 2
         public static string[] testsToPerformHest2;
 
-        public static bool PassedHest2Test(string ExecuteOutput, string InputCheckPath)
+         public static (bool isEqualhest2, string ExpectedOutPutHest2) PassedHest2Test(string ExecuteOutput, string InputCheckPath)
         {
             string fileNameIn = Path.GetFileNameWithoutExtension(InputCheckPath);
             char numberFileInputChar = 's';
             string outPutPath = "";
+            string outPutExepectedTest = "";
 
             for (int i = 0; i < fileNameIn.Length; i++)
             {
@@ -46,6 +47,7 @@ namespace HomeWorkCheckApp
                     if (Char.IsDigit(a[i]) && numberFileInputChar.Equals(a[i]))
                         {
                         outPutPath = item;
+                        outPutExepectedTest = processFileOutPut(item);
                         break;
                     }
                         
@@ -65,11 +67,11 @@ namespace HomeWorkCheckApp
 
             if (stringEquals)
             {
-                return true;
+                return (true, outPutExepectedTest);
             }
             else
             {
-                return false;
+                return (false, outPutExepectedTest);
             }
         }
         /// <summary>method <c>processFileOutPut</c> returns the text of the file being read.</summary>
@@ -139,7 +141,7 @@ namespace HomeWorkCheckApp
 
         public FileResultHest2() { }
 
-        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked,string myFileName, string myStudenID)
+        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked,string myFileName, string myStudenID, string ExepecetedOutPutFile, string myDepartment)
         {
 
             Compiled = hasErrors;
@@ -149,6 +151,8 @@ namespace HomeWorkCheckApp
             InputBeingCheck = inputBeingChecked;
             FileName = myFileName;
             StudenId = myStudenID;
+            UserDefinedExpectedOutPut = ExepecetedOutPutFile;
+            Department = myDepartment;
         }
 
 

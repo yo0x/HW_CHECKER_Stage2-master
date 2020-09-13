@@ -169,12 +169,19 @@ namespace HomeWorkCheckApp
 
         }
         [ExcludeFromCodeCoverage]
-        private void ButtonSelectedHest1_Click(object sender, EventArgs e)//HEST 1 selection button.
+        private async void ButtonSelectedHest1_ClickAsync(object sender, EventArgs e)//HEST 1 selection button.
         {
             /// <summary>method <c>draw</c> renders the point.</summary>
+            this.isHest1 = false;
+            progressBar1.Visible = true;
+            label15WorkingOn.Visible = true;
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            //btnImport.Enabled = false;
             isHest1 = true;
             Hest2Panel.Visible = false;
-            ExecCheckedFiles();
+            await Task.Run(() => ExecCheckedFiles());
+            progressBar1.Visible = false;
+            label15WorkingOn.Visible = false;
             label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST-1 METHOD.";
             NextPanelBehav();
             // NextPanelBehav();
@@ -209,26 +216,26 @@ namespace HomeWorkCheckApp
                 if (Directory.Exists(item))
                 {
                     string[] FilesInDir = Directory.GetFiles(item);
-                    foreach (string file in FilesInDir)
+                    foreach (string fileInDir in FilesInDir)
                     {
-                        string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(file.ToString()));
+                        string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(fileInDir.ToString()));
                         var resultStudenIdNoHeb = Regex.Replace(lastFolderNameStudenID, @"\p{IsHebrew}", string.Empty);
                         var resultStudenNoHebNoSpaces = Regex.Replace(resultStudenIdNoHeb, @"\s+", String.Empty);
 
-                        var name = Path.GetFileName(file.ToString());
-                        if (Path.GetExtension(file).Equals(".zip"))
+                        var name = Path.GetFileName(fileInDir.ToString());
+                        if (Path.GetExtension(fileInDir).Equals(".zip"))
                         {
 
                             try
                             {
                                 string folferUnzipFile = $"{HwOutputFiles}\\{resultStudenNoHebNoSpaces}";
-                                ZipFile.ExtractToDirectory(file, folferUnzipFile);
+                                ZipFile.ExtractToDirectory(fileInDir, folferUnzipFile);
                                 //string unzipFilePath = $"{folferUnzipFile}\\{Path.GetFileName(file)}";
                                 string[] FilesInDirUnzip = Directory.GetFiles(folferUnzipFile);
                                 foreach (string pathUnzipFile in FilesInDirUnzip)
                                 {
                                     list.Add(pathUnzipFile);
-                                    listIDS.Add(Path.GetFileNameWithoutExtension(file));
+                                    listIDS.Add(Path.GetFileNameWithoutExtension(fileInDir));
                                     listBox1DragFiles.Items.Add(pathUnzipFile);
                                 }
                                
@@ -248,10 +255,10 @@ namespace HomeWorkCheckApp
                         }
                         else
                         {
-                            list.Add(file);
-                            //listIDS.Add(Path.GetFileNameWithoutExtension(item));
+                            list.Add(fileInDir);
+                            listIDS.Add(Path.GetFileNameWithoutExtension(item));
 
-                            listBox1DragFiles.Items.Add(file);
+                            listBox1DragFiles.Items.Add(fileInDir);
                         }
                        
                     }
@@ -275,7 +282,10 @@ namespace HomeWorkCheckApp
                     {
 
                         list.Add(item);//Adds unzip file path to list.
-                        //listIDS.Add(Path.GetFileNameWithoutExtension(item));//Adds student IDS to list.
+                        if((Path.GetExtension(item).Contains(".c")) || (Path.GetExtension(item).Contains(".java")) || (Path.GetExtension(item).Contains(".py")))
+                        {
+                            listIDS.Add(Path.GetFileNameWithoutExtension(item));//Adds student IDS to list.
+                        }
 
                         listBox1DragFiles.Items.Add(StudentAndFileName);
                     }
@@ -348,16 +358,17 @@ namespace HomeWorkCheckApp
                                     //string s = FilesTool.processFileOutPut(inputCheck);
 
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
-
-                                    bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                    
+                                    (bool PassedTEstHest2, string ExpectedTestOutPut) = FilesTool.PassedHest2Test(execOutput, inputCheck);
+                                    //bool PassedTEstHest2
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1], ExpectedTestOutPut, "Computer Science"));
                                     counterIDSstudensHest1++;
 
                                 }
                             }
                             else
                             {
-                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1],"None","Computer Science"));
                                 counterIDSstudensHest1++;
 
                             }
@@ -412,8 +423,8 @@ namespace HomeWorkCheckApp
 
                                     (string execOutput, bool HasNoErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
-                                    bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, HasNoErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                    (bool PassedTEstHest2, string ExpectedTestOutPut) = FilesTool.PassedHest2Test(execOutput, inputCheck);
+                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, HasNoErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1], ExpectedTestOutPut, "Computer Science"));
 
                                 }
                                 counterIDSstudensHest1++;
@@ -421,7 +432,7 @@ namespace HomeWorkCheckApp
                             }
                             else
                             {
-                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1],"None", "Computer Science"));
                                 counterIDSstudensHest1++;
 
                             }
@@ -473,15 +484,15 @@ namespace HomeWorkCheckApp
 
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
-                                    bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                    (bool PassedTEstHest2, string ExpectedTestOutPut) = FilesTool.PassedHest2Test(execOutput, inputCheck);
+                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1], ExpectedTestOutPut, "Computer Science"));
                                     counterIDSstudensHest1++;
 
                                 }
                             }
                             else
                             {
-                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1],"None", "Computer Science"));
                                 counterIDSstudensHest1++;
 
                             }
@@ -505,6 +516,8 @@ namespace HomeWorkCheckApp
         [ExcludeFromCodeCoverage]
         private void ExecCheckedFiles()
         {
+
+           
 
             if (checkBoxCfiles.Checked == true)
                 executeGivenFiles(1);
@@ -772,10 +785,17 @@ namespace HomeWorkCheckApp
             }
         }
         [ExcludeFromCodeCoverage]
-        private void Button1Hest2EvalueateFiles_Click(object sender, EventArgs e)
+        private async void Button1Hest2EvalueateFiles_ClickAsync(object sender, EventArgs e)
         {
             this.isHest1 = false;
-            ExecCheckedFiles();
+            progressBar1.Visible = true;
+            label15WorkingOn.Visible = true;
+            progressBar1.Style = ProgressBarStyle.Marquee;
+            //btnImport.Enabled = false;
+            await Task.Run(() => ExecCheckedFiles());
+            progressBar1.Visible = false;
+            label15WorkingOn.Visible = false;
+            //ExecCheckedFiles();
             NextPanelBehav();
 
         }

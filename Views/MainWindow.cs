@@ -201,6 +201,8 @@ namespace HomeWorkCheckApp
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
             string HwOutputFiles = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\HwOutput";
             List<string> list = new List<string>();
+            //TEST
+            List<string> listIDS = new List<string>();
             foreach (string item in filesDrop)
             {
 
@@ -226,6 +228,7 @@ namespace HomeWorkCheckApp
                                 foreach (string pathUnzipFile in FilesInDirUnzip)
                                 {
                                     list.Add(pathUnzipFile);
+                                    listIDS.Add(Path.GetFileNameWithoutExtension(file));
                                     listBox1DragFiles.Items.Add(pathUnzipFile);
                                 }
                                
@@ -246,7 +249,9 @@ namespace HomeWorkCheckApp
                         else
                         {
                             list.Add(file);
-                            listBox1DragFiles.Items.Add(name);
+                            //listIDS.Add(Path.GetFileNameWithoutExtension(item));
+
+                            listBox1DragFiles.Items.Add(file);
                         }
                        
                     }
@@ -264,17 +269,21 @@ namespace HomeWorkCheckApp
 
                         ZipFile.ExtractToDirectory(item, $"{HwOutputFiles}\\{resultStudenNoHebNoSpaces}");
                         list.Add($"{HwOutputFiles}\\{resultStudenNoHebNoSpaces}\\{Path.GetFileName(item)}");
+                        listIDS.Add(Path.GetFileNameWithoutExtension(item));
                     }
                     else
                     {
 
-                        list.Add(item);
+                        list.Add(item);//Adds unzip file path to list.
+                        //listIDS.Add(Path.GetFileNameWithoutExtension(item));//Adds student IDS to list.
+
                         listBox1DragFiles.Items.Add(StudentAndFileName);
                     }
                 }
 
             }
             FilesTool.filesToCheck = list.ToArray();
+            FilesTool.studentIDS = listIDS.ToArray();
             CountFilesDragged();
         }
         /// <summary>method <c>ClasssifiesAndLoadsFiles</c>gets files from listBox drop and returns a myOrderedFiles instance.</summary>
@@ -295,12 +304,14 @@ namespace HomeWorkCheckApp
 
             OrderedFiles myOrderedFiles = new OrderedFiles();
             myOrderedFiles = LanguageRecognizion.classifierProgLang(FilesTool.filesToCheck);
+            int counterIDSstudensHest1 = 0;
             switch (caseSwitch)
             {
                 case 1:
                     foreach (string item in myOrderedFiles.cFiles)
                     {
                         string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
+                        string IdNumberStuden = Path.GetFileNameWithoutExtension(item);
 
                         if (isHest1)
                         {
@@ -310,12 +321,13 @@ namespace HomeWorkCheckApp
                             if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                                RevisionResultCfilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec,item,lastFolderNameStudenID,"Kinneret Computer Science"));
-
+                                RevisionResultCfilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec,item, FilesTool.studentIDS[counterIDSstudensHest1], "Kinneret Computer Science"));
+                                counterIDSstudensHest1++;
                             }
                             else
                             {
-                                RevisionResultCfilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item,lastFolderNameStudenID,"CS Kinneret"));
+                                RevisionResultCfilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item, FilesTool.studentIDS[counterIDSstudensHest1], "CS Kinneret"));
+                                counterIDSstudensHest1++;
 
                             }
 
@@ -338,12 +350,16 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item,lastFolderNameStudenID));
+                                    RevisionResultCfilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                    counterIDSstudensHest1++;
+
                                 }
                             }
                             else
                             {
-                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item,lastFolderNameStudenID));
+                                RevisionResultCfilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                counterIDSstudensHest1++;
+
                             }
 
 
@@ -355,6 +371,7 @@ namespace HomeWorkCheckApp
                     foreach (string item in myOrderedFiles.javaFiles)
                     {
                         string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
+                        string IdNumberStuden = Path.GetFileNameWithoutExtension(item);
 
                         if (isHest1)
                         {
@@ -364,12 +381,14 @@ namespace HomeWorkCheckApp
                             if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                                RevisionResultJavaFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec, item, lastFolderNameStudenID, "Kinneret Computer Science"));
+                                RevisionResultJavaFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec, item, FilesTool.studentIDS[counterIDSstudensHest1], "Kinneret Computer Science"));
+                                counterIDSstudensHest1++;
 
                             }
                             else
                             {
-                                RevisionResultJavaFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item,lastFolderNameStudenID,"CS Kinneret"));
+                                RevisionResultJavaFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item, FilesTool.studentIDS[counterIDSstudensHest1], "CS Kinneret"));
+                                counterIDSstudensHest1++;
 
                             }
 
@@ -394,12 +413,17 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool HasNoErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, HasNoErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, lastFolderNameStudenID));
+                                    RevisionResultJavaFilesHest2.Add(new FileResultHest2(execOutput, HasNoErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1]));
+
                                 }
+                                counterIDSstudensHest1++;
+
                             }
                             else
                             {
-                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, lastFolderNameStudenID));
+                                RevisionResultJavaFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                counterIDSstudensHest1++;
+
                             }
 
                         }
@@ -412,6 +436,7 @@ namespace HomeWorkCheckApp
                     foreach (string item in myOrderedFiles.pythonFiles)
                     {
                         string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(item.ToString()));
+                        string IdNumberStuden = Path.GetFileNameWithoutExtension(item);
 
 
                         if (isHest1)
@@ -422,12 +447,15 @@ namespace HomeWorkCheckApp
                             if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                                RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec,item,lastFolderNameStudenID,"Cs Kinneret"));
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec,item, FilesTool.studentIDS[counterIDSstudensHest1], "Cs Kinneret"));
+                                counterIDSstudensHest1++;
+
 
                             }
                             else
                             {
-                                RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item,lastFolderNameStudenID,"CS kinneret"));
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item, FilesTool.studentIDS[counterIDSstudensHest1], "CS kinneret"));
+                                counterIDSstudensHest1++;
 
                             }
 
@@ -446,12 +474,16 @@ namespace HomeWorkCheckApp
                                     (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
 
                                     bool PassedTEstHest2 = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item,lastFolderNameStudenID));
+                                    RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                    counterIDSstudensHest1++;
+
                                 }
                             }
                             else
                             {
-                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item,lastFolderNameStudenID));
+                                RevisionResultPythonFilesHest2.Add(new FileResultHest2("none", wasSuccessfull, OutputFromFile, false, "none",item, FilesTool.studentIDS[counterIDSstudensHest1]));
+                                counterIDSstudensHest1++;
+
                             }
 
                         }
@@ -483,20 +515,7 @@ namespace HomeWorkCheckApp
 
 
         }
-        public bool CheckHest2(string intStr, string outStr)
-        {
-
-            if (intStr.Equals(outStr))
-            {
-                return true;
-
-            }
-            else
-            {
-                return false;
-            }
-
-        }
+     
         /// <summary>method <c>ResultsToExcelHest1</c>Writes the results into a Excel file.</summary>
         [ExcludeFromCodeCoverage]
         private void ResultsToExcelHest1(List<FileResultHest1> myListToExcel, string fileType)
@@ -760,6 +779,8 @@ namespace HomeWorkCheckApp
             NextPanelBehav();
 
         }
+        [ExcludeFromCodeCoverage]
+
         private void listBox2Hest2Output_DragEnter(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -789,6 +810,8 @@ namespace HomeWorkCheckApp
             }
             FilesTool.testsToPerformHest2 = list.ToArray();
         }
+        [ExcludeFromCodeCoverage]
+
         private void listBox1Hest2InputParam_DragEnter(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
@@ -818,32 +841,26 @@ namespace HomeWorkCheckApp
             }
             FilesTool.inputToBeCheckedHest2 = list.ToArray();
         }
-        private void listBox1Hest2InputParam_SelectedIndexChanged(object sender, EventArgs e)
-        {
+        [ExcludeFromCodeCoverage]
 
-        }
         private void button1ClearListBoxHest2In_Click(object sender, EventArgs e)
         {
             listBox1Hest2InputParam.Items.Clear();
         }
+        [ExcludeFromCodeCoverage]
+
         private void button1ClearListBoxHest2Output_Click(object sender, EventArgs e)
         {
             listBox2Hest2Output.Items.Clear();
 
         }
+        [ExcludeFromCodeCoverage]
+
         private void button1ClearFilesDragger_Click(object sender, EventArgs e)
         {
             listBox1DragFiles.Items.Clear();
         }
 
-        private void listBox2Hest2Output_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label5_Click(object sender, EventArgs e)
-        {
-
-        }
+       
     }
 }

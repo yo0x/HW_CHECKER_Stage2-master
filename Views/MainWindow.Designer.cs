@@ -80,6 +80,9 @@ namespace HomeWorkCheckApp
             this.Hest2Panel = new System.Windows.Forms.Panel();
             this.button1Hest2EvalueateFiles = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.button1ClearListBoxHest2Output = new System.Windows.Forms.Button();
             this.button1ClearListBoxHest2In = new System.Windows.Forms.Button();
             this.listBox2Hest2Output = new System.Windows.Forms.ListBox();
@@ -128,10 +131,9 @@ namespace HomeWorkCheckApp
             this.label21.AutoSize = true;
             this.label21.Location = new System.Drawing.Point(284, 127);
             this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(397, 13);
+            this.label21.Size = new System.Drawing.Size(367, 13);
             this.label21.TabIndex = 9;
-            this.label21.Text = "Only file and folders are allowed. Please extract your ZIP files before using thi" +
-    "s APP";
+            this.label21.Text = "Only ZIP and file are allowed. Do not drag ZIP that contains more ZIP within.\r\n";
             // 
             // labelNumberFilesDragged
             // 
@@ -170,6 +172,7 @@ namespace HomeWorkCheckApp
             this.listBox1DragFiles.Name = "listBox1DragFiles";
             this.listBox1DragFiles.Size = new System.Drawing.Size(821, 394);
             this.listBox1DragFiles.TabIndex = 4;
+//            this.listBox1DragFiles.SelectedIndexChanged += new System.EventHandler(this.listBox1DragFiles_SelectedIndexChanged);
             this.listBox1DragFiles.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox1DragFiles_DragEnter_1);
             // 
             // buttonNextPanel
@@ -465,7 +468,6 @@ namespace HomeWorkCheckApp
             this.label5.Size = new System.Drawing.Size(232, 24);
             this.label5.TabIndex = 0;
             this.label5.Text = "ERRORS FOUND HEST1:";
-            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // labelFilesChecked
             // 
@@ -573,6 +575,9 @@ namespace HomeWorkCheckApp
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.label10);
+            this.groupBox3.Controls.Add(this.label9);
+            this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Controls.Add(this.button1ClearListBoxHest2Output);
             this.groupBox3.Controls.Add(this.button1ClearListBoxHest2In);
             this.groupBox3.Controls.Add(this.listBox2Hest2Output);
@@ -585,6 +590,33 @@ namespace HomeWorkCheckApp
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "I/O Configurations";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(285, 401);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(267, 13);
+            this.label10.TabIndex = 10;
+            this.label10.Text = "NOTE: file in1.txt will be test against out1.txt and so on.";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(555, 52);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(200, 13);
+            this.label9.TabIndex = 9;
+            this.label9.Text = "Only TXT file of the form: out1.txt out2.txt";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(124, 55);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(186, 13);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Only TXT file of the form: in1.txt in2.txt";
             // 
             // button1ClearListBoxHest2Output
             // 
@@ -616,7 +648,6 @@ namespace HomeWorkCheckApp
             this.listBox2Hest2Output.Name = "listBox2Hest2Output";
             this.listBox2Hest2Output.Size = new System.Drawing.Size(365, 260);
             this.listBox2Hest2Output.TabIndex = 7;
-            this.listBox2Hest2Output.SelectedIndexChanged += new System.EventHandler(this.listBox2Hest2Output_SelectedIndexChanged);
             this.listBox2Hest2Output.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox2Hest2Output_DragEnter);
             // 
             // listBox1Hest2InputParam
@@ -629,28 +660,27 @@ namespace HomeWorkCheckApp
             this.listBox1Hest2InputParam.Name = "listBox1Hest2InputParam";
             this.listBox1Hest2InputParam.Size = new System.Drawing.Size(365, 260);
             this.listBox1Hest2InputParam.TabIndex = 7;
-            this.listBox1Hest2InputParam.SelectedIndexChanged += new System.EventHandler(this.listBox1Hest2InputParam_SelectedIndexChanged);
             this.listBox1Hest2InputParam.DragEnter += new System.Windows.Forms.DragEventHandler(this.listBox1Hest2InputParam_DragEnter);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label14.Location = new System.Drawing.Point(550, 37);
+            this.label14.Location = new System.Drawing.Point(554, 19);
             this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(183, 25);
+            this.label14.Size = new System.Drawing.Size(174, 25);
             this.label14.TabIndex = 6;
-            this.label14.Text = "Expected output";
+            this.label14.Text = "OUTPUT FILES";
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(177)));
-            this.label13.Location = new System.Drawing.Point(66, 37);
+            this.label13.Location = new System.Drawing.Point(144, 19);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(287, 25);
+            this.label13.Size = new System.Drawing.Size(149, 25);
             this.label13.TabIndex = 5;
-            this.label13.Text = "Parameters to be checked";
+            this.label13.Text = "INPUT FILES";
             // 
             // label12
             // 
@@ -680,11 +710,11 @@ namespace HomeWorkCheckApp
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1008, 729);
             this.Controls.Add(this.panelDragFiles);
-            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.Hest2Panel);
+            this.Controls.Add(this.PanelSignIn);
+            this.Controls.Add(this.panelResultsWindow);
             this.Controls.Add(this.panelSelectMode);
             this.Controls.Add(this.panelFilesOverView);
-            this.Controls.Add(this.PanelSignIn);
             this.Controls.Add(this.buttonExitPro);
             this.Controls.Add(this.buttonBackSFW);
             this.Controls.Add(this.buttonNextPanel);
@@ -773,6 +803,9 @@ namespace HomeWorkCheckApp
         private System.Windows.Forms.Button button1ClearListBoxHest2Output;
         private System.Windows.Forms.Button button1ClearListBoxHest2In;
         private System.Windows.Forms.Button button1ClearFilesDragger;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label1;
     }
 }
 

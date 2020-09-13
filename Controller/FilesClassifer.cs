@@ -15,6 +15,7 @@ namespace HomeWorkCheckApp
     public static class FilesTool
     {
         public static string[] filesToCheck;
+        public static string[] studentIDS;
         //Files input to be checked HEST2
         public static string[] inputToBeCheckedHest2;
         //Tests to perform in Hest 2

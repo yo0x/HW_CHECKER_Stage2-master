@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DropFilesTest1
+namespace HomeWorkCheckApp
 {
+    [ExcludeFromCodeCoverage]
     static class Program
     {
         /// <summary>
@@ -16,7 +18,7 @@ namespace DropFilesTest1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main());
+            Application.Run(new MainWindow());
         }
     }
 }

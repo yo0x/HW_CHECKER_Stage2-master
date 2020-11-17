@@ -45,7 +45,7 @@ namespace HomeWorkCheckApp
                 }
                 else if (Path.GetExtension(myFileToCompile).Equals(".py"))
                 {
-                    string commandPyFiles = $" {myFileToCompile}";
+                    string commandPyFiles = $"{myFileToCompile}";
                     argumentsToCompiler = commandPyFiles;
                     compilerUsed = PythonComp;
                    // string compiledPythonFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToCompile)}.py";
@@ -107,7 +107,7 @@ namespace HomeWorkCheckApp
             {
                 
                 compilerUsed = PythonComp;
-                argumentsToCompiler = $" {myFileToExec}";
+                argumentsToCompiler = $"\"{myFileToExec}\"";
 
 
 
@@ -116,7 +116,7 @@ namespace HomeWorkCheckApp
             {
                
                 compilerUsed = JavaComp;
-                argumentsToCompiler = $" {myFileToExec}";
+                argumentsToCompiler = $"{myFileToExec}";
 
 
             }
@@ -184,12 +184,12 @@ namespace HomeWorkCheckApp
                 }
                 else if (Path.GetExtension(myFileToExec).Equals(".py"))
                 {
-                    CompilerUsed = PythonComp;
+                    //CompilerUsed = PythonComp;
 
-                    string commandCfiles = $" {myFileToExec}";
-                    argumentsToCompiler = commandCfiles;
-                    string compiledPyhonFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.py";
-                    compiledFileToExec = compiledPyhonFile;
+                    //string commandCfiles = $" {myFileToExec}";
+                    //argumentsToCompiler = commandCfiles;
+                    //string compiledPyhonFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.py";
+                    //compiledFileToExec = compiledPyhonFile;
 
                 }
                 else if (Path.GetExtension(myFileToExec).Equals(".java"))

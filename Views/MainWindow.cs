@@ -453,19 +453,25 @@ namespace HomeWorkCheckApp
                         if (isHest1)
                         {
 
+
+                            //(string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(item);
+                            //RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec, item, FilesTool.studentIDS[counterIDSstudensHest1], "Cs Kinneret"));
+                            //counterIDSstudensHest1++;
+
+
                             (string compilerOutPutComp, bool compiledOk, string compiledFileToCheck) = FilesExecuterHest1.compileFile(item);
 
                             if (compiledOk)
                             {
                                 (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                                RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec,item, FilesTool.studentIDS[counterIDSstudensHest1], "Cs Kinneret"));
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec, item, FilesTool.studentIDS[counterIDSstudensHest1], "Cs Kinneret"));
                                 counterIDSstudensHest1++;
 
 
                             }
                             else
                             {
-                                RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp,item, FilesTool.studentIDS[counterIDSstudensHest1], "CS kinneret"));
+                                RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp, item, FilesTool.studentIDS[counterIDSstudensHest1], "CS kinneret"));
                                 counterIDSstudensHest1++;
 
                             }

@@ -150,8 +150,9 @@ namespace HomeWorkCheckApp
 
     public static class FilesExecuterHest2
     {
+        static string[] InputsParsed;
 
-       
+
         public static (string compilerOutPut, bool compiledSuccessfully, string pathCompiledFile) compileFile(string myFileToExec)
         {
             string fileCompOutPut = $"{ Path.GetTempPath() }\\comp.output";
@@ -231,13 +232,13 @@ namespace HomeWorkCheckApp
             string compilerUsed = "";
             string inputToPassHest2 = "";
             string hest2TestIput = FilesTool.processFileOutPut(hest2Test);
+            string ArgsToFile = "";
 
 
             if (Path.GetExtension(myFileToExec).Equals(".exe"))
             {
 
                 compilerUsed = myFileToExec;
-                inputToPassHest2 = hest2TestIput;
 
 
 
@@ -246,7 +247,7 @@ namespace HomeWorkCheckApp
             {
 
                 compilerUsed = PythonComp;
-                inputToPassHest2 = hest2TestIput;
+                ArgsToFile = $"{myFileToExec}";
 
 
 
@@ -255,7 +256,8 @@ namespace HomeWorkCheckApp
             {
 
                 compilerUsed = JavaComp;
-                inputToPassHest2 = hest2TestIput;
+                string javaArgs = $" -classpath {Path.GetDirectoryName(myFileToExec)} {Path.GetFileNameWithoutExtension(myFileToExec)}";
+                ArgsToFile = javaArgs;
 
 
             }
@@ -267,18 +269,28 @@ namespace HomeWorkCheckApp
                  myProcess.StartInfo.RedirectStandardInput = true;
                 myProcess.StartInfo.RedirectStandardOutput = true;
                 myProcess.StartInfo.CreateNoWindow = true;
-                string javaArgs = $" -classpath {Path.GetDirectoryName(myFileToExec)} {Path.GetFileNameWithoutExtension(myFileToExec)}";
-                myProcess.StartInfo.Arguments = javaArgs;
+                myProcess.StartInfo.Arguments = ArgsToFile;
                 myProcess.Start();
 
                 StreamWriter myStreamWriter = myProcess.StandardInput;
 
-                myStreamWriter.WriteLine(hest2TestIput);
+                string devOUT = "";
+                foreach (string inline in ParseMyInput(hest2Test))
+                {
+                    myStreamWriter.WriteLine(inline);
+                   // System.Threading.Thread.Sleep(1000);
+                 //   myStreamWriter.Write(myProcess.StandardInput.NewLine);
 
 
-                string devOUT = myProcess.StandardOutput.ReadToEnd();
-          
+                }
+                devOUT = myProcess.StandardOutput.ReadToEnd();
+
+                //myStreamWriter.Flush();
+                //myStreamWriter.Close();
+                //   string devOUT = myProcess.StandardOutput.ReadToEnd();
+                //myProcess.StandardOutput.Close();
                 string debuggError = myProcess.StandardError.ReadToEnd();
+                //myProcess.StandardError.Close();
 
 
                 if (devOUT.Length > 0)
@@ -297,6 +309,31 @@ namespace HomeWorkCheckApp
             }
         }
 
-       
+     
+        public static string[] ParseMyInput(string fileToBP)
+        {
+
+
+            int counter = 0;
+            string line;
+
+            List<string> list = new List<string>();
+
+            // Read the file and display it line by line.  
+            System.IO.StreamReader file =
+                new System.IO.StreamReader(fileToBP);
+            while ((line = file.ReadLine()) != null)
+            {
+                list.Add(line);
+                counter++;
+            }
+
+            file.Close();
+            InputsParsed = list.ToArray();
+            return InputsParsed;
+
+
+        }
     }
+
 }

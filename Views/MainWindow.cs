@@ -171,12 +171,10 @@ namespace HomeWorkCheckApp
         [ExcludeFromCodeCoverage]
         private async void ButtonSelectedHest1_ClickAsync(object sender, EventArgs e)//HEST 1 selection button.
         {
-            /// <summary>method <c>draw</c> renders the point.</summary>
             this.isHest1 = false;
             progressBar1.Visible = true;
             label15WorkingOn.Visible = true;
             progressBar1.Style = ProgressBarStyle.Marquee;
-            //btnImport.Enabled = false;
             isHest1 = true;
             Hest2Panel.Visible = false;
             await Task.Run(() => ExecCheckedFiles());
@@ -184,7 +182,6 @@ namespace HomeWorkCheckApp
             label15WorkingOn.Visible = false;
             label5SummaryFilesHEST1HEST2.Text = "RESULTS FOR THE HEST-1 METHOD.";
             NextPanelBehav();
-            // NextPanelBehav();
 
 
         }
@@ -408,13 +405,8 @@ namespace HomeWorkCheckApp
                         }
                         else
                         {
-                            //(string compilerOutPut, string execFileOutput) = FilesExecuterHest2.executeFile(item, textBox1InputParameters.Text);
-                            //.executeFile(item);
-                            // MessageBox.Show($"Compiler out put:{compilerOutPut}   \n\n   exeFileOutPut:{execFileOutput}");
-                            //RevisionResultCfilesHest1.Add(new FileResultHest1(compilerOutPut, execFileOutput, textBoxHEST2ExpectedOutPut.Text));
+                           
                             (string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
-                            //(string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(itemToComp);
-
                             if (wasSuccessfull)
                             {
                                 foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
@@ -467,30 +459,6 @@ namespace HomeWorkCheckApp
                                 counterIDSstudensHest1++;
                             }
 
-
-
-
-
-
-                            //(string compilerOutPutComp, bool compiledOk, string compiledFileToCheck) = FilesExecuterHest1.compileFile(item);
-
-                            //if (compiledOk)
-                            //{
-                            //    (string compilerOutPutExec, string execFileOutput, bool compiledSuccsesfully) = FilesExecuterHest1.executeFile(compiledFileToCheck);
-                            //    RevisionResultPythonFilesHest1.Add(new FileResultHest1(execFileOutput, compiledSuccsesfully, compilerOutPutExec, item, FilesTool.studentIDS[counterIDSstudensHest1], "Cs Kinneret"));
-                            //    counterIDSstudensHest1++;
-
-
-                            //}
-                            //else
-                            //{
-                            //    RevisionResultPythonFilesHest1.Add(new FileResultHest1("None", compiledOk, compilerOutPutComp, item, FilesTool.studentIDS[counterIDSstudensHest1], "CS kinneret"));
-                            //    counterIDSstudensHest1++;
-
-                            //}
-
-
-
                         }
                         else
                         {
@@ -513,24 +481,6 @@ namespace HomeWorkCheckApp
 
                                 }
                             }
-
-
-
-
-                            //(string OutputFromFile, bool wasSuccessfull, string CompiledFilePath) = FilesExecuterHest2.compileFile(item);
-                            //if (wasSuccessfull)
-                            //{
-                            //    foreach (string inputCheck in FilesTool.inputToBeCheckedHest2)
-                            //    {
-
-                            //        (string execOutput, bool hasErrors, string ErrorsOnExec) = FilesExecuterHest2.executeFile(CompiledFilePath, inputCheck);
-
-                            //        (bool PassedTEstHest2, string ExpectedTestOutPut) = FilesTool.PassedHest2Test(execOutput, inputCheck);
-                            //        RevisionResultPythonFilesHest2.Add(new FileResultHest2(execOutput, hasErrors, ErrorsOnExec, PassedTEstHest2, Path.GetFileName(inputCheck),item, FilesTool.studentIDS[counterIDSstudensHest1], ExpectedTestOutPut, "Computer Science"));
-                            //        counterIDSstudensHest1++;
-
-                            //    }
-                            //}
 
 
                         }
@@ -801,6 +751,7 @@ namespace HomeWorkCheckApp
                 {
                     ResultsToExcelHest1(RevisionResultPythonFilesHest1, "PyhonFiles");
                 }
+
 
             }
             else

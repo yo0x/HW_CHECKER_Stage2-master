@@ -159,11 +159,9 @@ namespace HomeWorkCheckApp
             string fileExecOutPut = $"{ Path.GetTempPath() }\\file.output";
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
             string dirOutPutToCompiledFiles = $"{desktopPath}\\HwOutput";
-            //string commadToCompiler = "";
             string argumentsToCompiler = "";
             string cComp = "gcc.exe";
             string JavaComp = "javac.exe";
-            string PythonComp = "python.exe";
             string compiledFileToExec = "";
             string CompilerUsed = "";
             if (!Directory.Exists(dirOutPutToCompiledFiles))
@@ -183,16 +181,6 @@ namespace HomeWorkCheckApp
                     compiledFileToExec = compiledCFile;
 
                 }
-                else if (Path.GetExtension(myFileToExec).Equals(".py"))
-                {
-                    CompilerUsed = PythonComp;
-
-                    string commandCfiles = $" {myFileToExec}";
-                    argumentsToCompiler = commandCfiles;
-                    string compiledPyhonFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}.py";
-                    compiledFileToExec = compiledPyhonFile;
-
-                }
                 else if (Path.GetExtension(myFileToExec).Equals(".java"))
                 {
                     CompilerUsed = JavaComp;
@@ -202,6 +190,7 @@ namespace HomeWorkCheckApp
                     string compiledJavaFile = $"{dirOutPutToCompiledFiles}\\{Path.GetFileNameWithoutExtension(myFileToExec)}";
                     compiledFileToExec = compiledJavaFile;
                 }
+                //Add support to more files here...
 
 
                 myProcess.StartInfo.FileName = CompilerUsed;
@@ -256,8 +245,8 @@ namespace HomeWorkCheckApp
             {
 
                 compilerUsed = JavaComp;
-                string javaArgs = $" -classpath {Path.GetDirectoryName(myFileToExec)} {Path.GetFileNameWithoutExtension(myFileToExec)}";
-                ArgsToFile = javaArgs;
+                ArgsToFile = $" -classpath {Path.GetDirectoryName(myFileToExec)} {Path.GetFileNameWithoutExtension(myFileToExec)}";
+                 
 
 
             }
@@ -278,21 +267,9 @@ namespace HomeWorkCheckApp
                 foreach (string inline in ParseMyInput(hest2Test))
                 {
                     myStreamWriter.WriteLine(inline);
-                   // System.Threading.Thread.Sleep(1000);
-                 //   myStreamWriter.Write(myProcess.StandardInput.NewLine);
-
-
                 }
                 devOUT = myProcess.StandardOutput.ReadToEnd();
-
-                //myStreamWriter.Flush();
-                //myStreamWriter.Close();
-                //   string devOUT = myProcess.StandardOutput.ReadToEnd();
-                //myProcess.StandardOutput.Close();
                 string debuggError = myProcess.StandardError.ReadToEnd();
-                //myProcess.StandardError.Close();
-
-
                 if (devOUT.Length > 0)
                 {
                     return (execFileOutput: devOUT, ExecutedNoErrors: true, errorOnExecution: debuggError);

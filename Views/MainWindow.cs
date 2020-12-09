@@ -203,11 +203,13 @@ namespace HomeWorkCheckApp
         private void ListBox1DragFiles_DragEnter_1(object sender, DragEventArgs e)
         {
             string[] filesDrop = (string[])e.Data.GetData(DataFormats.FileDrop, false);
+            string[] droppedFilesNoHeb = FilesTool.RenameDraggedFiles(filesDrop);
+
             string HwOutputFiles = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}\\HwOutput";
             List<string> list = new List<string>();
             //TEST
             List<string> listIDS = new List<string>();
-            foreach (string item in filesDrop)
+            foreach (string item in droppedFilesNoHeb)
             {
 
                 if (Directory.Exists(item))
@@ -215,6 +217,7 @@ namespace HomeWorkCheckApp
                     string[] FilesInDir = Directory.GetFiles(item);
                     foreach (string fileInDir in FilesInDir)
                     {
+
                         string lastFolderNameStudenID = Path.GetFileName(Path.GetDirectoryName(fileInDir.ToString()));
                         var resultStudenIdNoHeb = Regex.Replace(lastFolderNameStudenID, @"\p{IsHebrew}", string.Empty);
                         var resultStudenNoHebNoSpaces = Regex.Replace(resultStudenIdNoHeb, @"\s+", String.Empty);

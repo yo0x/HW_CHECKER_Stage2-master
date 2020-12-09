@@ -21,7 +21,7 @@ namespace HomeWorkCheckApp
         //Tests to perform in Hest 2
         public static string[] testsToPerformHest2;
 
-         public static (bool isEqualhest2, string ExpectedOutPutHest2) PassedHest2Test(string ExecuteOutput, string InputCheckPath)
+        public static (bool isEqualhest2, string ExpectedOutPutHest2) PassedHest2Test(string ExecuteOutput, string InputCheckPath)
         {
             string fileNameIn = Path.GetFileNameWithoutExtension(InputCheckPath);
             char numberFileInputChar = 's';
@@ -35,7 +35,7 @@ namespace HomeWorkCheckApp
                     numberFileInputChar = fileNameIn[i];
                     break;
                 }
-                   
+
             }
 
 
@@ -45,12 +45,12 @@ namespace HomeWorkCheckApp
                 for (int i = 0; i < a.Length; i++)
                 {
                     if (Char.IsDigit(a[i]) && numberFileInputChar.Equals(a[i]))
-                        {
+                    {
                         outPutPath = item;
                         outPutExepectedTest = processFileOutPut(item);
                         break;
                     }
-                        
+
                 }
             }
 
@@ -89,6 +89,62 @@ namespace HomeWorkCheckApp
             // Open the file to read from.
             string readText = File.ReadAllText(myFilePath);
             return readText;
+        }
+
+        public static string[] RenameDraggedFiles(string[] myDraggedFiles)
+        {
+            string desktopPathEnv = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}";
+            string HwOutputFiles = $"{desktopPathEnv}\\noheb";
+            _ = Directory.CreateDirectory(HwOutputFiles);
+            List<string> tempFiles = new List<string>();
+           
+            
+            
+            
+            foreach (string item in myDraggedFiles)
+            {
+                var resultStudenIdNoHeb = Regex.Replace(item, @"\p{IsHebrew}", string.Empty);
+                var resultStudenNoHebNoSpaces = Regex.Replace(resultStudenIdNoHeb, @"\s+", String.Empty);
+                var fileNameWithEx = Path.GetFileName(item);
+                string newItemLocation = resultStudenNoHebNoSpaces.Replace(desktopPathEnv, HwOutputFiles);
+               // string newItemLocationCompletePath = $"{ newItemLocation }\\{fileNameWithEx}";
+                Directory.Move(item, newItemLocation);
+                //_ = Directory.CreateDirectory(newItemLocation);
+
+                if (Directory.Exists(newItemLocation))
+                {
+                    string[] FilesInDir = Directory.GetFiles(newItemLocation);
+
+                    foreach (var item2 in FilesInDir)
+                    {
+                        string lastFolderNameStudenID = new DirectoryInfo(newItemLocation).Name;
+
+                        var fileNoHeb = Regex.Replace(Path.GetFileName(item2), @"\p{IsHebrew}", string.Empty);
+                        var FileNoHenbAndNoSpaces = Regex.Replace(fileNoHeb, @"\s+", String.Empty);
+                        var fileNewPath = $"{HwOutputFiles}\\{lastFolderNameStudenID}\\{FileNoHenbAndNoSpaces}";
+                        //if (!item2.Equals(fileNewPath))
+                        File.Move(item2, fileNewPath);
+                        tempFiles.Add(fileNewPath);
+
+                    }
+                }
+                else
+                {
+                    File.Move(item, newItemLocation);
+
+
+                    tempFiles.Add(item);
+
+
+                }
+
+
+
+
+                tempFiles.Add(item);
+            }
+
+            return tempFiles.ToArray();
         }
     }
     /// <summary>Class <c>OrderedFiles</c> Data Structure for the files to be organized. 
@@ -141,7 +197,7 @@ namespace HomeWorkCheckApp
 
         public FileResultHest2() { }
 
-        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked,string myFileName, string myStudenID, string ExepecetedOutPutFile, string myDepartment)
+        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked, string myFileName, string myStudenID, string ExepecetedOutPutFile, string myDepartment)
         {
 
             Compiled = hasErrors;

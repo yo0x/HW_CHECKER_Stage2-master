@@ -219,7 +219,7 @@ namespace HomeWorkCheckApp
             string JavaComp = "java.exe";
             string PythonComp = "python.exe";
             string compilerUsed = "";
-            string inputToPassHest2 = "";
+            //string inputToPassHest2 = "";
             string hest2TestIput = FilesTool.processFileOutPut(hest2Test);
             string ArgsToFile = "";
 

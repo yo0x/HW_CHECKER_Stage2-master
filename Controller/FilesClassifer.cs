@@ -95,154 +95,166 @@ namespace HomeWorkCheckApp
         {
             string desktopPathEnv = $"{Environment.GetFolderPath(Environment.SpecialFolder.Desktop)}";
             string HwOutputFiles = $"{desktopPathEnv}\\noheb";
-            _ = Directory.CreateDirectory(HwOutputFiles);
+            if (!Directory.Exists(HwOutputFiles))
+            {
+                _ = Directory.CreateDirectory(HwOutputFiles);
+
+            }
             List<string> tempFiles = new List<string>();
-           
-            
-            
-            
+
             foreach (string item in myDraggedFiles)
             {
                 var resultStudenIdNoHeb = Regex.Replace(item, @"\p{IsHebrew}", string.Empty);
                 var resultStudenNoHebNoSpaces = Regex.Replace(resultStudenIdNoHeb, @"\s+", String.Empty);
                 var fileNameWithEx = Path.GetFileName(item);
                 string newItemLocation = resultStudenNoHebNoSpaces.Replace(desktopPathEnv, HwOutputFiles);
-               // string newItemLocationCompletePath = $"{ newItemLocation }\\{fileNameWithEx}";
-                Directory.Move(item, newItemLocation);
-                //_ = Directory.CreateDirectory(newItemLocation);
-
-                if (Directory.Exists(newItemLocation))
+                // string newItemLocationCompletePath = $"{ newItemLocation }\\{fileNameWithEx}";
+                try
                 {
-                    string[] FilesInDir = Directory.GetFiles(newItemLocation);
-
-                    foreach (var item2 in FilesInDir)
+                    if (!Directory.Exists(newItemLocation))
                     {
-                        string lastFolderNameStudenID = new DirectoryInfo(newItemLocation).Name;
-
-                        var fileNoHeb = Regex.Replace(Path.GetFileName(item2), @"\p{IsHebrew}", string.Empty);
-                        var FileNoHenbAndNoSpaces = Regex.Replace(fileNoHeb, @"\s+", String.Empty);
-                        var fileNewPath = $"{HwOutputFiles}\\{lastFolderNameStudenID}\\{FileNoHenbAndNoSpaces}";
-                        //if (!item2.Equals(fileNewPath))
-                        File.Move(item2, fileNewPath);
-                        tempFiles.Add(fileNewPath);
+                        Directory.Move(item, newItemLocation);
 
                     }
+
+
                 }
-                else
+                catch (Exception e)
                 {
-                    File.Move(item, newItemLocation);
+
+                    throw e;
+                }
+                //Directory.Move(item, newItemLocation);
+                //tempFiles.Add(item);
+
+                //_ = Directory.CreateDirectory(newItemLocation);
 
 
-                    tempFiles.Add(item);
+                string[] FilesInDir = Directory.GetFiles(newItemLocation);
 
+                foreach (var item2 in FilesInDir)
+                {
+                    string lastFolderNameStudenID = new DirectoryInfo(newItemLocation).Name;
+
+                    var fileNoHeb = Regex.Replace(Path.GetFileName(item2), @"\p{IsHebrew}", string.Empty);
+                    var FileNoHenbAndNoSpaces = Regex.Replace(fileNoHeb, @"\s+", String.Empty);
+                    var fileNewPath = $"{HwOutputFiles}\\{lastFolderNameStudenID}\\{FileNoHenbAndNoSpaces}";
+                    //if (!item2.Equals(fileNewPath))
+                    try
+                    {
+                        if(!File.Exists(fileNewPath))
+                        File.Move(item2, fileNewPath);
+
+                    }
+                    catch (Exception e)
+                    {
+
+                        throw e;
+                    }
+                    tempFiles.Add(fileNewPath);
 
                 }
-
-
-
-
-                tempFiles.Add(item);
             }
 
             return tempFiles.ToArray();
         }
-    }
-    /// <summary>Class <c>OrderedFiles</c> Data Structure for the files to be organized. 
-    /// </summary>
-    ///
-    public class OrderedFiles
-    {
-        public List<string> cFiles = new List<string>();
-        public List<string> pythonFiles = new List<string>();
-        public List<string> javaFiles = new List<string>();
-    }
-    /// <summary>Class <c>FileResultHest1</c> Data Structure for the test results. 
-    /// </summary>
-    ///
-    public class FileResultHest1
-    {
-        public string FileName { get; set; }
-        public string StudenId { get; set; }
-        public string Department { get; set; }
-        public bool Compiled { get; set; }
-        public string Errors { get; set; }
-        public string FileOutput { get; set; }
+}
+/// <summary>Class <c>OrderedFiles</c> Data Structure for the files to be organized. 
+/// </summary>
+///
+public class OrderedFiles
+{
+    public List<string> cFiles = new List<string>();
+    public List<string> pythonFiles = new List<string>();
+    public List<string> javaFiles = new List<string>();
+}
+/// <summary>Class <c>FileResultHest1</c> Data Structure for the test results. 
+/// </summary>
+///
+public class FileResultHest1
+{
+    public string FileName { get; set; }
+    public string StudenId { get; set; }
+    public string Department { get; set; }
+    public bool Compiled { get; set; }
+    public string Errors { get; set; }
+    public string FileOutput { get; set; }
 
-        public FileResultHest1() { }
+    public FileResultHest1() { }
 
-        public FileResultHest1(string fileOutPut, bool compiledSuccessfuly, string ErrorsFile, string myFileName, string myStudentID, string myDept)
+    public FileResultHest1(string fileOutPut, bool compiledSuccessfuly, string ErrorsFile, string myFileName, string myStudentID, string myDept)
+    {
+        Compiled = compiledSuccessfuly;
+        FileOutput = fileOutPut;
+        Errors = ErrorsFile;
+        FileName = myFileName;
+        StudenId = myStudentID;
+        Department = myDept;
+
+    }
+
+
+}
+public class FileResultHest2
+{
+    public string FileName { get; set; }
+    public string StudenId { get; set; }
+    public string Department { get; set; }
+    public bool Compiled { get; set; }
+    public string Errors { get; set; }
+    public string FileOutput { get; set; }
+    public bool Hest2PassedTest { get; set; }
+    public string UserDefinedExpectedOutPut { get; set; }
+    public string InputBeingCheck { get; set; }
+
+    public FileResultHest2() { }
+
+    public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked, string myFileName, string myStudenID, string ExepecetedOutPutFile, string myDepartment)
+    {
+
+        Compiled = hasErrors;
+        Errors = executionErrors;
+        FileOutput = executionOutPut;
+        Hest2PassedTest = passedHest2;
+        InputBeingCheck = inputBeingChecked;
+        FileName = myFileName;
+        StudenId = myStudenID;
+        UserDefinedExpectedOutPut = ExepecetedOutPutFile;
+        Department = myDepartment;
+    }
+
+
+}
+public static class LanguageRecognizion
+{
+
+
+    /// <summary>method <c>classifierProgLang</c> orders by extension.</summary>
+
+
+    public static OrderedFiles classifierProgLang(string[] myFilesToOrder)
+    {
+        OrderedFiles orderedFilesByLang = new OrderedFiles();
+        orderedFilesByLang.cFiles = new List<string>();
+        foreach (string item in myFilesToOrder)
         {
-            Compiled = compiledSuccessfuly;
-            FileOutput = fileOutPut;
-            Errors = ErrorsFile;
-            FileName = myFileName;
-            StudenId = myStudentID;
-            Department = myDept;
-
-        }
-
-
-    }
-    public class FileResultHest2
-    {
-        public string FileName { get; set; }
-        public string StudenId { get; set; }
-        public string Department { get; set; }
-        public bool Compiled { get; set; }
-        public string Errors { get; set; }
-        public string FileOutput { get; set; }
-        public bool Hest2PassedTest { get; set; }
-        public string UserDefinedExpectedOutPut { get; set; }
-        public string InputBeingCheck { get; set; }
-
-        public FileResultHest2() { }
-
-        public FileResultHest2(string executionOutPut, bool hasErrors, string executionErrors, bool passedHest2, string inputBeingChecked, string myFileName, string myStudenID, string ExepecetedOutPutFile, string myDepartment)
-        {
-
-            Compiled = hasErrors;
-            Errors = executionErrors;
-            FileOutput = executionOutPut;
-            Hest2PassedTest = passedHest2;
-            InputBeingCheck = inputBeingChecked;
-            FileName = myFileName;
-            StudenId = myStudenID;
-            UserDefinedExpectedOutPut = ExepecetedOutPutFile;
-            Department = myDepartment;
-        }
-
-
-    }
-    public static class LanguageRecognizion
-    {
-
-
-        /// <summary>method <c>classifierProgLang</c> orders by extension.</summary>
-
-
-        public static OrderedFiles classifierProgLang(string[] myFilesToOrder)
-        {
-            OrderedFiles orderedFilesByLang = new OrderedFiles();
-            orderedFilesByLang.cFiles = new List<string>();
-            foreach (string item in myFilesToOrder)
+            if (Path.GetExtension(item).Equals(".c"))
             {
-                if (Path.GetExtension(item).Equals(".c"))
-                {
-                    orderedFilesByLang.cFiles.Add(item);
-                }
-                if (Path.GetExtension(item).Equals(".py"))
-                {
-                    orderedFilesByLang.pythonFiles.Add(item);
-                }
-                if (Path.GetExtension(item).Equals(".java"))
-                {
-                    orderedFilesByLang.javaFiles.Add(item);
-                }
+                orderedFilesByLang.cFiles.Add(item);
             }
-
-
-            return orderedFilesByLang;
+            if (Path.GetExtension(item).Equals(".py"))
+            {
+                orderedFilesByLang.pythonFiles.Add(item);
+            }
+            if (Path.GetExtension(item).Equals(".java"))
+            {
+                orderedFilesByLang.javaFiles.Add(item);
+            }
         }
+
+
+        return orderedFilesByLang;
     }
+}
     //public class Input
 }
